@@ -8,22 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40334F28C268DE0096B69F /* AppDelegate.swift */; };
-		1E40335228C268DE0096B69F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40335128C268DE0096B69F /* SceneDelegate.swift */; };
-		1E40335428C268DE0096B69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40335328C268DE0096B69F /* ViewController.swift */; };
 		1E40335728C268DE0096B69F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335528C268DE0096B69F /* Main.storyboard */; };
 		1E40335928C268DF0096B69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335828C268DF0096B69F /* Assets.xcassets */; };
 		1E40335C28C268DF0096B69F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335A28C268DF0096B69F /* LaunchScreen.storyboard */; };
+		1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336428C26B900096B69F /* AppCoordinator.swift */; };
+		1E40336928C26BAE0096B69F /* CoordinatorContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */; };
+		1E40336B28C26BC20096B69F /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336A28C26BC20096B69F /* DataProtocol.swift */; };
+		1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */; };
+		1E40337028C26C3B0096B69F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336F28C26C3B0096B69F /* Alert.swift */; };
+		1E40337428C26C5A0096B69F /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40337328C26C5A0096B69F /* Typealiases.swift */; };
+		1E40337628C26C940096B69F /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40337528C26C940096B69F /* DependencyContainer.swift */; };
+		1E40337B28C26E340096B69F /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40337A28C26E340096B69F /* CoordinatorFactory.swift */; };
+		1E40337D28C26E4E0096B69F /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40337C28C26E4E0096B69F /* HomeCoordinator.swift */; };
+		1E40338028C26EAC0096B69F /* HomeCoordinatorContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40337F28C26EAC0096B69F /* HomeCoordinatorContracts.swift */; };
+		1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338228C26ED10096B69F /* HomeViewModel.swift */; };
+		1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338428C26EDC0096B69F /* HomeViewModelContracts.swift */; };
+		1E40338828C26EF50096B69F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338728C26EF50096B69F /* HomeViewController.swift */; };
+		1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338928C274660096B69F /* UIColorExtensions.swift */; };
+		1E40338E28C275DA0096B69F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338D28C275DA0096B69F /* LoginViewController.swift */; };
+		1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338F28C27E4E0096B69F /* UIControlExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E40334C28C268DE0096B69F /* SpotifyAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E40334F28C268DE0096B69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E40335128C268DE0096B69F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1E40335328C268DE0096B69F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1E40335628C268DE0096B69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E40335828C268DF0096B69F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E40335B28C268DF0096B69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E40335D28C268DF0096B69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E40336428C26B900096B69F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorContracts.swift; sourceTree = "<group>"; };
+		1E40336A28C26BC20096B69F /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
+		1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingProtocol.swift; sourceTree = "<group>"; };
+		1E40336F28C26C3B0096B69F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		1E40337328C26C5A0096B69F /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		1E40337528C26C940096B69F /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		1E40337A28C26E340096B69F /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		1E40337C28C26E4E0096B69F /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		1E40337F28C26EAC0096B69F /* HomeCoordinatorContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorContracts.swift; sourceTree = "<group>"; };
+		1E40338228C26ED10096B69F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1E40338428C26EDC0096B69F /* HomeViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelContracts.swift; sourceTree = "<group>"; };
+		1E40338728C26EF50096B69F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1E40338928C274660096B69F /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		1E40338D28C275DA0096B69F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1E40338F28C27E4E0096B69F /* UIControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControlExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +84,141 @@
 		1E40334E28C268DE0096B69F /* SpotifyAPI */ = {
 			isa = PBXGroup;
 			children = (
-				1E40334F28C268DE0096B69F /* AppDelegate.swift */,
-				1E40335128C268DE0096B69F /* SceneDelegate.swift */,
-				1E40335328C268DE0096B69F /* ViewController.swift */,
+				1E40337728C26CE20096B69F /* Modules */,
+				1E40336628C26B9A0096B69F /* Core */,
+				1E40336328C26B850096B69F /* App */,
 				1E40335528C268DE0096B69F /* Main.storyboard */,
 				1E40335828C268DF0096B69F /* Assets.xcassets */,
 				1E40335A28C268DF0096B69F /* LaunchScreen.storyboard */,
 				1E40335D28C268DF0096B69F /* Info.plist */,
 			);
 			path = SpotifyAPI;
+			sourceTree = "<group>";
+		};
+		1E40336328C26B850096B69F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1E40337928C26E2C0096B69F /* Factory */,
+				1E40334F28C268DE0096B69F /* AppDelegate.swift */,
+				1E40336428C26B900096B69F /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		1E40336628C26B9A0096B69F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1E40337228C26C540096B69F /* Helpers */,
+				1E40337128C26C4C0096B69F /* Extensions */,
+				1E40336E28C26C2B0096B69F /* Models */,
+				1E40336728C26BA20096B69F /* Protocols */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1E40336728C26BA20096B69F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */,
+				1E40336A28C26BC20096B69F /* DataProtocol.swift */,
+				1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1E40336E28C26C2B0096B69F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E40336F28C26C3B0096B69F /* Alert.swift */,
+				1E40337528C26C940096B69F /* DependencyContainer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1E40337128C26C4C0096B69F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338928C274660096B69F /* UIColorExtensions.swift */,
+				1E40338F28C27E4E0096B69F /* UIControlExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1E40337228C26C540096B69F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1E40337328C26C5A0096B69F /* Typealiases.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1E40337728C26CE20096B69F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338B28C275D20096B69F /* Login */,
+				1E40337828C26CE40096B69F /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		1E40337828C26CE40096B69F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338628C26EEF0096B69F /* View */,
+				1E40338128C26EC70096B69F /* VIewModel */,
+				1E40337E28C26E9F0096B69F /* Coordinator */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1E40337928C26E2C0096B69F /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				1E40337A28C26E340096B69F /* CoordinatorFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		1E40337E28C26E9F0096B69F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				1E40337C28C26E4E0096B69F /* HomeCoordinator.swift */,
+				1E40337F28C26EAC0096B69F /* HomeCoordinatorContracts.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		1E40338128C26EC70096B69F /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338228C26ED10096B69F /* HomeViewModel.swift */,
+				1E40338428C26EDC0096B69F /* HomeViewModelContracts.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		1E40338628C26EEF0096B69F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338728C26EF50096B69F /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1E40338B28C275D20096B69F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338C28C275D40096B69F /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		1E40338C28C275D40096B69F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1E40338D28C275DA0096B69F /* LoginViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +292,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E40335428C268DE0096B69F /* ViewController.swift in Sources */,
+				1E40337028C26C3B0096B69F /* Alert.swift in Sources */,
+				1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */,
+				1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */,
+				1E40337428C26C5A0096B69F /* Typealiases.swift in Sources */,
+				1E40336B28C26BC20096B69F /* DataProtocol.swift in Sources */,
+				1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */,
+				1E40338828C26EF50096B69F /* HomeViewController.swift in Sources */,
 				1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */,
-				1E40335228C268DE0096B69F /* SceneDelegate.swift in Sources */,
+				1E40337B28C26E340096B69F /* CoordinatorFactory.swift in Sources */,
+				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,
+				1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */,
+				1E40337D28C26E4E0096B69F /* HomeCoordinator.swift in Sources */,
+				1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */,
+				1E40338E28C275DA0096B69F /* LoginViewController.swift in Sources */,
+				1E40337628C26C940096B69F /* DependencyContainer.swift in Sources */,
+				1E40336928C26BAE0096B69F /* CoordinatorContracts.swift in Sources */,
+				1E40338028C26EAC0096B69F /* HomeCoordinatorContracts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +460,7 @@
 				INFOPLIST_FILE = SpotifyAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +488,7 @@
 				INFOPLIST_FILE = SpotifyAPI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
