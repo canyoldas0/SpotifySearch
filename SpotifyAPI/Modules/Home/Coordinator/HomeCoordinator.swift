@@ -34,12 +34,35 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     
     func goToLogin() {
         let loginViewController = LoginViewController()
+        let navigationViewController = UINavigationController(rootViewController: loginViewController)
         
-        if let sheet = loginViewController.sheetPresentationController {
+        let skipButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
+            self?.rootViewController.dismiss(animated: true)
+        }))
+        loginViewController.navigationItem.leftBarButtonItem = skipButton
+    
+        if let sheet = navigationViewController.sheetPresentationController {
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 10
             sheet.detents = [.custom(resolver: { context in
                 context.maximumDetentValue * 0.8
             })]
         }
-        rootViewController.present(loginViewController, animated: true)
+    
+        rootViewController.present(navigationViewController, animated: true)
+    }
+    
+    func goToProfile() {
+        let profileViewController = ProfileViewController()
+        
+        if let sheet = profileViewController.sheetPresentationController {
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 50
+            sheet.detents = [.custom(resolver: { context in
+                context.maximumDetentValue * 0.8
+            })]
+        }
+        
+        rootViewController.present(profileViewController, animated: true)
     }
 }

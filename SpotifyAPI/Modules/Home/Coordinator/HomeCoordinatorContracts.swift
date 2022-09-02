@@ -6,6 +6,8 @@
 //
 
 protocol HomeCoordinatorDelegate: AnyObject {
+
     func goBack(completion: VoidHandler?)
     func goToLogin()
+    func goToProfile()
 }

@@ -6,9 +6,12 @@
 //
 
 protocol HomeViewModelProtocol {
+    
     var coordinatorDelegate: HomeCoordinatorDelegate? { get }
     var delegate: HomeViewOutputProtocol? { get set }
+    
     func load()
+    func profileClicked()
 }
 
 protocol HomeViewOutputProtocol: AnyObject {

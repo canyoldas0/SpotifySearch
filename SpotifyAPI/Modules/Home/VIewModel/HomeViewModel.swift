@@ -17,4 +17,8 @@ final class HomeViewModel: HomeViewModelProtocol {
         coordinatorDelegate?.goToLogin()
 //        callListService()
     }
+    
+    func profileClicked() {
+        coordinatorDelegate?.goToProfile()
+    }
 }

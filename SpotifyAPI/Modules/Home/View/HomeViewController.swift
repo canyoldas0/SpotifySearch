@@ -19,6 +19,13 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
+    private lazy var profileButton: UIBarButtonItem = {
+       let temp = UIBarButtonItem()
+//        temp.image = UIImage(systemName: "person.circle")
+        temp.title = "Login"
+        return temp
+    }()
+    
     convenience init(viewModel: HomeViewModelProtocol) {
         self.init()
         self.viewModel = viewModel
@@ -34,12 +41,28 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     private func prepareUI() {
         view.backgroundColor = .backgroundColor
         setSearchBar()
+        setProfileButton()
     }
     
     private func setSearchBar() {
         searchController.hidesNavigationBarDuringPresentation = true
         navigationController!.navigationBar.sizeToFit()
         navigationItem.searchController = searchController
+    }
+    
+    private func setProfileButton() {
+        navigationItem.rightBarButtonItem = profileButton
+        
+        profileButton.action = #selector(profileClicked)
+    }
+    
+    @objc private func profileClicked() {
+        viewModel.profileClicked() 
+    }
+    
+    private func updateLoginButton() {
+        let loggedIn = LoginManager.shared.isLoggedIn()
+        profileButton.image = loggedIn ? UIImage(systemName: "person.circle") : nil
     }
 }
 
