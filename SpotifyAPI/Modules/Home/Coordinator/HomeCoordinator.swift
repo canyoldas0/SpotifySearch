@@ -13,17 +13,15 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     var children: [CoordinatorProtocol] = []
     private(set) var rootViewController: UINavigationController!
     private let dependencyContainer: DependencyContainer
+    private let homeFactory = HomeFactory()
 
     init(dependencies: DependencyContainer) {
         self.dependencyContainer = dependencies
     }
     
     func start() {
-        let homeViewModel = HomeViewModel()
-        let homeViewController = HomeViewController(viewModel: homeViewModel)
-        homeViewController.title = "Search"
-        homeViewModel.coordinatorDelegate = self
-        rootViewController = UINavigationController(rootViewController: homeViewController)
+        let homeVC = homeFactory.createHomeView(coordinatorDelegate: self)
+        rootViewController = UINavigationController(rootViewController: homeVC)
         rootViewController.navigationBar.prefersLargeTitles = true
     }
     

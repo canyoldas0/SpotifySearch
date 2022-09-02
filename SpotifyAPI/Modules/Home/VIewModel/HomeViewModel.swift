@@ -12,6 +12,11 @@ final class HomeViewModel: HomeViewModelProtocol {
     weak var delegate: HomeViewOutputProtocol?
     weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
+    private let dataHandler: HomeViewDataHandlerProtocol
+    
+    init(dataHandler: HomeViewDataHandlerProtocol) {
+        self.dataHandler = dataHandler
+    }
     
     func load() {
         coordinatorDelegate?.goToLogin()
@@ -20,5 +25,20 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func profileClicked() {
         coordinatorDelegate?.goToProfile()
+    }
+}
+
+extension HomeViewModel: ItemProviderProtocol {
+    
+    func getNumberOfItems(in section: Int) -> Int {
+        0
+    }
+    
+    func itemSelected(at index: Int) {
+        //
+    }
+    
+    func askData(for index: Int) -> DataProtocol? {
+        nil
     }
 }

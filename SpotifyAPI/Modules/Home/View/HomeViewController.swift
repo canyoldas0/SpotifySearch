@@ -21,10 +21,11 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private lazy var profileButton: UIBarButtonItem = {
        let temp = UIBarButtonItem()
-//        temp.image = UIImage(systemName: "person.circle")
         temp.title = "Login"
         return temp
     }()
+    
+    private var listView: ListView!
     
     convenience init(viewModel: HomeViewModelProtocol) {
         self.init()
@@ -42,12 +43,29 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         view.backgroundColor = .backgroundColor
         setSearchBar()
         setProfileButton()
+        configureListView()
     }
     
     private func setSearchBar() {
         searchController.hidesNavigationBarDuringPresentation = true
         navigationController!.navigationBar.sizeToFit()
         navigationItem.searchController = searchController
+    }
+    
+    private func configureListView() {
+        listView = ListView()
+        listView.translatesAutoresizingMaskIntoConstraints = false
+        listView.delegate = (viewModel as? HomeViewModel)
+        
+        view.addSubview(listView)
+        
+        NSLayoutConstraint.activate([
+        
+            listView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            listView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            listView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            listView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
     
     private func setProfileButton() {
