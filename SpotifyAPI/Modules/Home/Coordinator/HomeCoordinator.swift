@@ -40,6 +40,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
             self?.rootViewController.dismiss(animated: true)
         }))
         loginViewController.navigationItem.leftBarButtonItem = skipButton
+        loginViewController.title = "Login"
     
         if let sheet = navigationViewController.sheetPresentationController {
             sheet.prefersGrabberVisible = true
