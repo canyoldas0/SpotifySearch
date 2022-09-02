@@ -9,8 +9,12 @@ import UIKit
 
 final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
     
+    deinit {
+        print("deinit profile")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .backgroundColor
     }
 }

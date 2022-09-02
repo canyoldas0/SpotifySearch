@@ -30,9 +30,10 @@ final class ListView: BaseView<ListViewData> {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .clear
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .singleLine
-        tableView.allowsSelection = false
+        tableView.rowHeight = 130
+        tableView.estimatedRowHeight = 130
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = true
         tableView.register(ListViewCell.self, forCellReuseIdentifier: ListViewCell.identifier)
         return tableView
     }()
@@ -77,6 +78,9 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.selectedBackgroundView = .none
+        cell?.selectionStyle = .none
         delegate?.itemSelected(at: indexPath.row)
     }
 }

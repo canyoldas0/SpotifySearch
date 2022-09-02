@@ -21,6 +21,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     func load() {
         coordinatorDelegate?.goToLogin()
 //        callListService()
+        delegate?.handleOutput(.updateTable)
     }
     
     func profileClicked() {
@@ -31,14 +32,14 @@ final class HomeViewModel: HomeViewModelProtocol {
 extension HomeViewModel: ItemProviderProtocol {
     
     func getNumberOfItems(in section: Int) -> Int {
-        0
+        return 3
     }
     
     func itemSelected(at index: Int) {
-        //
+        coordinatorDelegate?.goToDetail(with: "3")
     }
     
     func askData(for index: Int) -> DataProtocol? {
-        nil
+        ListViewCellData(imageUrl: "https://picsum.photos/200", title: "Hello")
     }
 }

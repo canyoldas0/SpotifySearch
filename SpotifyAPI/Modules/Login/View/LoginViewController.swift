@@ -9,6 +9,10 @@ import UIKit
 
 final class LoginViewController: UIViewController, ErrorHandlingProtocol {
     
+    deinit {
+        print("deinit login")
+    }
+    
     private lazy var loginButton: UIButton = {
         let temp = UIButton()
         temp.translatesAutoresizingMaskIntoConstraints = false

@@ -35,8 +35,8 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.load()
         prepareUI()
+        viewModel.load()
     }
     
     private func prepareUI() {
@@ -70,7 +70,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func setProfileButton() {
         navigationItem.rightBarButtonItem = profileButton
-        
+        profileButton.target = self
         profileButton.action = #selector(profileClicked)
     }
     
@@ -87,7 +87,12 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
 extension HomeViewController: HomeViewOutputProtocol {
     
     func handleOutput(_ output: HomeViewOutput) {
-        
+        switch output {
+        case .showAlert(let alert):
+            showAlert(with: alert)
+        case .updateTable:
+            listView.updateTable()
+        }
     }
 }
 

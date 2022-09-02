@@ -40,28 +40,30 @@ final class ListViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let margins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        let margins = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         contentView.frame = contentView.frame.inset(by: margins)
+        contentView.layer.cornerRadius = 10
     }
     
     private func addViewComponents() {
+        backgroundColor = .clear
+        contentView.backgroundColor = .white
         contentView.addSubview(imageContainer)
         contentView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
         
-            imageContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             imageContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            imageContainer.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            imageContainer.heightAnchor.constraint(equalToConstant: 100),
-            imageContainer.widthAnchor.constraint(equalToConstant: 100),
+            imageContainer.heightAnchor.constraint(equalToConstant: 64),
+            imageContainer.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageContainer.widthAnchor.constraint(equalToConstant: 64),
             
-            titleLabel.leadingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: 16),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
         ])
         
-        imageContainer.layer.cornerRadius = 50
+        imageContainer.layer.cornerRadius = 32
     }
     
     func setData(with data: DataProtocol) {

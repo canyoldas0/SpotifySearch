@@ -41,11 +41,10 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         loginViewController.title = "Login"
     
         if let sheet = navigationViewController.sheetPresentationController {
-            sheet.prefersGrabberVisible = true
+            /// Funny thing. Setting this property to true causes a memory leak.
+//            sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 10
-            sheet.detents = [.custom(resolver: { context in
-                context.maximumDetentValue * 0.8
-            })]
+            sheet.detents = [.large()]
         }
     
         rootViewController.present(navigationViewController, animated: true)
@@ -55,13 +54,15 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         let profileViewController = ProfileViewController()
         
         if let sheet = profileViewController.sheetPresentationController {
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 50
-            sheet.detents = [.custom(resolver: { context in
-                context.maximumDetentValue * 0.8
-            })]
+            sheet.preferredCornerRadius = 10
+            sheet.detents = [.large()]
         }
         
         rootViewController.present(profileViewController, animated: true)
+    }
+    
+    func goToDetail(with id: String) {
+        let detail = DetailViewController()
+        rootViewController.show(detail, sender: nil)
     }
 }

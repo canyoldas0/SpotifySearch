@@ -18,7 +18,6 @@ final class HomeFactory {
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         homeViewController.title = "Search"
         homeViewController.navigationController?.navigationBar.prefersLargeTitles = true
-        
         return homeViewController
     }
 }

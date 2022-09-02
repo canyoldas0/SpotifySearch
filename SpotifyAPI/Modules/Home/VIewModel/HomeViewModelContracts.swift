@@ -19,6 +19,6 @@ protocol HomeViewOutputProtocol: AnyObject {
 }
 
 enum HomeViewOutput: Equatable {
-//    case updateTable
+    case updateTable
     case showAlert(Alert)
 }
