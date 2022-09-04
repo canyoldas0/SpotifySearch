@@ -60,6 +60,7 @@ final class AuthManager {
             switch result {
             case .success(let response):
                 self?.cacheToken(response: response)
+                completion(true)
             case .failure(_):
                 completion(false)
             }
@@ -118,11 +119,11 @@ final class AuthManager {
     
     private func cacheToken(response: AuthResponse) {
         UserDefaults.standard.setValue(response.accessToken, forKey: Constants.accessToken)
+        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(response.expiresIn)), forKey: Constants.expirationDate)
         
         if let refreshToken = response.refreshToken {
             UserDefaults.standard.setValue(refreshToken, forKey: Constants.refreshToken)
         }
         
-        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(response.expiresIn)), forKey: Constants.expirationDate)
     }
 }
