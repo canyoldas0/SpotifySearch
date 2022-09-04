@@ -20,4 +20,21 @@ final class HomeFactory {
         homeViewController.navigationController?.navigationBar.prefersLargeTitles = true
         return homeViewController
     }
+    
+    func createSignInScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
+        let viewModel = SignInViewModel()
+        viewModel.coordinatorDelegate = coordinatorDelegate
+        let viewController = SignInViewController(viewModel: viewModel)
+        
+        return viewController
+    }
+    
+    func createProfileScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
+        let viewModel = ProfileViewModel()
+        viewModel.coordinatorDelegate = coordinatorDelegate
+        let viewController = ProfileViewController(viewModel: viewModel)
+        viewController.title = "Profile"
+        
+        return viewController
+    }
 }

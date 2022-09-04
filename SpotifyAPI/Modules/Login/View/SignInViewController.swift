@@ -7,19 +7,22 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController, ErrorHandlingProtocol {
+final class SignInViewController: UIViewController, ErrorHandlingProtocol {
     
-    deinit {
-        print("deinit login")
-    }
+    private var viewModel: SignInViewModelProtocol!
     
-    private lazy var loginButton: UIButton = {
+    private lazy var signInButton: UIButton = {
         let temp = UIButton()
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.setTitle("Click to login", for: .normal)
+        temp.setTitle("Sign In.", for: .normal)
         temp.setTitleColor(.label, for: .normal)
         return temp
     }()
+    
+    convenience init(viewModel: SignInViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +35,16 @@ final class LoginViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func configureButton() {
-        view.addSubview(loginButton)
+        view.addSubview(signInButton)
         
         NSLayoutConstraint.activate([
             
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
         
-        loginButton.addAction {
-            print("hello world.")
+        signInButton.addAction { [weak self] in
+            self?.viewModel.signInClicked()
         }
     }
 }

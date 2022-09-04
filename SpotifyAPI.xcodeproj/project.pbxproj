@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */; };
+		1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AE28C4B53E004966DB /* SignInContracts.swift */; };
+		1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */; };
+		1E25A8B428C4BDF6004966DB /* ProfileViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8B328C4BDF6004966DB /* ProfileViewModelContracts.swift */; };
 		1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40334F28C268DE0096B69F /* AppDelegate.swift */; };
 		1E40335728C268DE0096B69F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335528C268DE0096B69F /* Main.storyboard */; };
 		1E40335928C268DF0096B69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335828C268DF0096B69F /* Assets.xcassets */; };
@@ -25,9 +29,9 @@
 		1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338428C26EDC0096B69F /* HomeViewModelContracts.swift */; };
 		1E40338828C26EF50096B69F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338728C26EF50096B69F /* HomeViewController.swift */; };
 		1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338928C274660096B69F /* UIColorExtensions.swift */; };
-		1E40338E28C275DA0096B69F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338D28C275DA0096B69F /* LoginViewController.swift */; };
+		1E40338E28C275DA0096B69F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338D28C275DA0096B69F /* SignInViewController.swift */; };
 		1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40338F28C27E4E0096B69F /* UIControlExtensions.swift */; };
-		1E40339328C287900096B69F /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40339228C287900096B69F /* LoginManager.swift */; };
+		1E40339328C287900096B69F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40339228C287900096B69F /* AuthManager.swift */; };
 		1E40339728C2887A0096B69F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40339628C2887A0096B69F /* ProfileViewController.swift */; };
 		1E40339B28C2A0A60096B69F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40339A28C2A0A60096B69F /* ListView.swift */; };
 		1E40339E28C2A2670096B69F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40339D28C2A2670096B69F /* BaseView.swift */; };
@@ -42,9 +46,14 @@
 		1E4033B428C2AA780096B69F /* HomeViewDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033B328C2AA780096B69F /* HomeViewDataHandler.swift */; };
 		1E4033B728C2AAD70096B69F /* HomeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033B628C2AAD70096B69F /* HomeFactory.swift */; };
 		1E4033BB28C2AF0E0096B69F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033BA28C2AF0E0096B69F /* DetailViewController.swift */; };
+		1ED2F0A928C39ADE00D2D1CD /* AuthrorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		1E25A8AE28C4B53E004966DB /* SignInContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContracts.swift; sourceTree = "<group>"; };
+		1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		1E25A8B328C4BDF6004966DB /* ProfileViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelContracts.swift; sourceTree = "<group>"; };
 		1E40334C28C268DE0096B69F /* SpotifyAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E40334F28C268DE0096B69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E40335628C268DE0096B69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,9 +74,9 @@
 		1E40338428C26EDC0096B69F /* HomeViewModelContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelContracts.swift; sourceTree = "<group>"; };
 		1E40338728C26EF50096B69F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1E40338928C274660096B69F /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
-		1E40338D28C275DA0096B69F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1E40338D28C275DA0096B69F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1E40338F28C27E4E0096B69F /* UIControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIControlExtensions.swift; sourceTree = "<group>"; };
-		1E40339228C287900096B69F /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		1E40339228C287900096B69F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		1E40339628C2887A0096B69F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1E40339A28C2A0A60096B69F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		1E40339D28C2A2670096B69F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -82,6 +91,7 @@
 		1E4033B328C2AA780096B69F /* HomeViewDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataHandler.swift; sourceTree = "<group>"; };
 		1E4033B628C2AAD70096B69F /* HomeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFactory.swift; sourceTree = "<group>"; };
 		1E4033BA28C2AF0E0096B69F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthrorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E25A8AB28C4B516004966DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */,
+				1E25A8AE28C4B53E004966DB /* SignInContracts.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1E25A8B028C4BDE7004966DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */,
+				1E25A8B328C4BDF6004966DB /* ProfileViewModelContracts.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1E40334328C268DE0096B69F = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +274,9 @@
 		1E40338B28C275D20096B69F /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				1ED2F0A628C39ACB00D2D1CD /* SubModules */,
 				1E40339128C2878B0096B69F /* Manager */,
+				1E25A8AB28C4B516004966DB /* ViewModel */,
 				1E40338C28C275D40096B69F /* View */,
 			);
 			path = Login;
@@ -255,7 +285,7 @@
 		1E40338C28C275D40096B69F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1E40338D28C275DA0096B69F /* LoginViewController.swift */,
+				1E40338D28C275DA0096B69F /* SignInViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -263,7 +293,7 @@
 		1E40339128C2878B0096B69F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				1E40339228C287900096B69F /* LoginManager.swift */,
+				1E40339228C287900096B69F /* AuthManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -271,6 +301,7 @@
 		1E40339428C2886F0096B69F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				1E25A8B028C4BDE7004966DB /* ViewModel */,
 				1E40339528C288730096B69F /* View */,
 			);
 			path = Profile;
@@ -362,6 +393,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1ED2F0A628C39ACB00D2D1CD /* SubModules */ = {
+			isa = PBXGroup;
+			children = (
+				1ED2F0A728C39AD200D2D1CD /* SignInWebPage */,
+			);
+			path = SubModules;
+			sourceTree = "<group>";
+		};
+		1ED2F0A728C39AD200D2D1CD /* SignInWebPage */ = {
+			isa = PBXGroup;
+			children = (
+				1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */,
+			);
+			path = SignInWebPage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,9 +491,11 @@
 				1E40336B28C26BC20096B69F /* DataProtocol.swift in Sources */,
 				1E4033B028C2A7690096B69F /* ImageCacheManager.swift in Sources */,
 				1E4033B228C2A9740096B69F /* ListViewCellData.swift in Sources */,
-				1E40339328C287900096B69F /* LoginManager.swift in Sources */,
+				1ED2F0A928C39ADE00D2D1CD /* AuthrorizationViewController.swift in Sources */,
+				1E40339328C287900096B69F /* AuthManager.swift in Sources */,
 				1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */,
 				1E4033A428C2A4650096B69F /* CustomImageLoadingType.swift in Sources */,
+				1E25A8B428C4BDF6004966DB /* ProfileViewModelContracts.swift in Sources */,
 				1E40338828C26EF50096B69F /* HomeViewController.swift in Sources */,
 				1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */,
 				1E40339728C2887A0096B69F /* ProfileViewController.swift in Sources */,
@@ -456,10 +505,13 @@
 				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,
 				1E40339B28C2A0A60096B69F /* ListView.swift in Sources */,
 				1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */,
+				1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */,
 				1E40337D28C26E4E0096B69F /* HomeCoordinator.swift in Sources */,
 				1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */,
+				1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */,
 				1E4033B428C2AA780096B69F /* HomeViewDataHandler.swift in Sources */,
-				1E40338E28C275DA0096B69F /* LoginViewController.swift in Sources */,
+				1E40338E28C275DA0096B69F /* SignInViewController.swift in Sources */,
+				1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */,
 				1E40337628C26C940096B69F /* DependencyContainer.swift in Sources */,
 				1E40339E28C2A2670096B69F /* BaseView.swift in Sources */,
 				1E4033B728C2AAD70096B69F /* HomeFactory.swift in Sources */,

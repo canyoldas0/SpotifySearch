@@ -14,7 +14,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     private(set) var rootViewController: UINavigationController!
     private let dependencyContainer: DependencyContainer
     private let homeFactory = HomeFactory()
-
+    
     init(dependencies: DependencyContainer) {
         self.dependencyContainer = dependencies
     }
@@ -31,38 +31,57 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     }
     
     func goToLogin() {
-        let loginViewController = LoginViewController()
-        let navigationViewController = UINavigationController(rootViewController: loginViewController)
+        let signInVC = homeFactory.createSignInScreen(coordinatorDelegate: self)
+        let navigationViewController = UINavigationController(rootViewController: signInVC)
         
-        let skipButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
-            self?.rootViewController.dismiss(animated: true)
+        let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
+            self?.rootViewController.presentedViewController?.dismiss(animated: true)
         }))
-        loginViewController.navigationItem.leftBarButtonItem = skipButton
-        loginViewController.title = "Login"
-    
+        signInVC.navigationItem.leftBarButtonItem = cancelButton
+        signInVC.title = "Sign In"
+        
         if let sheet = navigationViewController.sheetPresentationController {
             /// Funny thing. Setting this property to true causes a memory leak.
-//            sheet.prefersGrabberVisible = false
+            //            sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 10
             sheet.detents = [.large()]
         }
-    
+        
         rootViewController.present(navigationViewController, animated: true)
     }
     
     func goToProfile() {
-        let profileViewController = ProfileViewController()
+        let profileVC = homeFactory.createProfileScreen(coordinatorDelegate: self)
         
-        if let sheet = profileViewController.sheetPresentationController {
+        if let sheet = profileVC.sheetPresentationController {
             sheet.preferredCornerRadius = 10
             sheet.detents = [.large()]
         }
         
-        rootViewController.present(profileViewController, animated: true)
+        rootViewController.present(profileVC, animated: true)
     }
     
     func goToDetail(with id: String) {
-        let detail = DetailViewController()
-        rootViewController.show(detail, sender: nil)
+        let detailVC = DetailViewController()
+        rootViewController.show(detailVC, sender: nil)
+    }
+    
+    func goToAuthScreen() {
+        let authVC = AuthrorizationViewController()
+        authVC.completionHandler = { [weak self] success in
+            AuthManager.shared.handleSignIn(for: success ?? false)
+            self?.rootViewController.dismiss(animated: true)
+        }
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
+            self?.rootViewController.presentedViewController?.dismiss(animated: true)
+        }))
+        authVC.navigationItem.leftBarButtonItem = cancelButton
+        
+        if let sheet = authVC.sheetPresentationController {
+            sheet.preferredCornerRadius = 10
+            sheet.detents = [.large()]
+        }
+        rootViewController.presentedViewController?.present(UINavigationController(rootViewController: authVC), animated: true)
     }
 }

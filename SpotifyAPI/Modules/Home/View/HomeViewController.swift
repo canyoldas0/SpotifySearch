@@ -79,7 +79,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func updateLoginButton() {
-        let loggedIn = LoginManager.shared.isLoggedIn()
+        let loggedIn = AuthManager.shared.isLoggedIn()
         profileButton.image = loggedIn ? UIImage(systemName: "person.circle") : nil
     }
 }
