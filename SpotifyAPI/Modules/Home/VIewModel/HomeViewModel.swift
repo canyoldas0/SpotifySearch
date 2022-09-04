@@ -27,6 +27,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func load() {
+        let signedIn = AuthManager.shared.isSignedIn
+        delegate?.handleOutput(.updateProfileIcon(signedIn))
+        
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
             guard let signedIn = data as? Bool else {
                 return
@@ -39,6 +42,7 @@ final class HomeViewModel: HomeViewModelProtocol {
             }
             self?.delegate?.handleOutput(.updateProfileIcon(signedIn))
         }
+        
         delegate?.handleOutput(.updateTable)
     }
     
@@ -66,7 +70,6 @@ final class HomeViewModel: HomeViewModelProtocol {
 extension HomeViewModel {
     
     private func handleProfileResponse(for response: ProfileResponse) {
-        
     }
 }
 

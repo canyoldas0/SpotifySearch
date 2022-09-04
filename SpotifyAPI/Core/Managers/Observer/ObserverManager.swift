@@ -17,8 +17,8 @@ protocol ObservationManagerProtocol {
     func subscribe<Observer: AnyObject>(name: ObservationName,
                    observer: Observer,
                    closure: @escaping (Any?) -> Void)
-    func notifyObservers(for name: AnyHashable)
-    func notifyObservers(for name: AnyHashable, data: Any?)
+    func notifyObservers(for name: ObservationName)
+    func notifyObservers(for name: ObservationName, data: Any?)
 }
 
 final class ObservationManager: ObservationManagerProtocol {
@@ -47,11 +47,11 @@ final class ObservationManager: ObservationManagerProtocol {
         }
     }
     
-    func notifyObservers(for name: AnyHashable) {
+    func notifyObservers(for name: ObservationName) {
         notifyObservers(for: name, data: nil)
     }
     
-    func notifyObservers(for name: AnyHashable, data: Any?) {
+    func notifyObservers(for name: ObservationName, data: Any?) {
         if let observation = observations[name] {
             observation.forEach { (_, closure) in
                 closure(data)

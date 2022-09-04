@@ -79,7 +79,9 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func updateProfileIcon(for state: Bool) {
-        profileButton.image = state ? UIImage(systemName: "person.circle") : nil
+        DispatchQueue.main.async {
+            self.profileButton.image = state ? UIImage(systemName: "person.circle") : nil
+        }
     }
 }
 

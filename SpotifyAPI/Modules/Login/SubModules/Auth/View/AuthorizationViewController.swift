@@ -8,7 +8,15 @@
 import UIKit
 import WebKit
 
-final class AuthrorizationViewController: UIViewController, ErrorHandlingProtocol {
+final class AuthorizationViewController: UIViewController, ErrorHandlingProtocol {
+    
+    private var viewModel: AuthorizationViewModelProtocol!
+    
+    convenience init(viewModel: AuthorizationViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+        self.viewModel.delegate = self
+    }
     
     private let webView: WKWebView = {
         let prefs = WKWebpagePreferences()
@@ -19,8 +27,6 @@ final class AuthrorizationViewController: UIViewController, ErrorHandlingProtoco
         return webView
     }()
     
-    var completionHandler: GenericHandler<Bool>?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Sign In"
@@ -30,7 +36,6 @@ final class AuthrorizationViewController: UIViewController, ErrorHandlingProtoco
         guard let url = AuthManager.shared.signInUrl else {
             return
         }
-        print(url.absoluteString)
         webView.load(URLRequest(url: url))
     }
     
@@ -40,9 +45,19 @@ final class AuthrorizationViewController: UIViewController, ErrorHandlingProtoco
     }
 }
 
+extension AuthorizationViewController: AuthorizationViewOutputProtocol {
+    
+    func handleOutput(_ output: AuthorizationViewOutput) {
+        switch output {
+        case .showAlert(let alert):
+            showAlert(with: alert)
+        }
+    }
+}
+
 // MARK:  WKNavigationDelegate
 
-extension AuthrorizationViewController: WKNavigationDelegate {
+extension AuthorizationViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         guard let url = webView.url else {
@@ -54,10 +69,6 @@ extension AuthrorizationViewController: WKNavigationDelegate {
             return
         }
         
-        AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] success in
-            DispatchQueue.main.async {
-                self?.completionHandler?(success)
-            }
-        }
+        viewModel.signInCompleted(code: code)
     }
 }

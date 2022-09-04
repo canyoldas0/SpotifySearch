@@ -50,4 +50,15 @@ final class HomeFactory {
         
         return viewController
     }
+    
+    func createAuthView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
+        
+        let viewModel = AuthorizationViewModel(
+            observationManager: dependencyContainer.observationManager
+        )
+        viewModel.coordinatorDelegate = coordinatorDelegate
+        let viewController = AuthorizationViewController(viewModel: viewModel)
+        viewController.title = "Sign In"
+        return viewController
+    }
 }

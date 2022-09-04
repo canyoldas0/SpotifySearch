@@ -16,6 +16,9 @@
 		1E19773728C540BD0034F60D /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773628C540BD0034F60D /* ProfileResponse.swift */; };
 		1E19773A28C541700034F60D /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773928C541700034F60D /* EndPoints.swift */; };
 		1E19773D28C5482F0034F60D /* ObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773C28C5482F0034F60D /* ObserverManager.swift */; };
+		1E19774128C5519D0034F60D /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */; };
+		1E19774328C551C30034F60D /* AuthorizationContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774228C551C30034F60D /* AuthorizationContracts.swift */; };
+		1E19774928C556140034F60D /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774828C556140034F60D /* SignInService.swift */; };
 		1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */; };
 		1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AE28C4B53E004966DB /* SignInContracts.swift */; };
 		1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */; };
@@ -55,7 +58,7 @@
 		1E4033B428C2AA780096B69F /* HomeViewDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033B328C2AA780096B69F /* HomeViewDataHandler.swift */; };
 		1E4033B728C2AAD70096B69F /* HomeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033B628C2AAD70096B69F /* HomeFactory.swift */; };
 		1E4033BB28C2AF0E0096B69F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4033BA28C2AF0E0096B69F /* DetailViewController.swift */; };
-		1ED2F0A928C39ADE00D2D1CD /* AuthrorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */; };
+		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		1E19773628C540BD0034F60D /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
 		1E19773928C541700034F60D /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		1E19773C28C5482F0034F60D /* ObserverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverManager.swift; sourceTree = "<group>"; };
+		1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
+		1E19774228C551C30034F60D /* AuthorizationContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContracts.swift; sourceTree = "<group>"; };
+		1E19774828C556140034F60D /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		1E25A8AE28C4B53E004966DB /* SignInContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContracts.swift; sourceTree = "<group>"; };
 		1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -109,7 +115,7 @@
 		1E4033B328C2AA780096B69F /* HomeViewDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewDataHandler.swift; sourceTree = "<group>"; };
 		1E4033B628C2AAD70096B69F /* HomeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFactory.swift; sourceTree = "<group>"; };
 		1E4033BA28C2AF0E0096B69F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthrorizationViewController.swift; sourceTree = "<group>"; };
+		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 		1E19772228C51C640034F60D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				1E19774728C556070034F60D /* SignInService */,
 				1E19772F28C53D840034F60D /* Base */,
 				1E19773028C53D8B0034F60D /* ProfileService */,
 				1E19772328C51C660034F60D /* AuthService */,
@@ -192,6 +199,31 @@
 				1E19773C28C5482F0034F60D /* ObserverManager.swift */,
 			);
 			path = Observer;
+			sourceTree = "<group>";
+		};
+		1E19773E28C5518C0034F60D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1E19773F28C551940034F60D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */,
+				1E19774228C551C30034F60D /* AuthorizationContracts.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1E19774728C556070034F60D /* SignInService */ = {
+			isa = PBXGroup;
+			children = (
+				1E19774828C556140034F60D /* SignInService.swift */,
+			);
+			path = SignInService;
 			sourceTree = "<group>";
 		};
 		1E25A8AB28C4B516004966DB /* ViewModel */ = {
@@ -365,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				1ED2F0A628C39ACB00D2D1CD /* SubModules */,
-				1E40339128C2878B0096B69F /* Manager */,
 				1E25A8AB28C4B516004966DB /* ViewModel */,
 				1E40338C28C275D40096B69F /* View */,
 			);
@@ -487,17 +518,19 @@
 		1ED2F0A628C39ACB00D2D1CD /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
-				1ED2F0A728C39AD200D2D1CD /* SignInWebPage */,
+				1ED2F0A728C39AD200D2D1CD /* Auth */,
 			);
 			path = SubModules;
 			sourceTree = "<group>";
 		};
-		1ED2F0A728C39AD200D2D1CD /* SignInWebPage */ = {
+		1ED2F0A728C39AD200D2D1CD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				1ED2F0A828C39ADE00D2D1CD /* AuthrorizationViewController.swift */,
+				1E40339128C2878B0096B69F /* Manager */,
+				1E19773F28C551940034F60D /* ViewModel */,
+				1E19773E28C5518C0034F60D /* View */,
 			);
-			path = SignInWebPage;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -577,6 +610,7 @@
 				1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */,
 				1E4033A828C2A4920096B69F /* CustomImageViewComponentData.swift in Sources */,
 				1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */,
+				1E19774928C556140034F60D /* SignInService.swift in Sources */,
 				1E4033AA28C2A4C20096B69F /* CustomImageViewContainer.swift in Sources */,
 				1E19773D28C5482F0034F60D /* ObserverManager.swift in Sources */,
 				1E40337428C26C5A0096B69F /* Typealiases.swift in Sources */,
@@ -584,7 +618,7 @@
 				1E40336B28C26BC20096B69F /* DataProtocol.swift in Sources */,
 				1E4033B028C2A7690096B69F /* ImageCacheManager.swift in Sources */,
 				1E4033B228C2A9740096B69F /* ListViewCellData.swift in Sources */,
-				1ED2F0A928C39ADE00D2D1CD /* AuthrorizationViewController.swift in Sources */,
+				1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */,
 				1E19773728C540BD0034F60D /* ProfileResponse.swift in Sources */,
 				1E40339328C287900096B69F /* AuthManager.swift in Sources */,
 				1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */,
@@ -596,6 +630,7 @@
 				1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */,
 				1E40339728C2887A0096B69F /* ProfileViewController.swift in Sources */,
 				1E4033AC28C2A7280096B69F /* NSObjectExtensions.swift in Sources */,
+				1E19774128C5519D0034F60D /* AuthorizationViewModel.swift in Sources */,
 				1E40337B28C26E340096B69F /* CoordinatorFactory.swift in Sources */,
 				1E4033A628C2A4760096B69F /* CustomImageViewComponent.swift in Sources */,
 				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,
@@ -603,6 +638,7 @@
 				1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */,
 				1E19772628C51C7B0034F60D /* AuthService.swift in Sources */,
 				1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */,
+				1E19774328C551C30034F60D /* AuthorizationContracts.swift in Sources */,
 				1E40337D28C26E4E0096B69F /* HomeCoordinator.swift in Sources */,
 				1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */,
 				1E19772B28C51D100034F60D /* BaseAPI.swift in Sources */,

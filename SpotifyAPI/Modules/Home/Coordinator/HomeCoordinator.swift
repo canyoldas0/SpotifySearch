@@ -24,7 +24,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         let homeVC = homeFactory.createHomeView(coordinatorDelegate: self)
         rootViewController = UINavigationController(rootViewController: homeVC)
         rootViewController.navigationBar.prefersLargeTitles = true
-    }
+        }
     
     func goBack(completion: VoidHandler? = nil) {
         rootViewController.popViewController(animated: true)
@@ -68,14 +68,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     }
     
     func goToAuthScreen() {
-        let authVC = AuthrorizationViewController()
-        authVC.completionHandler = { [weak self] success in
-            guard let success,
-                  success else {
-                return
-            }
-            self?.rootViewController.dismiss(animated: true)
-        }
+        let authVC = homeFactory.createAuthView(coordinatorDelegate: self)
         
         let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
             self?.rootViewController.presentedViewController?.dismiss(animated: true)
@@ -87,5 +80,10 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
             sheet.detents = [.large()]
         }
         rootViewController.presentedViewController?.present(UINavigationController(rootViewController: authVC), animated: true)
+    }
+    
+    func returnHome(completion: VoidHandler?) {
+        rootViewController.dismiss(animated: true)
+        completion?()
     }
 }
