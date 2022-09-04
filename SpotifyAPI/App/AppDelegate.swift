@@ -23,7 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         apiConfiguration.waitsForConnectivity = true
         apiConfiguration.timeoutIntervalForResource = 350
         apiConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        dependencyContainer = DependencyContainer(window: window, apiConfiguration: apiConfiguration)
+        dependencyContainer = DependencyContainer(
+            window: window,
+            apiConfiguration: apiConfiguration,
+            observationManager: ObservationManager()
+        )
         
         appCoordinator = CoordinatorFactory.buildAppCoordinator(dependencies: dependencyContainer)
         appCoordinator?.start()

@@ -22,7 +22,8 @@ final class HomeFactory {
         
         let homeViewModel = HomeViewModel(
             profileService: profileService,
-            dataHandler: dataHandler
+            dataHandler: dataHandler,
+            observationManager: dependencyContainer.observationManager
         )
         
         homeViewModel.coordinatorDelegate = coordinatorDelegate

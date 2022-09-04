@@ -13,23 +13,32 @@ final class HomeViewModel: HomeViewModelProtocol {
     weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
     private let dataHandler: HomeViewDataHandlerProtocol
+    private let observationManager: ObservationManagerProtocol
     
     private let profileService: ProfileServiceProtocol
     
     init(profileService: ProfileServiceProtocol,
-        dataHandler: HomeViewDataHandlerProtocol
+        dataHandler: HomeViewDataHandlerProtocol,
+         observationManager: ObservationManagerProtocol
     ) {
         self.profileService = profileService
         self.dataHandler = dataHandler
+        self.observationManager = observationManager
     }
     
     func load() {
-        let signedIn = AuthManager.shared.isSignedIn
-        if !signedIn {
-            coordinatorDelegate?.goToLogin()
+        observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
+            guard let signedIn = data as? Bool else {
+                return
+            }
+            
+            if signedIn {
+                self?.callProfileService()
+            } else {
+                self?.coordinatorDelegate?.goToLogin()
+            }
+            self?.delegate?.handleOutput(.updateProfileIcon(signedIn))
         }
-        callProfileService()
-        delegate?.handleOutput(.updateProfileIcon(signedIn))
         delegate?.handleOutput(.updateTable)
     }
     
