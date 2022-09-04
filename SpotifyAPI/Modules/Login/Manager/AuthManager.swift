@@ -9,29 +9,120 @@ import Foundation
 
 final class AuthManager {
     
-    /// These Private keys can be stored in a configuration file which can be in gitignore for safety.
     private enum Constants {
-        static let clientID: String = "d98b8be6187d400885a4260f60a801aa"
-        static let clientSecret: String = "88f45f19885e4ba695e7901d649377d8"
+        static let accessToken: String = "accessToken"
+        static let refreshToken: String = "refreshToken"
+        static let expirationDate: String = "expirationDate"
+        static let extraTime: TimeInterval = 240
     }
     
-    static let shared = AuthManager()
+    static var shared = AuthManager()
+    
+    private let authService: AuthServiceProtocol = AuthService(configuration: .default)
     
     var signInUrl: URL? {
-        let scopes = "user-read-private"
-        let redirectURI = "https://www.cyoldas.com/"
-        let base = "https://accounts.spotify.com/authorize"
-        let str = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(scopes)&redirect_uri=\(redirectURI)"
-        return URL(string: str)
+        authService.signInUrl
     }
     
-    private init() { }
-    
-    func isLoggedIn() -> Bool {
-        return true
+    var isSignedIn: Bool {
+        accessToken != nil
     }
     
-    func handleSignIn(for state: Bool) {
+    private var refreshingToken: Bool = false
+    private var onRefreshCompletions: [GenericHandler<String>] = []
+    
+    private var accessToken: String? {
+        UserDefaults.standard.string(forKey: Constants.accessToken)
+    }
+    
+    private var refreshToken: String? {
+        UserDefaults.standard.string(forKey: Constants.refreshToken)
+    }
+    
+    private var expirationDate: Date? {
+        UserDefaults.standard.object(forKey: Constants.expirationDate) as? Date
+    }
+    
+    private var shouldRefreshToken: Bool {
+        guard let expirationDate else {
+            return true
+        }
         
+        let currentDate = Date()
+        
+        return currentDate.addingTimeInterval(Constants.extraTime) >= expirationDate
+    }
+    
+    func exchangeCodeForToken(code: String, completion: @escaping GenericHandler<Bool>) {
+        
+        authService.retrieveAccessToken(code: code) { [weak self] result in
+            
+            switch result {
+            case .success(let response):
+                self?.cacheToken(response: response)
+            case .failure(_):
+                completion(false)
+            }
+        }
+    }
+    
+    /// This method should be used whenever new API request will be executed.
+    /// It passes the valid access token, if the token is expired, it refreshes.
+    /// If There are API calls during the token expiration, stores those calls in 'onRefreshCompletions', and when the token is refreshed, completions get executed.
+    func withValidToken(completion: @escaping GenericHandler<String>) {
+        guard !refreshingToken else {
+            onRefreshCompletions.append(completion)
+            return
+        }
+        
+        if shouldRefreshToken {
+            refreshAccessToken { [weak self] success in
+                if let token = self?.accessToken, success {
+                    completion(token)
+                }
+            }
+        } else if let token = accessToken {
+            completion(token)
+        }
+    }
+    
+    private func refreshAccessToken(completion: @escaping GenericHandler<Bool>) {
+        guard shouldRefreshToken else {
+            completion(true)
+            return
+        }
+        
+        guard let refreshToken = refreshToken else {
+            return
+        }
+        
+        refreshingToken = true
+        
+        authService.refreshAccessToken(with: refreshToken) { [weak self] result in
+            guard let self else {
+                return
+            }
+            
+            self.refreshingToken = false
+            
+            switch result {
+            case .success(let response):
+                self.onRefreshCompletions.forEach( {$0(response.accessToken)} )
+                self.onRefreshCompletions.removeAll()
+                self.cacheToken(response: response)
+            case .failure(_):
+                completion(false)
+            }
+        }
+    }
+    
+    private func cacheToken(response: AuthResponse) {
+        UserDefaults.standard.setValue(response.accessToken, forKey: Constants.accessToken)
+        
+        if let refreshToken = response.refreshToken {
+            UserDefaults.standard.setValue(refreshToken, forKey: Constants.refreshToken)
+        }
+        
+        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(response.expiresIn)), forKey: Constants.expirationDate)
     }
 }

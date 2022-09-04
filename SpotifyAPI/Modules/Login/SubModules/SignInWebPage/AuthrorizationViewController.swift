@@ -42,4 +42,22 @@ final class AuthrorizationViewController: UIViewController, ErrorHandlingProtoco
 
 // MARK:  WKNavigationDelegate
 
-extension AuthrorizationViewController: WKNavigationDelegate { }
+extension AuthrorizationViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        guard let url = webView.url else {
+            return
+        }
+        
+        guard let component = URLComponents(string: url.absoluteString),
+              let code = component.queryItems?.first(where: { $0.name == "code"})?.value else {
+            return
+        }
+        
+        AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] success in
+            DispatchQueue.main.async {
+                self?.completionHandler?(success)
+            }
+        }
+    }
+}

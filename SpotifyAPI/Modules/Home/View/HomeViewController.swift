@@ -78,9 +78,8 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         viewModel.profileClicked() 
     }
     
-    private func updateLoginButton() {
-        let loggedIn = AuthManager.shared.isLoggedIn()
-        profileButton.image = loggedIn ? UIImage(systemName: "person.circle") : nil
+    private func updateProfileIcon(for state: Bool) {
+        profileButton.image = state ? UIImage(systemName: "person.circle") : nil
     }
 }
 
@@ -92,6 +91,8 @@ extension HomeViewController: HomeViewOutputProtocol {
             showAlert(with: alert)
         case .updateTable:
             listView.updateTable()
+        case .updateProfileIcon(let signedIn):
+            updateProfileIcon(for: signedIn)
         }
     }
 }

@@ -21,4 +21,5 @@ protocol HomeViewOutputProtocol: AnyObject {
 enum HomeViewOutput: Equatable {
     case updateTable
     case showAlert(Alert)
+    case updateProfileIcon(Bool)
 }

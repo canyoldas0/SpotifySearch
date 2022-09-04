@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E19772628C51C7B0034F60D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19772528C51C7B0034F60D /* AuthService.swift */; };
+		1E19772828C51C810034F60D /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19772728C51C810034F60D /* AuthResponse.swift */; };
+		1E19772B28C51D100034F60D /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19772A28C51D100034F60D /* BaseAPI.swift */; };
+		1E19772E28C532F40034F60D /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19772D28C532F40034F60D /* NetworkError.swift */; };
+		1E19773228C53D980034F60D /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773128C53D980034F60D /* ProfileService.swift */; };
+		1E19773528C53F7C0034F60D /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773428C53F7C0034F60D /* HTTPMethod.swift */; };
+		1E19773728C540BD0034F60D /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773628C540BD0034F60D /* ProfileResponse.swift */; };
+		1E19773A28C541700034F60D /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773928C541700034F60D /* EndPoints.swift */; };
 		1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */; };
 		1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AE28C4B53E004966DB /* SignInContracts.swift */; };
 		1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */; };
@@ -50,6 +58,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E19772528C51C7B0034F60D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		1E19772728C51C810034F60D /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		1E19772A28C51D100034F60D /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		1E19772D28C532F40034F60D /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		1E19773128C53D980034F60D /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		1E19773428C53F7C0034F60D /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		1E19773628C540BD0034F60D /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
+		1E19773928C541700034F60D /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		1E25A8AE28C4B53E004966DB /* SignInContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContracts.swift; sourceTree = "<group>"; };
 		1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -105,6 +121,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E19772228C51C640034F60D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				1E19772F28C53D840034F60D /* Base */,
+				1E19773028C53D8B0034F60D /* ProfileService */,
+				1E19772328C51C660034F60D /* AuthService */,
+				1E19773928C541700034F60D /* EndPoints.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		1E19772328C51C660034F60D /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+				1E19772528C51C7B0034F60D /* AuthService.swift */,
+				1E19772728C51C810034F60D /* AuthResponse.swift */,
+			);
+			path = AuthService;
+			sourceTree = "<group>";
+		};
+		1E19772928C51D090034F60D /* BaseAPI */ = {
+			isa = PBXGroup;
+			children = (
+				1E19772A28C51D100034F60D /* BaseAPI.swift */,
+			);
+			path = BaseAPI;
+			sourceTree = "<group>";
+		};
+		1E19772C28C532EE0034F60D /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				1E19772D28C532F40034F60D /* NetworkError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		1E19772F28C53D840034F60D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1E19773328C53F760034F60D /* HTTPMethod */,
+				1E19772C28C532EE0034F60D /* Error */,
+				1E19772928C51D090034F60D /* BaseAPI */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		1E19773028C53D8B0034F60D /* ProfileService */ = {
+			isa = PBXGroup;
+			children = (
+				1E19773128C53D980034F60D /* ProfileService.swift */,
+				1E19773628C540BD0034F60D /* ProfileResponse.swift */,
+			);
+			path = ProfileService;
+			sourceTree = "<group>";
+		};
+		1E19773328C53F760034F60D /* HTTPMethod */ = {
+			isa = PBXGroup;
+			children = (
+				1E19773428C53F7C0034F60D /* HTTPMethod.swift */,
+			);
+			path = HTTPMethod;
+			sourceTree = "<group>";
+		};
 		1E25A8AB28C4B516004966DB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +221,7 @@
 		1E40334E28C268DE0096B69F /* SpotifyAPI */ = {
 			isa = PBXGroup;
 			children = (
+				1E19772228C51C640034F60D /* Network */,
 				1E40339828C2A09D0096B69F /* Components */,
 				1E40337728C26CE20096B69F /* Modules */,
 				1E40336628C26B9A0096B69F /* Core */,
@@ -481,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E4033A128C2A3340096B69F /* ListViewCell.swift in Sources */,
+				1E19773A28C541700034F60D /* EndPoints.swift in Sources */,
 				1E40337028C26C3B0096B69F /* Alert.swift in Sources */,
 				1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */,
 				1E4033A828C2A4920096B69F /* CustomImageViewComponentData.swift in Sources */,
@@ -492,11 +573,14 @@
 				1E4033B028C2A7690096B69F /* ImageCacheManager.swift in Sources */,
 				1E4033B228C2A9740096B69F /* ListViewCellData.swift in Sources */,
 				1ED2F0A928C39ADE00D2D1CD /* AuthrorizationViewController.swift in Sources */,
+				1E19773728C540BD0034F60D /* ProfileResponse.swift in Sources */,
 				1E40339328C287900096B69F /* AuthManager.swift in Sources */,
 				1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */,
 				1E4033A428C2A4650096B69F /* CustomImageLoadingType.swift in Sources */,
 				1E25A8B428C4BDF6004966DB /* ProfileViewModelContracts.swift in Sources */,
 				1E40338828C26EF50096B69F /* HomeViewController.swift in Sources */,
+				1E19772E28C532F40034F60D /* NetworkError.swift in Sources */,
+				1E19773528C53F7C0034F60D /* HTTPMethod.swift in Sources */,
 				1E40335028C268DE0096B69F /* AppDelegate.swift in Sources */,
 				1E40339728C2887A0096B69F /* ProfileViewController.swift in Sources */,
 				1E4033AC28C2A7280096B69F /* NSObjectExtensions.swift in Sources */,
@@ -505,9 +589,12 @@
 				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,
 				1E40339B28C2A0A60096B69F /* ListView.swift in Sources */,
 				1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */,
+				1E19772628C51C7B0034F60D /* AuthService.swift in Sources */,
 				1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */,
 				1E40337D28C26E4E0096B69F /* HomeCoordinator.swift in Sources */,
 				1E40338528C26EDC0096B69F /* HomeViewModelContracts.swift in Sources */,
+				1E19772B28C51D100034F60D /* BaseAPI.swift in Sources */,
+				1E19772828C51C810034F60D /* AuthResponse.swift in Sources */,
 				1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */,
 				1E4033B428C2AA780096B69F /* HomeViewDataHandler.swift in Sources */,
 				1E40338E28C275DA0096B69F /* SignInViewController.swift in Sources */,
@@ -517,6 +604,7 @@
 				1E4033B728C2AAD70096B69F /* HomeFactory.swift in Sources */,
 				1E40336928C26BAE0096B69F /* CoordinatorContracts.swift in Sources */,
 				1E40338028C26EAC0096B69F /* HomeCoordinatorContracts.swift in Sources */,
+				1E19773228C53D980034F60D /* ProfileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,7 +759,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,7 +788,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

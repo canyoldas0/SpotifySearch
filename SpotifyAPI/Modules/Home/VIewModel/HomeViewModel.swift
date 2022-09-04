@@ -14,18 +14,50 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private let dataHandler: HomeViewDataHandlerProtocol
     
-    init(dataHandler: HomeViewDataHandlerProtocol) {
+    private let profileService: ProfileServiceProtocol
+    
+    init(profileService: ProfileServiceProtocol,
+        dataHandler: HomeViewDataHandlerProtocol
+    ) {
+        self.profileService = profileService
         self.dataHandler = dataHandler
     }
     
     func load() {
-        coordinatorDelegate?.goToLogin()
-//        callListService()
+        let signedIn = AuthManager.shared.isSignedIn
+        if !signedIn {
+            coordinatorDelegate?.goToLogin()
+        }
+        callProfileService()
+        delegate?.handleOutput(.updateProfileIcon(signedIn))
         delegate?.handleOutput(.updateTable)
     }
     
     func profileClicked() {
         coordinatorDelegate?.goToProfile()
+    }
+    
+    // MARK: Profile Call
+    private func callProfileService() {
+        
+        profileService.fetchProfileData { [weak self] result in
+            
+            switch result {
+            case .success(let response):
+                self?.handleProfileResponse(for: response)
+            case .failure(let error):
+                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
+            }
+        }
+    }
+}
+
+// MARK: Response Handlers
+
+extension HomeViewModel {
+    
+    private func handleProfileResponse(for response: ProfileResponse) {
+        
     }
 }
 

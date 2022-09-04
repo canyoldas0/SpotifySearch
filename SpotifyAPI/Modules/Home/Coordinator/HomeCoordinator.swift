@@ -13,10 +13,11 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     var children: [CoordinatorProtocol] = []
     private(set) var rootViewController: UINavigationController!
     private let dependencyContainer: DependencyContainer
-    private let homeFactory = HomeFactory()
+    private let homeFactory: HomeFactory
     
     init(dependencies: DependencyContainer) {
         self.dependencyContainer = dependencies
+        homeFactory = HomeFactory(dependencyContainer: dependencies)
     }
     
     func start() {
@@ -69,7 +70,10 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     func goToAuthScreen() {
         let authVC = AuthrorizationViewController()
         authVC.completionHandler = { [weak self] success in
-            AuthManager.shared.handleSignIn(for: success ?? false)
+            guard let success,
+                  success else {
+                return
+            }
             self?.rootViewController.dismiss(animated: true)
         }
         

@@ -9,10 +9,22 @@ import UIKit
 
 final class HomeFactory {
     
+    private let dependencyContainer: DependencyContainer
+    
+    init(dependencyContainer: DependencyContainer) {
+        self.dependencyContainer = dependencyContainer
+    }
+    
     func createHomeView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let dataHandler = HomeViewDataHandler()
         
-        let homeViewModel = HomeViewModel(dataHandler: dataHandler)
+        let profileService = ProfileService(configuration: dependencyContainer.apiConfiguration)
+        
+        let homeViewModel = HomeViewModel(
+            profileService: profileService,
+            dataHandler: dataHandler
+        )
+        
         homeViewModel.coordinatorDelegate = coordinatorDelegate
         
         let homeViewController = HomeViewController(viewModel: homeViewModel)
