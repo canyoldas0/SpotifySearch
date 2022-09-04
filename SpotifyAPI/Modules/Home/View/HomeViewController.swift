@@ -19,9 +19,24 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
+    private lazy var loginLabel: UILabel = {
+       let temp = UILabel()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.text = "Login"
+        return temp
+    }()
+    
+    private lazy var imageContainer: CustomImageViewContainer = {
+        let temp = CustomImageViewContainer()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.clipsToBounds = true
+        return temp
+    }()
+    
     private lazy var profileButton: UIBarButtonItem = {
        let temp = UIBarButtonItem()
-        temp.title = "Login"
+        temp.target = self
+        temp.action = #selector(profileClicked)
         return temp
     }()
     
@@ -69,8 +84,18 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func setProfileButton() {
+        profileButton.customView = imageContainer
         navigationItem.rightBarButtonItem = profileButton
-        profileButton.target = self
+        
+        
+        NSLayoutConstraint.activate([
+        
+            imageContainer.heightAnchor.constraint(equalToConstant: 40),
+            imageContainer.widthAnchor.constraint(equalToConstant: 40),
+        ])
+        
+        imageContainer.layer.cornerRadius = 20
+        
         profileButton.action = #selector(profileClicked)
     }
     
@@ -80,7 +105,9 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func updateProfileIcon(for state: Bool) {
         DispatchQueue.main.async {
-            self.profileButton.image = state ? UIImage(systemName: "person.circle") : nil
+//            let view = state ? self.imageContainer: self.loginLabel
+//            self.profileButton.customView = view
+//            self.profileButton.target = view
         }
     }
 }
@@ -95,6 +122,8 @@ extension HomeViewController: HomeViewOutputProtocol {
             listView.updateTable()
         case .updateProfileIcon(let signedIn):
             updateProfileIcon(for: signedIn)
+        case .setImageUrl(let urlString):
+            imageContainer.setData(data: CustomImageViewComponentData(imageUrl: urlString))
         }
     }
 }

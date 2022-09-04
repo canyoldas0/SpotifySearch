@@ -79,7 +79,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
             sheet.preferredCornerRadius = 10
             sheet.detents = [.large()]
         }
-        rootViewController.presentedViewController?.present(UINavigationController(rootViewController: authVC), animated: true)
+        rootViewController.presentedViewController?.present(authVC, animated: true)
     }
     
     func returnHome(completion: VoidHandler?) {

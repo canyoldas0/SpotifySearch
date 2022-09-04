@@ -38,7 +38,9 @@ class CustomImageViewContainer: BaseView<CustomImageViewComponentData> {
     override func loadDataToView() {
         super.loadDataToView()
         guard let data = returnData() else { return }
-        customImageView.setData(componentData: data)
-        customImageView.contentMode = data.contentMode
+        DispatchQueue.main.async {
+            self.customImageView.setData(componentData: data)
+            self.customImageView.contentMode = data.contentMode
+        }
     }
 }

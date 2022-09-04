@@ -30,6 +30,10 @@ final class HomeViewModel: HomeViewModelProtocol {
         let signedIn = AuthManager.shared.isSignedIn
         delegate?.handleOutput(.updateProfileIcon(signedIn))
         
+        if signedIn {
+            callProfileService()
+        }
+        
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
             guard let signedIn = data as? Bool else {
                 return
@@ -70,6 +74,10 @@ final class HomeViewModel: HomeViewModelProtocol {
 extension HomeViewModel {
     
     private func handleProfileResponse(for response: ProfileResponse) {
+        guard let url = response.images.first?.url else {
+            return
+        }
+        delegate?.handleOutput(.setImageUrl(url))
     }
 }
 
