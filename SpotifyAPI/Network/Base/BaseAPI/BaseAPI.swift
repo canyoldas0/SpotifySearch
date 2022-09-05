@@ -32,13 +32,14 @@ class BaseAPI {
     func execute<T>(
         request: URLRequest,
         sessionType: SessionType = .defaultSession,
+        dispatchQueue: DispatchQueue = .main,
         completion: @escaping ((Result<T, ErrorResponse>) -> Void)
     ) where T: Decodable {
         
         switch sessionType {
         case .defaultSession:
             session.dataTask(with: request) { (data, urlResponse, error) in
-                self.handleResponse(data, urlResponse, error, completion: completion)
+                self.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
             }.resume()
         default:
             break
@@ -50,40 +51,44 @@ class BaseAPI {
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
         requestable: Requestable,
+        dispatchQueue: DispatchQueue = .main,
         sessionType: SessionType = .defaultSession,
         completion: @escaping ((Result<T, ErrorResponse>) -> Void)
     ) where T: Decodable {
         
-        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] request in
-            
-            switch sessionType {
-            case .defaultSession:
-                self?.session.dataTask(with: request) { (data, urlResponse, error) in
-                self?.handleResponse(data, urlResponse, error, completion: completion)
-                }.resume()
-            default:
-                break
-                //            self.handleResponse(ResourceManager.getMockDataForTileList(), nil, nil, completion: completion)
+            createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] request in
+                
+                switch sessionType {
+                case .defaultSession:
+                    self?.session.dataTask(with: request) { (data, urlResponse, error) in
+                        self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
+                    }.resume()
+                default:
+                    break
+                    //            self.handleResponse(ResourceManager.getMockDataForTileList(), nil, nil, completion: completion)
+                }
             }
-        }
     }
     
     private func handleResponse<T: Decodable>(
         _ data: Data?,
         _ response: URLResponse?,
         _ error: Error?,
+        dispatchQueue: DispatchQueue,
         completion: @escaping (Result<T, ErrorResponse>) -> Void) {
             
-            if error != nil {
-                completion(.failure(ErrorResponse(errorMessage: error?.localizedDescription)))
-            }
-            
-            if let data = data {
-                do {
-                    let decodedData = try jsonDecoder.decode(T.self, from: data)
-                    completion(.success(decodedData))
-                } catch let error {
-                    completion(.failure(ErrorResponse(errorMessage: error.localizedDescription)))
+            dispatchQueue.async {
+                if error != nil {
+                    completion(.failure(ErrorResponse(errorMessage: error?.localizedDescription)))
+                }
+                
+                if let data = data {
+                    do {
+                        let decodedData = try self.jsonDecoder.decode(T.self, from: data)
+                        completion(.success(decodedData))
+                    } catch let error {
+                        completion(.failure(ErrorResponse(errorMessage: NetworkError.decodingFailed.localizedDescription)))
+                    }
                 }
             }
         }

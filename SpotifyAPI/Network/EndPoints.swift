@@ -14,4 +14,8 @@ enum EndPoints {
     enum Profile {
         static let currentProfile = base + "/me"
     }
+    
+    enum Search {
+        static let execute = base + "/search"
+    }
 }

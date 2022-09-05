@@ -86,7 +86,9 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func setProfileButton() {
 //        profileButton.customView = imageContainer
-        navigationItem.rightBarButtonItem = profileButton
+        DispatchQueue.main.async {
+            self.navigationItem.rightBarButtonItem = self.profileButton
+        }
         
         
 //        NSLayoutConstraint.activate([
@@ -101,7 +103,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     @objc private func profileClicked() {
-        viewModel.profileClicked() 
+        viewModel.profileClicked()
     }
     
     private func updateProfileIcon(for state: Bool) {
@@ -127,6 +129,7 @@ extension HomeViewController: HomeViewOutputProtocol {
             return
 //            imageContainer.setData(data: CustomImageViewComponentData(imageUrl: urlString))
         }
+
     }
 }
 

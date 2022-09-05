@@ -16,12 +16,18 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let observationManager: ObservationManagerProtocol
     
     private let profileService: ProfileServiceProtocol
+    private let searchService: SearchServiceProtocol
     
-    init(profileService: ProfileServiceProtocol,
+    private var searchListData: [ListViewCellData] = []
+    
+    init(
+        profileService: ProfileServiceProtocol,
+        searchService: SearchServiceProtocol,
         dataHandler: HomeViewDataHandlerProtocol,
-         observationManager: ObservationManagerProtocol
+        observationManager: ObservationManagerProtocol
     ) {
         self.profileService = profileService
+        self.searchService = searchService
         self.dataHandler = dataHandler
         self.observationManager = observationManager
     }
@@ -34,11 +40,13 @@ final class HomeViewModel: HomeViewModelProtocol {
             callProfileService()
         }
         
+        callListService()
+        
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
             guard let signedIn = data as? Bool else {
                 return
             }
-            
+
             if signedIn {
                 self?.callProfileService()
             } else {
@@ -72,7 +80,17 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private func callListService() {
         
+        let request = APIRequests.createRequest(from: SearchRequest(searchText: "Muse", type: .artist))
         
+        searchService.search(request: request) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.handleSearchListResponse(response: response)
+                self?.delegate?.handleOutput(.updateTable)
+            case .failure(let error):
+                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
+            }
+        }
     }
 }
 
@@ -86,12 +104,23 @@ extension HomeViewModel {
         }
         delegate?.handleOutput(.setImageUrl(url))
     }
+    
+    private func handleSearchListResponse(response: SearchResponse) {
+        guard let list = response.artists.items else {
+            delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "Missing Data")))
+            return
+        }
+        
+        searchListData = list.compactMap({ item in
+            ListViewCellData(imageUrl: item.images?.first?.url, title: item.name)
+        })
+    }
 }
 
 extension HomeViewModel: ItemProviderProtocol {
     
     func getNumberOfItems(in section: Int) -> Int {
-        return 3
+        searchListData.count
     }
     
     func itemSelected(at index: Int) {
@@ -99,6 +128,6 @@ extension HomeViewModel: ItemProviderProtocol {
     }
     
     func askData(for index: Int) -> DataProtocol? {
-        ListViewCellData(imageUrl: "https://picsum.photos/200", title: "Hello")
+        searchListData[index]
     }
 }
