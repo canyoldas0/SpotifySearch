@@ -57,7 +57,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     // MARK: Profile Call
     private func callProfileService() {
         
-        profileService.fetchProfileData { [weak self] result in
+        let request = APIRequests.createRequest(from: ProfileRequest())
+        
+        profileService.fetchProfileData(request: request) { [weak self] result in
             
             switch result {
             case .success(let response):
@@ -66,6 +68,11 @@ final class HomeViewModel: HomeViewModelProtocol {
                 self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
             }
         }
+    }
+    
+    private func callListService() {
+        
+        
     }
 }
 

@@ -19,23 +19,24 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
-    private lazy var loginLabel: UILabel = {
-       let temp = UILabel()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.text = "Login"
-        return temp
-    }()
+//    private lazy var loginLabel: UILabel = {
+//       let temp = UILabel()
+//        temp.translatesAutoresizingMaskIntoConstraints = false
+//        temp.text = "Login"
+//        return temp
+//    }()
     
-    private lazy var imageContainer: CustomImageViewContainer = {
-        let temp = CustomImageViewContainer()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.clipsToBounds = true
-        return temp
-    }()
+//    private lazy var imageContainer: CustomImageViewContainer = {
+//        let temp = CustomImageViewContainer()
+//        temp.translatesAutoresizingMaskIntoConstraints = false
+//        temp.clipsToBounds = true
+//        return temp
+//    }()
     
     private lazy var profileButton: UIBarButtonItem = {
        let temp = UIBarButtonItem()
         temp.target = self
+        temp.title = "Login"
         temp.action = #selector(profileClicked)
         return temp
     }()
@@ -84,19 +85,19 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func setProfileButton() {
-        profileButton.customView = imageContainer
+//        profileButton.customView = imageContainer
         navigationItem.rightBarButtonItem = profileButton
         
         
-        NSLayoutConstraint.activate([
+//        NSLayoutConstraint.activate([
+//
+//            imageContainer.heightAnchor.constraint(equalToConstant: 40),
+//            imageContainer.widthAnchor.constraint(equalToConstant: 40),
+//        ])
+//
+//        imageContainer.layer.cornerRadius = 20
         
-            imageContainer.heightAnchor.constraint(equalToConstant: 40),
-            imageContainer.widthAnchor.constraint(equalToConstant: 40),
-        ])
-        
-        imageContainer.layer.cornerRadius = 20
-        
-        profileButton.action = #selector(profileClicked)
+//        profileButton.action = #selector(profileClicked)
     }
     
     @objc private func profileClicked() {
@@ -123,7 +124,8 @@ extension HomeViewController: HomeViewOutputProtocol {
         case .updateProfileIcon(let signedIn):
             updateProfileIcon(for: signedIn)
         case .setImageUrl(let urlString):
-            imageContainer.setData(data: CustomImageViewComponentData(imageUrl: urlString))
+            return
+//            imageContainer.setData(data: CustomImageViewComponentData(imageUrl: urlString))
         }
     }
 }

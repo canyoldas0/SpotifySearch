@@ -19,6 +19,10 @@
 		1E19774128C5519D0034F60D /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */; };
 		1E19774328C551C30034F60D /* AuthorizationContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774228C551C30034F60D /* AuthorizationContracts.swift */; };
 		1E19774928C556140034F60D /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774828C556140034F60D /* SignInService.swift */; };
+		1E19775328C684150034F60D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775228C684150034F60D /* URLParameterEncoder.swift */; };
+		1E19775628C684740034F60D /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775528C684740034F60D /* Encodable+Extensions.swift */; };
+		1E19775828C684DA0034F60D /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775728C684DA0034F60D /* APIRequests.swift */; };
+		1E19775A28C690F80034F60D /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775928C690F80034F60D /* ProfileRequest.swift */; };
 		1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */; };
 		1E25A8AF28C4B53E004966DB /* SignInContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8AE28C4B53E004966DB /* SignInContracts.swift */; };
 		1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */; };
@@ -74,6 +78,10 @@
 		1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		1E19774228C551C30034F60D /* AuthorizationContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContracts.swift; sourceTree = "<group>"; };
 		1E19774828C556140034F60D /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		1E19775228C684150034F60D /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		1E19775528C684740034F60D /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
+		1E19775728C684DA0034F60D /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
+		1E19775928C690F80034F60D /* ProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
 		1E25A8AC28C4B52B004966DB /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		1E25A8AE28C4B53E004966DB /* SignInContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInContracts.swift; sourceTree = "<group>"; };
 		1E25A8B128C4BDF0004966DB /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 		1E19772F28C53D840034F60D /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				1E19774F28C683B90034F60D /* Encoder */,
 				1E19773328C53F760034F60D /* HTTPMethod */,
 				1E19772C28C532EE0034F60D /* Error */,
 				1E19772928C51D090034F60D /* BaseAPI */,
@@ -181,6 +190,7 @@
 			children = (
 				1E19773128C53D980034F60D /* ProfileService.swift */,
 				1E19773628C540BD0034F60D /* ProfileResponse.swift */,
+				1E19775928C690F80034F60D /* ProfileRequest.swift */,
 			);
 			path = ProfileService;
 			sourceTree = "<group>";
@@ -224,6 +234,24 @@
 				1E19774828C556140034F60D /* SignInService.swift */,
 			);
 			path = SignInService;
+			sourceTree = "<group>";
+		};
+		1E19774F28C683B90034F60D /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				1E19775428C6846B0034F60D /* Extensions */,
+				1E19775228C684150034F60D /* URLParameterEncoder.swift */,
+				1E19775728C684DA0034F60D /* APIRequests.swift */,
+			);
+			path = Encoder;
+			sourceTree = "<group>";
+		};
+		1E19775428C6846B0034F60D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1E19775528C684740034F60D /* Encodable+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1E25A8AB28C4B516004966DB /* ViewModel */ = {
@@ -604,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E19775328C684150034F60D /* URLParameterEncoder.swift in Sources */,
 				1E4033A128C2A3340096B69F /* ListViewCell.swift in Sources */,
 				1E19773A28C541700034F60D /* EndPoints.swift in Sources */,
 				1E40337028C26C3B0096B69F /* Alert.swift in Sources */,
@@ -619,6 +648,7 @@
 				1E4033B028C2A7690096B69F /* ImageCacheManager.swift in Sources */,
 				1E4033B228C2A9740096B69F /* ListViewCellData.swift in Sources */,
 				1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */,
+				1E19775628C684740034F60D /* Encodable+Extensions.swift in Sources */,
 				1E19773728C540BD0034F60D /* ProfileResponse.swift in Sources */,
 				1E40339328C287900096B69F /* AuthManager.swift in Sources */,
 				1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */,
@@ -631,6 +661,8 @@
 				1E40339728C2887A0096B69F /* ProfileViewController.swift in Sources */,
 				1E4033AC28C2A7280096B69F /* NSObjectExtensions.swift in Sources */,
 				1E19774128C5519D0034F60D /* AuthorizationViewModel.swift in Sources */,
+				1E19775828C684DA0034F60D /* APIRequests.swift in Sources */,
+				1E19775A28C690F80034F60D /* ProfileRequest.swift in Sources */,
 				1E40337B28C26E340096B69F /* CoordinatorFactory.swift in Sources */,
 				1E4033A628C2A4760096B69F /* CustomImageViewComponent.swift in Sources */,
 				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,

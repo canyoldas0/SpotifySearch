@@ -49,11 +49,12 @@ class BaseAPI {
     func execute<T>(
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
+        requestable: Requestable,
         sessionType: SessionType = .defaultSession,
         completion: @escaping ((Result<T, ErrorResponse>) -> Void)
     ) where T: Decodable {
         
-        createRequest(from: endpoint, for: httpMethod) { [weak self] request in
+        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] request in
             
             switch sessionType {
             case .defaultSession:
@@ -90,6 +91,7 @@ class BaseAPI {
     private func createRequest(
         from endpoint: String,
         for type: HTTPMethod,
+        with requestable: Requestable,
         completion: @escaping (URLRequest) -> Void
     ) {
         AuthManager.shared.withValidToken { [weak self] token in
@@ -97,11 +99,17 @@ class BaseAPI {
                 return
             }
             
-            var request = URLRequest(url: url)
-            request.httpMethod = type.rawValue
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            completion(request)
+            if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                urlComponents.queryItems = requestable.queryItems
+                
+                var request = URLRequest(url: url)
+                request.httpMethod = type.rawValue
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                
+                request.url = urlComponents.url
+                
+                completion(request)
+            }
         }
-        
     }
 }
