@@ -12,7 +12,7 @@ protocol AuthorizationViewModelProtocol {
     var coordinatorDelegate: HomeCoordinatorDelegate? { get }
     var delegate: AuthorizationViewOutputProtocol? { get set }
     
-//    var signInUrl: URL? { get }
+    var signInUrl: URL? { get }
     
     func signInCompleted(code: String)
 }

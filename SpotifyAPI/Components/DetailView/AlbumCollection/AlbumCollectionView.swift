@@ -31,7 +31,7 @@ final class AlbumCollectionView: BaseView<AlbumCollectionData> {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 20
         layout.itemSize = CGSize(width: 130, height: 130)
         layout.minimumInteritemSpacing = 5
         let temp = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -93,4 +93,22 @@ extension AlbumCollectionView: UICollectionViewDataSource, UICollectionViewDeleg
         cell.setData(with: data.albumUrls[indexPath.row])
         return cell
     }
+}
+
+extension AlbumCollectionView: UICollectionViewDelegateFlowLayout {
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        guard let data = returnData() else {
+//            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        }
+//        
+//        let numberOfItems = data.albumUrls.count
+//        
+//        let totalWidth = 130 * numberOfItems
+//           let totalSpacingWidth = 20 * (numberOfItems - 1)
+//           let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
+//           let rightInset = leftInset
+//        
+//           return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+//    }
 }

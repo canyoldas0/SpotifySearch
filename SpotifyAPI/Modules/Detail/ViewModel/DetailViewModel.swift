@@ -65,8 +65,9 @@ final class DetailViewModel: DetailViewModelProtocol {
         }
         
         if let imageItem = response.images?.first,
-           let url = imageItem.url {
-            delegate?.handleOutput(.updateHeader(DetailHeaderData(imageUrl: url, genreTexts: "Hello")))
+           let url = imageItem.url,
+           let genres = response.genres?.joined(separator: ", ")   {
+            delegate?.handleOutput(.updateHeader(DetailHeaderData(imageUrl: url, genreTexts: genres)))
         }
     }
     

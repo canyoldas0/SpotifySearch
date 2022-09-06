@@ -15,32 +15,18 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let dataHandler: HomeViewDataHandlerProtocol
     private let observationManager: ObservationManagerProtocol
     
-    private let profileService: ProfileServiceProtocol
     private let searchService: SearchServiceProtocol
     
     private var searchListData: [ListViewCellData] = []
     
     init(
-        profileService: ProfileServiceProtocol,
         searchService: SearchServiceProtocol,
         dataHandler: HomeViewDataHandlerProtocol,
         observationManager: ObservationManagerProtocol
     ) {
-        self.profileService = profileService
         self.searchService = searchService
         self.dataHandler = dataHandler
         self.observationManager = observationManager
-    }
-    
-    func load() {
-        let signedIn = AuthManager.shared.isSignedIn
-        delegate?.handleOutput(.updateProfileIcon(signedIn))
-        
-        if signedIn {
-            callProfileService()
-        }
-        
-        callListService()
         
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
             guard let signedIn = data as? Bool else {
@@ -48,34 +34,27 @@ final class HomeViewModel: HomeViewModelProtocol {
             }
 
             if signedIn {
-                self?.callProfileService()
+                self?.callListService()
             } else {
                 self?.coordinatorDelegate?.goToLogin()
             }
             self?.delegate?.handleOutput(.updateProfileIcon(signedIn))
         }
+    }
+    
+    func load() {
+        let signedIn = AuthManager.shared.isSignedIn
+        delegate?.handleOutput(.updateProfileIcon(signedIn))
         
-        delegate?.handleOutput(.updateTable)
+        if signedIn {
+            callListService()
+        } else {
+            coordinatorDelegate?.goToLogin()
+        }
     }
     
     func profileClicked() {
         coordinatorDelegate?.goToProfile()
-    }
-    
-    // MARK: Profile Call
-    private func callProfileService() {
-        
-        let request = APIRequests.createRequest(from: ProfileRequest())
-        
-        profileService.fetchProfileData(request: request) { [weak self] result in
-            
-            switch result {
-            case .success(let response):
-                self?.handleProfileResponse(for: response)
-            case .failure(let error):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
-            }
-        }
     }
     
     private func callListService() {
@@ -97,14 +76,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 // MARK: Response Handlers
 
 extension HomeViewModel {
-    
-    private func handleProfileResponse(for response: ProfileResponse) {
-        guard let url = response.images.first?.url else {
-            return
-        }
-        delegate?.handleOutput(.setImageUrl(url))
-    }
-    
+        
     private func handleSearchListResponse(response: SearchResponse) {
         guard let list = response.artists.items else {
             delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "Missing Data")))

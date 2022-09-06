@@ -33,7 +33,7 @@ final class AuthorizationViewController: UIViewController, ErrorHandlingProtocol
         webView.navigationDelegate = self
         view.addSubview(webView)
         
-        guard let url = AuthManager.shared.signInUrl else {
+        guard let url = viewModel.signInUrl else {
             return
         }
         webView.load(URLRequest(url: url))

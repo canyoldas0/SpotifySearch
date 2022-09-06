@@ -14,7 +14,7 @@ final class AuthorizationViewModel: AuthorizationViewModelProtocol {
     
     private let observationManager: ObservationManagerProtocol
     
-//    var signInUrl: URL? = AuthManager.shared.signInUrl
+    var signInUrl: URL? = AuthManager.shared.signInUrl
     
     init(
         observationManager: ObservationManagerProtocol

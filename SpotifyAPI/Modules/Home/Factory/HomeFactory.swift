@@ -18,11 +18,9 @@ final class HomeFactory {
     func createHomeView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let dataHandler = HomeViewDataHandler()
         
-        let profileService = ProfileService(configuration: dependencyContainer.apiConfiguration)
         let searchService = SearchService(configuration: dependencyContainer.apiConfiguration)
         
         let homeViewModel = HomeViewModel(
-            profileService: profileService,
             searchService: searchService,
             dataHandler: dataHandler,
             observationManager: dependencyContainer.observationManager

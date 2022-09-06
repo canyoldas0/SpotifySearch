@@ -19,20 +19,6 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
-//    private lazy var loginLabel: UILabel = {
-//       let temp = UILabel()
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        temp.text = "Login"
-//        return temp
-//    }()
-    
-//    private lazy var imageContainer: CustomImageViewContainer = {
-//        let temp = CustomImageViewContainer()
-//        temp.translatesAutoresizingMaskIntoConstraints = false
-//        temp.clipsToBounds = true
-//        return temp
-//    }()
-    
     private lazy var profileButton: UIBarButtonItem = {
        let temp = UIBarButtonItem()
         temp.target = self
@@ -85,21 +71,9 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     private func setProfileButton() {
-//        profileButton.customView = imageContainer
         DispatchQueue.main.async {
             self.navigationItem.rightBarButtonItem = self.profileButton
         }
-        
-        
-//        NSLayoutConstraint.activate([
-//
-//            imageContainer.heightAnchor.constraint(equalToConstant: 40),
-//            imageContainer.widthAnchor.constraint(equalToConstant: 40),
-//        ])
-//
-//        imageContainer.layer.cornerRadius = 20
-        
-//        profileButton.action = #selector(profileClicked)
     }
     
     @objc private func profileClicked() {
@@ -108,7 +82,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func updateProfileIcon(for state: Bool) {
         DispatchQueue.main.async {
-//            let view = state ? self.imageContainer: self.loginLabel
+            self.profileButton.image = state ? UIImage(systemName: "person.circle.fill"): nil
 //            self.profileButton.customView = view
 //            self.profileButton.target = view
         }
@@ -127,7 +101,6 @@ extension HomeViewController: HomeViewOutputProtocol {
             updateProfileIcon(for: signedIn)
         case .setImageUrl(let urlString):
             return
-//            imageContainer.setData(data: CustomImageViewComponentData(imageUrl: urlString))
         }
 
     }
