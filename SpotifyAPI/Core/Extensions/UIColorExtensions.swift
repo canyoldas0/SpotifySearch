@@ -12,4 +12,8 @@ extension UIColor {
     class var backgroundColor: UIColor {
         UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.00)
     }
+    
+    class var spotifyGreen: UIColor {
+        UIColor(red: 0.11, green: 0.73, blue: 0.33, alpha: 1.00)
+    }
 }

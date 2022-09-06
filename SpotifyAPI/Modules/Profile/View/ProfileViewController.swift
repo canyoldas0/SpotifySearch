@@ -11,21 +11,9 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
     
     private var viewModel: ProfileViewModelProtocol!
     
-    private let titleLabel: UILabel = {
-        let temp = UILabel()
+    private let headerView: BottomsheetHeaderView = {
+        let temp = BottomsheetHeaderView()
         temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.text = ""
-        temp.font = .systemFont(ofSize: 16, weight: .semibold)
-        temp.textAlignment = .center
-        return temp
-    }()
-    
-    private let dismissButton: UIButton = {
-        let temp = UIButton()
-        temp.translatesAutoresizingMaskIntoConstraints = false
-        temp.setTitle("Dismiss", for: .normal)
-        temp.titleLabel?.font = .systemFont(ofSize: 16, weight: .regular)
-        temp.setTitleColor(.systemBlue, for: .normal)
         return temp
     }()
     
@@ -33,45 +21,71 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         let temp = UIButton()
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.setTitle("Sign In.", for: .normal)
-        temp.setTitleColor(.label, for: .normal)
+        temp.backgroundColor = .spotifyGreen
+        temp.setTitleColor(.white, for: .normal)
+        return temp
+    }()
+    
+    private lazy var logOutButton: UIButton = {
+        let temp = UIButton()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        temp.setTitle("Logout", for: .normal)
+        temp.setTitleColor(.red, for: .normal)
         return temp
     }()
     
     convenience init(viewModel: ProfileViewModelProtocol) {
         self.init()
         self.viewModel = viewModel
+        self.viewModel.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         prepareUI()
+        viewModel.load()
     }
     
     private func prepareUI() {
-        view.addSubview(titleLabel)
-        view.addSubview(dismissButton)
+        view.addSubview(headerView)
         view.addSubview(signInButton)
-        titleLabel.text = title
+        
+        let buttonWidth = "Sign in".size(font: .systemFont(ofSize: 16, weight: .bold)).width + 80
         
         NSLayoutConstraint.activate([
         
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            
-            dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
-            
-            signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 42),
         
-        dismissButton.addAction { [weak self] in
+            signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signInButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            signInButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+        ])
+                
+        headerView.setData(data: BottomsheetHeaderData(title: "Profile", dismissAction: { [weak self] in
             self?.dismiss(animated: true)
-        }
+        }))
         
         signInButton.addAction { [weak self] in
             self?.viewModel.signInClicked()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        signInButton.roundCorner()
+    }
+}
+
+extension ProfileViewController: ProfileViewOutputProtocol {
+    
+    func handleOutput(_ output: ProfileViewOutput) {
+        switch output {
+        case .showAlert(let alert):
+            showAlert(with: alert)
         }
     }
 }

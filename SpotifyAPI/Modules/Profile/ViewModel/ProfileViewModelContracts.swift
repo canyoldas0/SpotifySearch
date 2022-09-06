@@ -8,12 +8,14 @@
 protocol ProfileViewModelProtocol {
     
     var coordinatorDelegate: HomeCoordinatorDelegate? { get }
+    var delegate: ProfileViewOutputProtocol? { get set }
     
+    func load()
     func signInClicked()
 }
 
 protocol ProfileViewOutputProtocol: AnyObject {
-    func handleOutput(_ output: SignInViewOutput)
+    func handleOutput(_ output: ProfileViewOutput)
 }
 
 enum ProfileViewOutput: Equatable {

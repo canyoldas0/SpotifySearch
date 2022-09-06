@@ -12,11 +12,11 @@ final class AuthorizationViewController: UIViewController, ErrorHandlingProtocol
     
     private var viewModel: AuthorizationViewModelProtocol!
     
-    convenience init(viewModel: AuthorizationViewModelProtocol) {
-        self.init()
-        self.viewModel = viewModel
-        self.viewModel.delegate = self
-    }
+    private let headerView: BottomsheetHeaderView = {
+        let temp = BottomsheetHeaderView()
+        temp.translatesAutoresizingMaskIntoConstraints = false
+        return temp
+    }()
     
     private let webView: WKWebView = {
         let prefs = WKWebpagePreferences()
@@ -24,24 +24,44 @@ final class AuthorizationViewController: UIViewController, ErrorHandlingProtocol
         let config = WKWebViewConfiguration()
         config.defaultWebpagePreferences = prefs
         let webView = WKWebView(frame: .zero, configuration: config)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
     
+    convenience init(viewModel: AuthorizationViewModelProtocol) {
+        self.init()
+        self.viewModel = viewModel
+        self.viewModel.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Sign In"
+        view.backgroundColor = .white
         webView.navigationDelegate = self
         view.addSubview(webView)
+        view.addSubview(headerView)
+        
+        NSLayoutConstraint.activate([
+        
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 42),
+        
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        headerView.setData(data: BottomsheetHeaderData(title: "Sign In", dismissAction: { [weak self] in
+            self?.dismiss(animated: true)
+        }))
         
         guard let url = viewModel.signInUrl else {
             return
         }
         webView.load(URLRequest(url: url))
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        webView.frame = view.bounds
     }
 }
 
