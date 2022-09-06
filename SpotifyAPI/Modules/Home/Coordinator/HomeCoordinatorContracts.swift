@@ -13,4 +13,5 @@ protocol HomeCoordinatorDelegate: AnyObject {
     func goToDetail(with id: String)
     func goToAuthScreen()
     func returnHome(completion: VoidHandler?)
+    func goToRoot(completion: VoidHandler?)
 }

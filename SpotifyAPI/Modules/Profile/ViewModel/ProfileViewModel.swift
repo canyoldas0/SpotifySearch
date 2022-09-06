@@ -11,8 +11,14 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     weak var delegate: ProfileViewOutputProtocol?
     
     private let profileService: ProfileServiceProtocol
+    private let observationManager: ObservationManagerProtocol
+
     
-    init(profileService: ProfileServiceProtocol) {
+    init(
+        observationManager: ObservationManagerProtocol,
+        profileService: ProfileServiceProtocol
+    ) {
+        self.observationManager = observationManager
         self.profileService = profileService
     }
     
@@ -21,6 +27,8 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         
         if signedIn {
             callProfileService()
+        } else {
+            delegate?.handleOutput(.updateView(signedIn: false, data: nil))
         }
     }
     
@@ -36,10 +44,22 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             
             switch result {
             case .success(let response):
-                print(response)
+                self?.handleProfileResponse(for: response)
             case .failure(let error):
                 self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
             }
         }
+    }
+    
+    private func handleProfileResponse(for response: ProfileResponse) {
+        
+        
+        var profileData = ProfileViewData(displayName: response.displayName,
+                                          imageUrl: response.images.first?.url) { [weak self] in
+            self?.observationManager.notifyObservers(for: .signedIn, data: false)
+            self?.coordinatorDelegate?.returnHome(completion: nil)
+//            AuthManager.shared.logout()
+        }
+        delegate?.handleOutput(.updateView(signedIn: true, data: profileData))
     }
 }

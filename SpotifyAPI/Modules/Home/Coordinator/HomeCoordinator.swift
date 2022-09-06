@@ -33,22 +33,17 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     
     func goToLogin() {
         let signInVC = homeFactory.createSignInScreen(coordinatorDelegate: self)
-        let navigationViewController = UINavigationController(rootViewController: signInVC)
         
-        let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
-            self?.rootViewController.presentedViewController?.dismiss(animated: true)
-        }))
-        signInVC.navigationItem.leftBarButtonItem = cancelButton
         signInVC.title = "Sign In"
         
-        if let sheet = navigationViewController.sheetPresentationController {
+        if let sheet = signInVC.sheetPresentationController {
             /// Funny thing. Setting this property to true causes a memory leak.
             //            sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 10
             sheet.detents = [.large()]
         }
         
-        rootViewController.present(navigationViewController, animated: true)
+        rootViewController.present(signInVC, animated: true)
     }
     
     func goToProfile() {
@@ -85,5 +80,9 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     func returnHome(completion: VoidHandler?) {
         rootViewController.dismiss(animated: true)
         completion?()
+    }
+    
+    func goToRoot(completion: VoidHandler?) {
+        rootViewController.popToRootViewController(animated: true)
     }
 }

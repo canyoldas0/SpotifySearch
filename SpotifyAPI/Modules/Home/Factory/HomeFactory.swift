@@ -46,7 +46,10 @@ final class HomeFactory {
     func createProfileScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let profileService = ProfileService(configuration: dependencyContainer.apiConfiguration)
         
-        let viewModel = ProfileViewModel(profileService: profileService)
+        let viewModel = ProfileViewModel(
+            observationManager: dependencyContainer.observationManager,
+            profileService: profileService
+        )
         viewModel.coordinatorDelegate = coordinatorDelegate
         let viewController = ProfileViewController(viewModel: viewModel)
         viewController.title = "Profile"

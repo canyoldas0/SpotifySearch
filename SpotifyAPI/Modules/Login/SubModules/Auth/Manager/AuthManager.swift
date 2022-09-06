@@ -18,6 +18,8 @@ final class AuthManager {
     
     static var shared = AuthManager()
     
+    var observationManager: ObservationManagerProtocol?
+    
     private let authService: AuthServiceProtocol = AuthService(configuration: .default)
     
     var signInUrl: URL? {

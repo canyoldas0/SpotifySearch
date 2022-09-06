@@ -23,10 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         apiConfiguration.waitsForConnectivity = true
         apiConfiguration.timeoutIntervalForResource = 350
         apiConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        
+        let observationManager = ObservationManager()
+        AuthManager.shared.observationManager = observationManager
+        
         dependencyContainer = DependencyContainer(
             window: window,
             apiConfiguration: apiConfiguration,
-            observationManager: ObservationManager()
+            observationManager: observationManager
         )
         
         appCoordinator = CoordinatorFactory.buildAppCoordinator(dependencies: dependencyContainer)

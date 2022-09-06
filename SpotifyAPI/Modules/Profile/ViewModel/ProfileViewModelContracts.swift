@@ -20,4 +20,5 @@ protocol ProfileViewOutputProtocol: AnyObject {
 
 enum ProfileViewOutput: Equatable {
     case showAlert(Alert)
+    case updateView(signedIn: Bool,data: ProfileViewData?)
 }
