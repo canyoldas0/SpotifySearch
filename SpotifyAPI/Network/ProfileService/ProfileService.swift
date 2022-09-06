@@ -5,8 +5,6 @@
 //  Created by Can Yoldaş on 4.09.2022.
 //
 
-import Foundation
-
 protocol ProfileServiceProtocol {
     
     func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse,ErrorResponse>) -> Void)

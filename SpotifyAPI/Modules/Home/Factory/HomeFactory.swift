@@ -33,6 +33,7 @@ final class HomeFactory {
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         homeViewController.title = "Search"
         homeViewController.navigationController?.navigationBar.prefersLargeTitles = true
+        
         return homeViewController
     }
     
@@ -61,6 +62,21 @@ final class HomeFactory {
         viewModel.coordinatorDelegate = coordinatorDelegate
         let viewController = AuthorizationViewController(viewModel: viewModel)
         viewController.title = "Sign In"
+        
+        return viewController
+    }
+    
+    func createDetailView(coordinatorDelegate: HomeCoordinatorDelegate, itemId: String) -> UIViewController {
+        let detailService = DetailService(configuration: dependencyContainer.apiConfiguration)
+        
+        let viewModel = DetailViewModel(
+            itemId: itemId,
+            detailService: detailService
+        )
+        viewModel.coordinatorDelegate = coordinatorDelegate
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.title = " "
+        
         return viewController
     }
 }

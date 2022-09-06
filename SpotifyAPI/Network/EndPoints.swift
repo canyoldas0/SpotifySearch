@@ -18,4 +18,19 @@ enum EndPoints {
     enum Search {
         static let execute = base + "/search"
     }
+    
+    enum Artist {
+        
+        case detail(String)
+        case albums(String)
+        
+        func getEndpoint() -> String {
+            switch self {
+            case .detail(let id):
+                return base + "/artists/\(id)"
+            case .albums(let id):
+                return base + "/artists/\(id)/albums"
+            }
+        }
+    }
 }

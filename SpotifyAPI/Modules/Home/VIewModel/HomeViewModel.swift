@@ -112,7 +112,11 @@ extension HomeViewModel {
         }
         
         searchListData = list.compactMap({ item in
-            ListViewCellData(imageUrl: item.images?.first?.url, title: item.name)
+            ListViewCellData(
+                id: item.id,
+                imageUrl: item.images?.first?.url,
+                title: item.name
+            )
         })
     }
 }
@@ -124,7 +128,11 @@ extension HomeViewModel: ItemProviderProtocol {
     }
     
     func itemSelected(at index: Int) {
-        coordinatorDelegate?.goToDetail(with: "3")
+        guard let id = searchListData[index].id else {
+            delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "Problem occurred during encoding the item id. Please try again.")))
+            return
+        }
+        coordinatorDelegate?.goToDetail(with: id)
     }
     
     func askData(for index: Int) -> DataProtocol? {

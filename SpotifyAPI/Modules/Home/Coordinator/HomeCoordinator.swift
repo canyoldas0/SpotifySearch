@@ -63,7 +63,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     }
     
     func goToDetail(with id: String) {
-        let detailVC = DetailViewController()
+        let detailVC = homeFactory.createDetailView(coordinatorDelegate: self, itemId: id)
         rootViewController.show(detailVC, sender: nil)
     }
     

@@ -27,7 +27,7 @@ final class AuthorizationViewModel: AuthorizationViewModelProtocol {
         
         AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] success in
             if success {
-//                self?.observationManager.notifyObservers(for: .signedIn, data: success)
+                self?.observationManager.notifyObservers(for: .signedIn, data: success)
             }
         }
     }
