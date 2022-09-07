@@ -57,6 +57,10 @@ final class ListView: BaseView<ListViewData> {
             self.tableView.reloadData()
         }
     }
+    
+    func scrollToTop() {
+        self.tableView.setContentOffset(CGPoint(x:0,y:0), animated: true)
+    }
 }
 
 // MARK: Tableview Delegates

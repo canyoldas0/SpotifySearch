@@ -40,7 +40,7 @@ final class DetailViewModel: DetailViewModelProtocol {
             case .success(let response):
                 self?.handleHeaderResponse(with: response)
             case .failure(let error):
-                return
+                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "error fetch")))
             }
         }
     }
@@ -54,7 +54,7 @@ final class DetailViewModel: DetailViewModelProtocol {
             case .success(let response):
                 self?.handleAlbumResponse(for: response)
             case .failure(let error):
-                return
+                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "error fetch")))
             }
         }
     }

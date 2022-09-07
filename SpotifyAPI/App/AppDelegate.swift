@@ -21,11 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let apiConfiguration = URLSessionConfiguration.default
         apiConfiguration.waitsForConnectivity = true
-        apiConfiguration.timeoutIntervalForResource = 350
         apiConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         
         let observationManager = ObservationManager()
         AuthManager.shared.observationManager = observationManager
+        
+        AuthManager.shared.removeCacheIfNeeded()
         
         dependencyContainer = DependencyContainer(
             window: window,

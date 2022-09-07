@@ -87,6 +87,12 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
 //            self.profileButton.target = view
         }
     }
+    
+    @objc private func reload(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else {return}
+//        viewModel.searchGame(with: text)
+        listView.scrollToTop()
+    }
 }
 
 extension HomeViewController: HomeViewOutputProtocol {
@@ -102,7 +108,6 @@ extension HomeViewController: HomeViewOutputProtocol {
         case .setImageUrl(let urlString):
             return
         }
-
     }
 }
 
@@ -110,10 +115,10 @@ extension HomeViewController: HomeViewOutputProtocol {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchText.count >= 3 {
-//            NSObject.cancelPreviousPerformRequests(withTarget: self, selector:
-//            #selector(self.reload(_:)), object: searchController.searchBar)
-//                perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 0.75)
-//        }
+        if searchText.count >= 3 {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector:
+            #selector(self.reload(_:)), object: searchController.searchBar)
+                perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 0.75)
+        }
     }
 }
