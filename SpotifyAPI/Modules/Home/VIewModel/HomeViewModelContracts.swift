@@ -12,6 +12,7 @@ protocol HomeViewModelProtocol {
     
     func load()
     func profileClicked()
+    func searchTracks(with text: String)
 }
 
 protocol HomeViewOutputProtocol: AnyObject {

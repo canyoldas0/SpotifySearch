@@ -14,7 +14,6 @@ class CustomImageViewContainer: BaseView<CustomImageViewComponentData> {
         temp.translatesAutoresizingMaskIntoConstraints = false
         temp.clipsToBounds = true
         temp.image = UIImage(named: "placeholder")
-        temp.layer.cornerRadius = 8
         temp.contentMode = .scaleAspectFit
         return temp
     }()

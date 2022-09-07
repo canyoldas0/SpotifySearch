@@ -53,6 +53,11 @@ final class DetailHeaderView: BaseView<DetailHeaderData> {
         ])
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageContainer.roundCorner(with: 16)
+    }
+    
     override func setData(data: DetailHeaderData?) {
         guard let data = data else {
             return

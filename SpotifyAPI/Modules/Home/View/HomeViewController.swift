@@ -90,7 +90,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     @objc private func reload(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
-//        viewModel.searchGame(with: text)
+        viewModel.searchTracks(with: text)
         listView.scrollToTop()
     }
 }

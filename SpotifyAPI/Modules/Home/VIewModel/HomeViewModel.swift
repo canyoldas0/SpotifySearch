@@ -19,6 +19,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private var searchListData: [ListViewCellData] = []
     
+    private var latestSearchText: String?
+    
     init(
         searchService: SearchServiceProtocol,
         dataHandler: HomeViewDataHandlerProtocol,
@@ -34,7 +36,7 @@ final class HomeViewModel: HomeViewModelProtocol {
             }
 
             if signedIn {
-                self?.callListService()
+                self?.callListService(with: self?.latestSearchText)
             } else {
                 self?.coordinatorDelegate?.goToLogin()
             }
@@ -47,21 +49,33 @@ final class HomeViewModel: HomeViewModelProtocol {
         delegate?.handleOutput(.updateProfileIcon(signedIn))
         
         if signedIn {
-            callListService()
+            callListService(with: latestSearchText)
         } else {
             coordinatorDelegate?.goToLogin()
         }
+    }
+    
+    func searchTracks(with text: String) {
+        latestSearchText = text
+        callListService(with: text)
     }
     
     func profileClicked() {
         coordinatorDelegate?.goToProfile()
     }
     
-    private func callListService() {
+    private func callListService(with text: String?) {
+        guard let text,
+              !text.isEmpty else {
+            return
+        }
         
-        let request = APIRequests.createRequest(from: SearchRequest(searchText: "Muse", type: .artist))
+        let request = APIRequests.createRequest(from: SearchRequest(searchText: text, type: .artist))
         
         searchService.search(request: request) { [weak self] result in
+            
+            self?.searchListData.removeAll()
+
             switch result {
             case .success(let response):
                 self?.handleSearchListResponse(response: response)

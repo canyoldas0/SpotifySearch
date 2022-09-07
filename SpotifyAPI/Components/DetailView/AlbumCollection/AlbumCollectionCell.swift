@@ -44,6 +44,11 @@ final class AlbumCollectionCell: UICollectionViewCell {
         ])
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageContainer.roundCorner(with: 10)
+    }
+    
     func setData(with data: DataProtocol?) {
         guard let data = data as? AlbumCollectionCellData,
         let url = data.imageUrl else {
