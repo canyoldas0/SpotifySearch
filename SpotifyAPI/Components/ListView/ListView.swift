@@ -12,7 +12,16 @@ import UIKit
 protocol ItemProviderProtocol: AnyObject {
     func getNumberOfItems(in section: Int) -> Int
     func itemSelected(at index: Int)
-    func askData(for index: Int) -> DataProtocol?
+    func askData(for index: Int) -> GenericDataProtocol?
+    func isLoadingCell(for index: Int) -> Bool
+    func getMoreData()
+}
+
+/// Default function definitions for not mandatory ones.
+extension ItemProviderProtocol {
+    func itemSelected(at index: Int) { }
+    func getMoreData() { }
+    func isLoadingCell(for index: Int) -> Bool { return false }
 }
 
 /// Data object to customize ListView.
@@ -35,6 +44,7 @@ final class ListView: BaseView<ListViewData> {
         tableView.separatorStyle = .none
         tableView.allowsSelection = true
         tableView.register(ListViewCell.self, forCellReuseIdentifier: ListViewCell.identifier)
+        tableView.register(LoadingCellView.self, forCellReuseIdentifier: LoadingCellView.identifier)
         return tableView
     }()
     
@@ -61,6 +71,11 @@ final class ListView: BaseView<ListViewData> {
     func scrollToTop() {
         self.tableView.setContentOffset(CGPoint(x:0,y:0), animated: true)
     }
+    
+    /// Checks if the cell will be displayed is loading cell.
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return delegate?.isLoadingCell(for: indexPath.row) ?? false
+    }
 }
 
 // MARK: Tableview Delegates
@@ -71,14 +86,22 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         delegate?.getNumberOfItems(in: section) ?? 0
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as? ListViewCell,
-              let data = delegate?.askData(for: indexPath.row) else {
-            return UITableViewCell()
+        
+        // Controls whether if it's needed to show loading indicator.
+        if isLoadingCell(for: indexPath) {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: LoadingCellView.identifier,
+                for: indexPath) as? LoadingCellView else { fatalError() }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ListViewCell.identifier, for: indexPath) as? ListViewCell,
+                  let data = delegate?.askData(for: indexPath.row) else {
+                return UITableViewCell()
+            }
+            cell.setData(with: data)
+            return cell
         }
-        cell.setData(with: data)
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,5 +109,13 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         cell?.selectedBackgroundView = .none
         cell?.selectionStyle = .none
         delegate?.itemSelected(at: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        // When scroll starts to the bottom, asks delegate to fetch more data.
+        if isLoadingCell(for: indexPath) {
+            delegate?.getMoreData()
+        }
     }
 }

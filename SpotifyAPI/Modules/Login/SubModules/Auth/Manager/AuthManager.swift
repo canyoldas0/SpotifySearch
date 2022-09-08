@@ -82,6 +82,8 @@ final class AuthManager {
             refreshAccessToken { [weak self] success in
                 if let token = self?.accessToken, success {
                     completion(token)
+                } else {
+                    self?.observationManager?.notifyObservers(for: .signedIn, data: false)
                 }
             }
         } else if let token = accessToken {
@@ -95,7 +97,7 @@ final class AuthManager {
             return
         }
         
-        guard let refreshToken = refreshToken else {
+        guard let refreshToken = self.refreshToken else {
             return
         }
         

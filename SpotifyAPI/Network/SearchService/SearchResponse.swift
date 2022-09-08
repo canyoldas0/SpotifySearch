@@ -11,6 +11,9 @@ struct SearchResponse: Decodable {
 
 struct ArtistInfo: Decodable {
     let items: [ArtistItem]?
+    let limit: Int
+    let offset: Int
+    let total : Int
 }
 
 struct ArtistItem: Decodable {

@@ -8,4 +8,4 @@
 import Foundation
 
 /// Protocol that is used to abstract all view data objects.
-protocol DataProtocol { }
+protocol GenericDataProtocol { }

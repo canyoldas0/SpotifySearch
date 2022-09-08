@@ -9,10 +9,19 @@ struct SearchRequest: Encodable {
     
     private let q: String
     private let type: String
+    private let limit: Int
+    private let offset: Int
     
-    init(searchText: String, type: Itemtype) {
+    init(
+        searchText: String,
+        type: Itemtype,
+        limit: Int = 20,
+        offset: Int
+    ) {
         self.q = searchText
         self.type = type.rawValue
+        self.limit = limit
+        self.offset = offset
     }
 }
 

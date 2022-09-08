@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct BottomsheetHeaderData: DataProtocol {
+struct BottomsheetHeaderData: GenericDataProtocol {
     let title: String?
     let buttonTitle: String?
     let dismissAction: VoidHandler?

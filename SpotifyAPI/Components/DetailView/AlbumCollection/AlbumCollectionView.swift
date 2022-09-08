@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct AlbumCollectionData: DataProtocol, Equatable {
+struct AlbumCollectionData: GenericDataProtocol, Equatable {
     
     static func == (lhs: AlbumCollectionData, rhs: AlbumCollectionData) -> Bool {
         lhs.title == rhs.title

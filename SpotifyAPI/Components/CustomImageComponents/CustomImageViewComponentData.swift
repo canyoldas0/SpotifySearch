@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomImageViewComponentData: DataProtocol {
+class CustomImageViewComponentData: GenericDataProtocol {
     
     private(set) var imageUrl: String
     private(set) var contentMode: UIView.ContentMode = .scaleAspectFill

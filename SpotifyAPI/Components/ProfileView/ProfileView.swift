@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct ProfileViewData: DataProtocol, Equatable {
+struct ProfileViewData: GenericDataProtocol, Equatable {
     
     static func == (lhs: ProfileViewData, rhs: ProfileViewData) -> Bool {
         lhs.displayName == rhs.displayName

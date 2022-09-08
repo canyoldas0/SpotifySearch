@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct AlbumCollectionCellData: DataProtocol {
+struct AlbumCollectionCellData: GenericDataProtocol {
     let imageUrl: String?
 }
 
@@ -49,7 +49,7 @@ final class AlbumCollectionCell: UICollectionViewCell {
         imageContainer.roundCorner(with: 10)
     }
     
-    func setData(with data: DataProtocol?) {
+    func setData(with data: GenericDataProtocol?) {
         guard let data = data as? AlbumCollectionCellData,
         let url = data.imageUrl else {
             return

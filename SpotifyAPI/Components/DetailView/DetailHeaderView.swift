@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct DetailHeaderData: DataProtocol, Equatable {
+struct DetailHeaderData: GenericDataProtocol, Equatable {
     
     
     let imageUrl: String?

@@ -66,7 +66,7 @@ final class ListViewCell: UITableViewCell {
         imageContainer.layer.cornerRadius = 32
     }
     
-    func setData(with data: DataProtocol) {
+    func setData(with data: GenericDataProtocol) {
         guard let data = data as? ListViewCellData else {
             return
         }
