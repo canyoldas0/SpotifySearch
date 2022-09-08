@@ -11,8 +11,8 @@ protocol AuthServiceProtocol {
     
     var signInUrl: URL? { get }
     
-    func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, ErrorResponse>) -> Void)
-    func refreshAccessToken(with token: String, completion: @escaping (Result<AuthResponse, ErrorResponse>) -> Void)
+    func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
+    func refreshAccessToken(with token: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
 }
 
 final class AuthService: BaseAPI, AuthServiceProtocol {
@@ -32,7 +32,7 @@ final class AuthService: BaseAPI, AuthServiceProtocol {
         return URL(string: str)
     }
     
-    func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, ErrorResponse>) -> Void) {
+    func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, Error>) -> Void) {
         guard let request = try? getRequestForAccessToken(code: code) else {
             return
         }
@@ -42,7 +42,7 @@ final class AuthService: BaseAPI, AuthServiceProtocol {
         )
     }
     
-    func refreshAccessToken(with token: String, completion: @escaping (Result<AuthResponse, ErrorResponse>) -> Void) {
+    func refreshAccessToken(with token: String, completion: @escaping (Result<AuthResponse, Error>) -> Void) {
         guard let request = try? getRequestForRefreshToken(token: token) else {
             return
         }

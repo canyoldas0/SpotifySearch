@@ -37,6 +37,11 @@ final class SignInViewController: UIViewController, ErrorHandlingProtocol {
         prepareUI()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        signInButton.roundCorner()
+    }
+    
     private func prepareUI() {
         view.backgroundColor = .backgroundColor
         configureButton()
@@ -47,7 +52,7 @@ final class SignInViewController: UIViewController, ErrorHandlingProtocol {
         view.addSubview(headerView)
         
         
-        let buttonWidth = "Sign in".size(font: .systemFont(ofSize: 16, weight: .bold)).width + 30
+        let buttonWidth = "Sign in".size(font: .systemFont(ofSize: 16, weight: .bold)).width + 30*2
         
         
         NSLayoutConstraint.activate([

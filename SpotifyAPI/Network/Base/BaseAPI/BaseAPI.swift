@@ -12,13 +12,13 @@ enum SessionType {
     case mock
 }
 
-class ErrorResponse: Error {
-    let customErrorMesage: String?
-    
-    init(errorMessage: String? = nil) {
-        self.customErrorMesage = errorMessage
-    }
-}
+//class ErrorResponse: Error {
+//    let customErrorMesage: String?
+//
+//    init(errorMessage: String? = nil) {
+//        self.customErrorMesage = errorMessage
+//    }
+//}
 
 class BaseAPI {
     
@@ -33,7 +33,7 @@ class BaseAPI {
         request: URLRequest,
         sessionType: SessionType = .defaultSession,
         dispatchQueue: DispatchQueue = .main,
-        completion: @escaping ((Result<T, ErrorResponse>) -> Void)
+        completion: @escaping ((Result<T, Error>) -> Void)
     ) where T: Decodable {
         
         switch sessionType {
@@ -42,8 +42,7 @@ class BaseAPI {
                 self.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
             }.resume()
         default:
-            break
-            //            self.handleResponse(ResourceManager.getMockDataForTileList(), nil, nil, completion: completion)
+            break /// can implement session configuration according to build settings.
         }
     }
     
@@ -53,21 +52,26 @@ class BaseAPI {
         requestable: Requestable,
         dispatchQueue: DispatchQueue = .main,
         sessionType: SessionType = .defaultSession,
-        completion: @escaping ((Result<T, ErrorResponse>) -> Void)
+        completion: @escaping ((Result<T, Error>) -> Void)
     ) where T: Decodable {
         
-            createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] request in
-                
+        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] result in
+            
+            switch result {
+            case .success(let urlRequest):
                 switch sessionType {
                 case .defaultSession:
-                    self?.session.dataTask(with: request) { (data, urlResponse, error) in
+                    self?.session.dataTask(with: urlRequest) { (data, urlResponse, error) in
                         self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
                     }.resume()
                 default:
-                    break
-                    //            self.handleResponse(ResourceManager.getMockDataForTileList(), nil, nil, completion: completion)
+                    break /// can implement session configuration according to build settings.
                 }
+                
+            case .failure(let error):
+                completion(.failure(error))
             }
+        }
     }
     
     private func handleResponse<T: Decodable>(
@@ -75,11 +79,11 @@ class BaseAPI {
         _ response: URLResponse?,
         _ error: Error?,
         dispatchQueue: DispatchQueue,
-        completion: @escaping (Result<T, ErrorResponse>) -> Void) {
+        completion: @escaping (Result<T, Error>) -> Void) {
             
             dispatchQueue.async {
                 if error != nil {
-                    completion(.failure(ErrorResponse(errorMessage: error?.localizedDescription)))
+                    completion(.failure(error!))
                 }
                 
                 if let data = data {
@@ -87,7 +91,7 @@ class BaseAPI {
                         let decodedData = try self.jsonDecoder.decode(T.self, from: data)
                         completion(.success(decodedData))
                     } catch let error {
-                        completion(.failure(ErrorResponse(errorMessage: NetworkError.decodingFailed.localizedDescription)))
+                        completion(.failure(NetworkError.decodingFailed))
                     }
                 }
             }
@@ -97,23 +101,29 @@ class BaseAPI {
         from endpoint: String,
         for type: HTTPMethod,
         with requestable: Requestable,
-        completion: @escaping (URLRequest) -> Void
+        completion: @escaping ResponseHandler<URLRequest>
     ) {
-        AuthManager.shared.withValidToken { [weak self] token in
+        AuthManager.shared.withValidToken { [weak self] result in
             guard let url = URL(string: endpoint) else {
                 return
             }
             
-            if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                urlComponents.queryItems = requestable.queryItems
+            switch result {
+            case .success(let token):
+                if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                    urlComponents.queryItems = requestable.queryItems
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = type.rawValue
+                    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    request.url = urlComponents.url
+                    
+                    completion(.success(request))
+                }
                 
-                var request = URLRequest(url: url)
-                request.httpMethod = type.rawValue
-                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                
-                request.url = urlComponents.url
-                
-                completion(request)
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

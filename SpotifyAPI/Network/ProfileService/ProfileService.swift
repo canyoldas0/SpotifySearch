@@ -7,12 +7,12 @@
 
 protocol ProfileServiceProtocol {
     
-    func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse,ErrorResponse>) -> Void)
+    func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse,Error>) -> Void)
 }
 
 final class ProfileService: BaseAPI, ProfileServiceProtocol {
     
-    func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse, ErrorResponse>) -> Void) {
+    func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse, Error>) -> Void) {
         execute(
             endpoint: EndPoints.Profile.currentProfile,
             requestable: request,

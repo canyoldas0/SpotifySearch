@@ -7,8 +7,8 @@
 
 protocol DetailServiceProtocol {
     
-    func fetchDetailData(itemId: String, request: Requestable, completion: @escaping (Result<DetailResponse,ErrorResponse>) -> Void)
-    func fetchArtistAlbumData(itemId: String, request: Requestable, completion: @escaping (Result<AlbumResponse,ErrorResponse>) -> Void)
+    func fetchDetailData(itemId: String, request: Requestable, completion: @escaping (Result<DetailResponse,Error>) -> Void)
+    func fetchArtistAlbumData(itemId: String, request: Requestable, completion: @escaping (Result<AlbumResponse,Error>) -> Void)
 
 }
 
@@ -17,7 +17,7 @@ final class DetailService: BaseAPI, DetailServiceProtocol {
     func fetchDetailData(
         itemId: String,
         request: Requestable,
-        completion: @escaping (Result<DetailResponse, ErrorResponse>) -> Void
+        completion: @escaping (Result<DetailResponse, Error>) -> Void
     ) {
         execute(
             endpoint: EndPoints.Artist.detail(itemId).getEndpoint(),
@@ -29,7 +29,7 @@ final class DetailService: BaseAPI, DetailServiceProtocol {
     func fetchArtistAlbumData(
         itemId: String,
         request: Requestable,
-        completion: @escaping (Result<AlbumResponse, ErrorResponse>) -> Void
+        completion: @escaping (Result<AlbumResponse, Error>) -> Void
     ) {
         execute(
             endpoint: EndPoints.Artist.albums(itemId).getEndpoint(),

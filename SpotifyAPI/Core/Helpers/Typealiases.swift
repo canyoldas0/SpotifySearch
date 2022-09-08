@@ -6,4 +6,5 @@
 //
 
 typealias GenericHandler<T> = (T) -> Void
+typealias ResponseHandler<T> = (Result<T,Error>) -> Void
 typealias VoidHandler = () -> Void

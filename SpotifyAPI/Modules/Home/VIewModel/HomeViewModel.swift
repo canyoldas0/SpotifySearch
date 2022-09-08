@@ -75,18 +75,6 @@ final class HomeViewModel: HomeViewModelProtocol {
         coordinatorDelegate?.goToProfile()
     }
     
-    /// Resets pagination fields and previosly fetched data.
-    private func resetForNewRequest() {
-        offset = 0
-        total = 0
-    }
-    
-    /// Moving to next offset if user asks for more data.
-    private func nextOffset() {
-        isFetching = true
-        offset += limit
-    }
-    
     // MARK: Search List Service
     
     private func callListService(with text: String?, pagination: Bool = false) {
@@ -114,10 +102,29 @@ final class HomeViewModel: HomeViewModelProtocol {
             switch result {
             case .success(let response):
                 self?.handleSearchListResponse(response: response)
-            case .failure(let error):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
+            case .failure(let error as NetworkError):
+                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.rawValue)))
+            default:
+                break
             }
         }
+    }
+}
+
+// MARK:  Pagination Methods
+
+extension HomeViewModel {
+    
+    /// Resets pagination fields and previosly fetched data.
+    private func resetForNewRequest() {
+        offset = 0
+        total = 0
+    }
+    
+    /// Moving to next offset if user asks for more data.
+    private func nextOffset() {
+        isFetching = true
+        offset += limit
     }
 }
 

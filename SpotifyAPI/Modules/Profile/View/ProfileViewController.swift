@@ -11,6 +11,8 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
     
     private var viewModel: ProfileViewModelProtocol!
     
+    // MARK: Views
+    
     private let headerView: BottomsheetHeaderView = {
         let temp = BottomsheetHeaderView()
         temp.translatesAutoresizingMaskIntoConstraints = false
@@ -32,12 +34,14 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
+    // MARK: Init
     convenience init(viewModel: ProfileViewModelProtocol) {
         self.init()
         self.viewModel = viewModel
         self.viewModel.delegate = self
     }
     
+    // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
@@ -45,6 +49,13 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         viewModel.load()
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        signInButton.roundCorner()
+    }
+    
+    // MARK: Setup UIs
     private func prepareUI() {
         view.addSubview(headerView)        
         
@@ -70,7 +81,8 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         
         view.addSubview(signInButton)
         
-        let buttonWidth = "Sign in".size(font: .systemFont(ofSize: 16, weight: .bold)).width + 80
+        // Calculating button width according to text and add padding from both side.
+        let buttonWidth = "Sign in".size(font: .systemFont(ofSize: 16, weight: .bold)).width + 30*2
         
         NSLayoutConstraint.activate([
         
@@ -112,11 +124,6 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         }
         
         configureProfileView(with: data)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        signInButton.roundCorner()
     }
 }
 

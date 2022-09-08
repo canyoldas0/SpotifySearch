@@ -31,7 +31,7 @@ final class AuthManager {
     }
     
     private var refreshingToken: Bool = false
-    private var onRefreshCompletions: [GenericHandler<String>] = []
+    private var onRefreshCompletions: [ResponseHandler<String>] = []
     
     private var accessToken: String? {
         UserDefaults.standard.string(forKey: Constants.accessToken)
@@ -63,8 +63,10 @@ final class AuthManager {
             case .success(let response):
                 self?.cacheToken(response: response)
                 completion(true)
+                self?.notifySignIn(true)
             case .failure(_):
                 completion(false)
+                self?.notifySignIn(false)
             }
         }
     }
@@ -72,7 +74,7 @@ final class AuthManager {
     /// This method should be used whenever new API request will be executed.
     /// It passes the valid access token, if the token is expired, it refreshes.
     /// If There are API calls during the token expiration, stores those calls in 'onRefreshCompletions', and when the token is refreshed, completions get executed.
-    func withValidToken(completion: @escaping GenericHandler<String>) {
+    func withValidToken(completion: @escaping ResponseHandler<String>) {
         guard !refreshingToken else {
             onRefreshCompletions.append(completion)
             return
@@ -81,13 +83,17 @@ final class AuthManager {
         if shouldRefreshToken {
             refreshAccessToken { [weak self] success in
                 if let token = self?.accessToken, success {
-                    completion(token)
+                    completion(.success(token))
+                    self?.notifySignIn(true)
                 } else {
-                    self?.observationManager?.notifyObservers(for: .signedIn, data: false)
+                    completion(.failure(NetworkError.tokenExpired))
+                    self?.notifySignIn(false)
                 }
             }
         } else if let token = accessToken {
-            completion(token)
+            completion(.success(token))
+        } else {
+            completion(.failure(NetworkError.tokenExpired))
         }
     }
     
@@ -98,6 +104,7 @@ final class AuthManager {
         }
         
         guard let refreshToken = self.refreshToken else {
+            completion(false)
             return
         }
         
@@ -112,7 +119,10 @@ final class AuthManager {
             
             switch result {
             case .success(let response):
-                self.onRefreshCompletions.forEach( {$0(response.accessToken)} )
+                // Triggers completions in queue whenever token is renewed.
+                self.onRefreshCompletions.forEach { closure in
+                    closure(.success(response.accessToken))
+                }
                 self.onRefreshCompletions.removeAll()
                 self.cacheToken(response: response)
             case .failure(_):
@@ -146,9 +156,14 @@ final class AuthManager {
         }
     }
     
+    /// Removes cached data.
     private func removeCaches() {
         UserDefaults.standard.removeObject(forKey: Constants.accessToken)
         UserDefaults.standard.removeObject(forKey: Constants.refreshToken)
         UserDefaults.standard.removeObject(forKey: Constants.expirationDate)
+    }
+    
+    private func notifySignIn(_ status: Bool) {
+        observationManager?.notifyObservers(for: .signedIn, data: status)
     }
 }
