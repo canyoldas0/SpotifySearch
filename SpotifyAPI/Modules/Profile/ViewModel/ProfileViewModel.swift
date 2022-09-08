@@ -53,12 +53,10 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private func handleProfileResponse(for response: ProfileResponse) {
         
-        
-        var profileData = ProfileViewData(displayName: response.displayName,
+        let profileData = ProfileViewData(displayName: response.displayName,
                                           imageUrl: response.images.first?.url) { [weak self] in
-            self?.observationManager.notifyObservers(for: .signedIn, data: false)
+            AuthManager.shared.logout()
             self?.coordinatorDelegate?.returnHome(completion: nil)
-//            AuthManager.shared.logout()
         }
         delegate?.handleOutput(.updateView(signedIn: true, data: profileData))
     }

@@ -23,9 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         apiConfiguration.waitsForConnectivity = true
         apiConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         
+        // Auth Manager should have the the same instance of the observation to notify all view models.
         let observationManager = ObservationManager()
         AuthManager.shared.observationManager = observationManager
         
+        // When user opens the app, removes the tokens if they are expired.
         AuthManager.shared.removeCacheIfNeeded()
         
         dependencyContainer = DependencyContainer(

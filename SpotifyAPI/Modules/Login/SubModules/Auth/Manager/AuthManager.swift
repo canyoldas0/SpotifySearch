@@ -130,13 +130,25 @@ final class AuthManager {
         }
     }
     
+    /// Cleans the stored tokens.
+    /// Notifies observers.
+    func logout() {
+        removeCaches()
+        
+        observationManager?.notifyObservers(for: .signedIn, data: false)
+    }
+    
     /// This function gets called only when it is necessary to remove tokens on the initialization of the app.
     /// Fired once on app start.
     func removeCacheIfNeeded() {
         if shouldRefreshToken {
-            UserDefaults.standard.removeObject(forKey: Constants.accessToken)
-            UserDefaults.standard.removeObject(forKey: Constants.refreshToken)
-            UserDefaults.standard.removeObject(forKey: Constants.expirationDate)
+           removeCaches()
         }
+    }
+    
+    private func removeCaches() {
+        UserDefaults.standard.removeObject(forKey: Constants.accessToken)
+        UserDefaults.standard.removeObject(forKey: Constants.refreshToken)
+        UserDefaults.standard.removeObject(forKey: Constants.expirationDate)
     }
 }
