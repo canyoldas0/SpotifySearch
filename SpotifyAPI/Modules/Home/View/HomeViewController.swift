@@ -83,8 +83,6 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     private func updateProfileIcon(for state: Bool) {
         DispatchQueue.main.async {
             self.profileButton.image = state ? UIImage(systemName: "person.circle.fill"): nil
-//            self.profileButton.customView = view
-//            self.profileButton.target = view
         }
     }
     
@@ -105,8 +103,6 @@ extension HomeViewController: HomeViewOutputProtocol {
             listView.updateTable()
         case .updateProfileIcon(let signedIn):
             updateProfileIcon(for: signedIn)
-        case .setImageUrl(let urlString):
-            return
         }
     }
 }
@@ -115,10 +111,9 @@ extension HomeViewController: HomeViewOutputProtocol {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count >= 3 {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector:
-            #selector(self.reload(_:)), object: searchController.searchBar)
-                perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 0.75)
-        }
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector:
+                                                #selector(self.reload(_:)), object: searchController.searchBar)
+        perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 1.25)
     }
 }

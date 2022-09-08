@@ -46,29 +46,39 @@ final class HomeViewModel: HomeViewModelProtocol {
                 return
             }
 
-            if signedIn {
-                self?.callListService(with: self?.latestSearchText)
-            } else {
-                self?.coordinatorDelegate?.goToLogin()
-            }
-            self?.delegate?.handleOutput(.updateProfileIcon(signedIn))
+            self?.handleSignIn(for: signedIn)
         }
     }
     
     func load() {
         let signedIn = AuthManager.shared.isSignedIn
-        delegate?.handleOutput(.updateProfileIcon(signedIn))
+        handleSignIn(for: signedIn)
         
-        if signedIn {
+    }
+    
+    private func handleSignIn(for status: Bool) {
+        if status {
             callListService(with: latestSearchText)
         } else {
             coordinatorDelegate?.goToLogin()
+            searchListData.removeAll()
+            delegate?.handleOutput(.updateTable)
         }
+        
+        delegate?.handleOutput(.updateProfileIcon(status))
     }
     
     func searchTracks(with text: String) {
-        latestSearchText = text
-        callListService(with: text)
+        guard !text.isEmpty else {
+            return
+        }
+        
+        if text.count >= 3 {
+            latestSearchText = text
+            callListService(with: text)
+        } else {
+            delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "Search text should have minimum of 3 characters.")))
+        }
     }
     
     func profileClicked() {
@@ -102,10 +112,8 @@ final class HomeViewModel: HomeViewModelProtocol {
             switch result {
             case .success(let response):
                 self?.handleSearchListResponse(response: response)
-            case .failure(let error as NetworkError):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.rawValue)))
-            default:
-                break
+            case .failure(let error):
+                self?.handleError(with: error)
             }
         }
     }
@@ -131,6 +139,11 @@ extension HomeViewModel {
 // MARK: Response Handlers
 
 extension HomeViewModel {
+    
+    private func handleError(with error: Error) {
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: (error as? NetworkError)?.rawValue)))
+    }
+    
     
     /// Handles successful search list response.
     private func handleSearchListResponse(response: SearchResponse) {

@@ -25,6 +25,8 @@ final class AuthService: BaseAPI, AuthServiceProtocol {
         static let grantTypeValue: String = "authorization_code"
     }
     
+    /// Sign in URL for Spotify.
+    /// Only used for Authorization Page.
     var signInUrl: URL? {
         let scopes = "user-read-private"
         let base = "https://accounts.spotify.com/authorize"

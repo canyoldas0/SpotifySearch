@@ -33,6 +33,9 @@ final class AuthManager {
     private var refreshingToken: Bool = false
     private var onRefreshCompletions: [ResponseHandler<String>] = []
     
+    
+    // MARK: Session Properties -
+    
     private var accessToken: String? {
         UserDefaults.standard.string(forKey: Constants.accessToken)
     }
@@ -55,6 +58,10 @@ final class AuthManager {
         return currentDate.addingTimeInterval(Constants.extraTime) >= expirationDate
     }
     
+    
+    /// Authorization method. Exchanges the code with the accessTokens when authorization completed.
+    /// - Parameters:
+    /// - code: Authorization code that comes from Spotify.
     func exchangeCodeForToken(code: String, completion: @escaping GenericHandler<Bool>) {
         
         authService.retrieveAccessToken(code: code) { [weak self] result in
@@ -97,6 +104,8 @@ final class AuthManager {
         }
     }
     
+    
+    /// Whenever refreshing needed for the token, this method will be executed.
     private func refreshAccessToken(completion: @escaping GenericHandler<Bool>) {
         guard shouldRefreshToken else {
             completion(true)
@@ -131,6 +140,7 @@ final class AuthManager {
         }
     }
     
+    /// Storing exchanged tokens for the current session.
     private func cacheToken(response: AuthResponse) {
         UserDefaults.standard.setValue(response.accessToken, forKey: Constants.accessToken)
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(response.expiresIn)), forKey: Constants.expirationDate)
@@ -140,7 +150,7 @@ final class AuthManager {
         }
     }
     
-    /// Cleans the stored tokens.
+    /// Cleans the stored tokens and ends the active session.
     /// Notifies observers.
     func logout() {
         removeCaches()
@@ -163,6 +173,9 @@ final class AuthManager {
         UserDefaults.standard.removeObject(forKey: Constants.expirationDate)
     }
     
+    /// Common method to notify observers for signIn status.
+    /// - parameters:
+    /// - status: New SignIn status. If user signed in it should be true.
     private func notifySignIn(_ status: Bool) {
         observationManager?.notifyObservers(for: .signedIn, data: status)
     }

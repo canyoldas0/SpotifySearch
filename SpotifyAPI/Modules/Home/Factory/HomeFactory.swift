@@ -15,6 +15,7 @@ final class HomeFactory {
         self.dependencyContainer = dependencyContainer
     }
     
+    // MARK: Home View
     func createHomeView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let dataHandler = HomeViewDataHandler()
         
@@ -35,6 +36,7 @@ final class HomeFactory {
         return homeViewController
     }
     
+    // MARK: SignIn Screen
     func createSignInScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let viewModel = SignInViewModel()
         viewModel.coordinatorDelegate = coordinatorDelegate
@@ -43,6 +45,7 @@ final class HomeFactory {
         return viewController
     }
     
+    // MARK: Profile Screen
     func createProfileScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         let profileService = ProfileService(configuration: dependencyContainer.apiConfiguration)
         
@@ -57,11 +60,10 @@ final class HomeFactory {
         return viewController
     }
     
+    // MARK: Authorization Web Screen
     func createAuthView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         
-        let viewModel = AuthorizationViewModel(
-            observationManager: dependencyContainer.observationManager
-        )
+        let viewModel = AuthorizationViewModel()
         viewModel.coordinatorDelegate = coordinatorDelegate
         let viewController = AuthorizationViewController(viewModel: viewModel)
         viewController.title = "Sign In"
@@ -69,6 +71,7 @@ final class HomeFactory {
         return viewController
     }
     
+    // MARK: Detail Screen
     func createDetailView(coordinatorDelegate: HomeCoordinatorDelegate, itemId: String) -> UIViewController {
         let detailService = DetailService(configuration: dependencyContainer.apiConfiguration)
         

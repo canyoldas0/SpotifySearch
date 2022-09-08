@@ -29,6 +29,13 @@ class BaseAPI {
         self.session = URLSession(configuration: configuration)
     }
     
+    /// This version of the execute only gets called from AuthService. It doesn't require Requestable object.
+    /// Directly executes with the URLRequest.
+    /// - parameters:
+    ///     - request: URLRequest to be executed.
+    ///     - sessionType: Session type to be defined whether as mock or default. Mock version can be implemented for improve testing setup.
+    ///     - dispatchQueue: DispatchQueue that request will be executed in. Default main.
+    ///     - completion: Generic Result completion.
     func execute<T>(
         request: URLRequest,
         sessionType: SessionType = .defaultSession,
@@ -46,6 +53,14 @@ class BaseAPI {
         }
     }
     
+    /// Base Execute Method for Service calls. It is used to fetch view related data.
+    /// - parameters:
+    ///     - endpoint: URL end point.
+    ///     - requestable: Request model. Query parameters will be automatically converted and added to URL.
+    ///     - httpMethod: Http method for the request.
+    ///     - sessionType: Session type to be defined whether as mock or default. Mock version can be implemented for improve testing setup.
+    ///     - dispatchQueue: DispatchQueue that request will be executed in. Default main.
+    ///     - completion: Generic Result completion.
     func execute<T>(
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
@@ -74,6 +89,7 @@ class BaseAPI {
         }
     }
     
+    /// Response handler method.
     private func handleResponse<T: Decodable>(
         _ data: Data?,
         _ response: URLResponse?,
@@ -97,13 +113,19 @@ class BaseAPI {
             }
         }
     
+    /// Creates request with the valid accessToken and necessary queries.
+    /// - parameters:
+    ///     - endpoint: URL endpoint for the request.
+    ///     - type: HTTP type for the request.
+    ///     - requestable: Request model that can contain query parameters.
+    ///     - completion: Final URLRequest is given to completion block.
     private func createRequest(
         from endpoint: String,
         for type: HTTPMethod,
         with requestable: Requestable,
         completion: @escaping ResponseHandler<URLRequest>
     ) {
-        AuthManager.shared.withValidToken { [weak self] result in
+        AuthManager.shared.withValidToken { result in
             guard let url = URL(string: endpoint) else {
                 return
             }
