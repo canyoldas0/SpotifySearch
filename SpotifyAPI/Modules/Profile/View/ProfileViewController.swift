@@ -49,7 +49,6 @@ final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
         viewModel.load()
     }
     
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         signInButton.roundCorner()

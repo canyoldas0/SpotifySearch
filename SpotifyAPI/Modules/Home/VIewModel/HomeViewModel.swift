@@ -12,9 +12,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     weak var delegate: HomeViewOutputProtocol?
     weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
-    private let dataHandler: HomeViewDataHandlerProtocol
     private let observationManager: ObservationManagerProtocol
-    
     private let searchService: SearchServiceProtocol
     
     private var searchListData: [ListViewCellData] = []
@@ -34,11 +32,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init(
         searchService: SearchServiceProtocol,
-        dataHandler: HomeViewDataHandlerProtocol,
         observationManager: ObservationManagerProtocol
     ) {
         self.searchService = searchService
-        self.dataHandler = dataHandler
         self.observationManager = observationManager
         
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in

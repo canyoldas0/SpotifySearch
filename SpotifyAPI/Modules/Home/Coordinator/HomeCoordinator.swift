@@ -24,7 +24,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         let homeVC = homeFactory.createHomeView(coordinatorDelegate: self)
         rootViewController = UINavigationController(rootViewController: homeVC)
         rootViewController.navigationBar.prefersLargeTitles = true
-        }
+    }
     
     func goBack(completion: VoidHandler? = nil) {
         rootViewController.popViewController(animated: true)
@@ -38,7 +38,7 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         
         if let sheet = signInVC.sheetPresentationController {
             /// Funny thing. Setting this property to true causes a memory leak.
-            //            sheet.prefersGrabberVisible = false
+            //  sheet.prefersGrabberVisible = false
             sheet.preferredCornerRadius = 10
             sheet.detents = [.large()]
         }
@@ -64,11 +64,6 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     
     func goToAuthScreen() {
         let authVC = homeFactory.createAuthView(coordinatorDelegate: self)
-        
-        let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: .init(handler: { [weak self] _ in
-            self?.rootViewController.presentedViewController?.dismiss(animated: true)
-        }))
-        authVC.navigationItem.leftBarButtonItem = cancelButton
         
         if let sheet = authVC.sheetPresentationController {
             sheet.preferredCornerRadius = 10

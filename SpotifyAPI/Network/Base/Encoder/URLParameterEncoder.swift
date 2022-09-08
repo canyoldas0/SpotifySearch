@@ -12,18 +12,21 @@ typealias Parameters = [String: Any]
 
 struct URLParameterEncoder {
     
-     static func encode(with parameters: Parameters) -> APIRequest {
-         
-         var queryItems = [URLQueryItem]()
-         
+    /// This method encodes the properties of an object to query items.
+    /// - parameters:
+    ///     - parameters: Dictionary to be converted to queries.
+    static func encode(with parameters: Parameters) -> APIRequest {
+        
+        var queryItems = [URLQueryItem]()
+        
         if !parameters.isEmpty {
-                        
+            
             for (key, value) in parameters {
                 let queryItem = URLQueryItem(name: key,
                                              value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
                 queryItems.append(queryItem)
             }
         }
-         return APIRequest(queryItems: queryItems)
+        return APIRequest(queryItems: queryItems)
     }
 }

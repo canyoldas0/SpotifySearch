@@ -17,13 +17,10 @@ final class HomeFactory {
     
     // MARK: Home View
     func createHomeView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
-        let dataHandler = HomeViewDataHandler()
-        
         let searchService = SearchService(configuration: dependencyContainer.apiConfiguration)
         
         let homeViewModel = HomeViewModel(
             searchService: searchService,
-            dataHandler: dataHandler,
             observationManager: dependencyContainer.observationManager
         )
         
