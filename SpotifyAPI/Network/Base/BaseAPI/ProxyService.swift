@@ -9,9 +9,9 @@ import Foundation
 
 class ProxyService {
     
-    var authManager: AuthManager
+    var authManager: AuthManagerProtocol
     
-    init(authManager: AuthManager) {
+    init(authManager: AuthManagerProtocol) {
         self.authManager = authManager
     }
 }

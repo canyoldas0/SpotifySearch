@@ -7,7 +7,24 @@
 
 import Foundation
 
-final class AuthManager {
+protocol AuthManagerProtocol {
+    
+    var observationManager: ObservationManagerProtocol { get }
+
+    func isSignedIn() -> Bool
+    func getSignInUrl() -> URL?
+    func removeCacheIfNeeded()
+    func logout()
+    func exchangeCodeForToken(code: String, completion: @escaping GenericHandler<Bool>)
+    func fetchData<T>(
+        endpoint: String,
+        httpMethod: HTTPMethod,
+        requestable: Requestable,
+        completion: @escaping ((Result<T, Error>) -> Void)
+    ) where T: Decodable
+}
+
+final class AuthManager: AuthManagerProtocol {
     
     private enum Constants {
         static let accessToken: String = "accessToken"
@@ -27,12 +44,8 @@ final class AuthManager {
         self.authService = authService
     }
     
-    var signInUrl: URL? {
+    private var signInUrl: URL? {
         authService.signInUrl
-    }
-    
-    var isSignedIn: Bool {
-        accessToken != nil
     }
     
     private var refreshingToken: Bool = false
@@ -53,6 +66,15 @@ final class AuthManager {
         UserDefaults.standard.object(forKey: Constants.expirationDate) as? Date
     }
     
+    func isSignedIn() -> Bool {
+        print("here")
+        return accessToken != nil
+    }
+    
+    func getSignInUrl() -> URL? {
+        signInUrl
+    }
+    
     private var shouldRefreshToken: Bool {
         guard let expirationDate else {
             return true
@@ -69,8 +91,6 @@ final class AuthManager {
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
         requestable: Requestable,
-        dispatchQueue: DispatchQueue = .main,
-        sessionType: SessionType = .defaultSession,
         completion: @escaping ((Result<T, Error>) -> Void)
     ) where T: Decodable {
 

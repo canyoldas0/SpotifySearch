@@ -15,6 +15,7 @@ final class ProfileService: ProxyService, ProfileServiceProtocol {
     func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse, Error>) -> Void) {
         authManager.fetchData(
             endpoint: EndPoints.Profile.currentProfile,
+            httpMethod: .GET,
             requestable: request,
             completion: completion
         )

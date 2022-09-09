@@ -14,7 +14,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private let observationManager: ObservationManagerProtocol
     private let searchService: SearchServiceProtocol
-    private let authManager: AuthManager
+    private let authManager: AuthManagerProtocol
 
     
     private var searchListData: [ListViewCellData] = []
@@ -34,7 +34,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init(
         searchService: SearchServiceProtocol,
-        authManager: AuthManager,
+        authManager: AuthManagerProtocol,
         observationManager: ObservationManagerProtocol
     ) {
         self.searchService = searchService
@@ -51,7 +51,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func load() {
-        let signedIn = authManager.isSignedIn
+        let signedIn = authManager.isSignedIn()
         handleSignIn(for: signedIn)
         
     }

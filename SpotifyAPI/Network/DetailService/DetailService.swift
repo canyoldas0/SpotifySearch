@@ -21,6 +21,7 @@ final class DetailService: ProxyService, DetailServiceProtocol {
     ) {
         authManager.fetchData(
             endpoint: EndPoints.Artist.detail(itemId).getEndpoint(),
+            httpMethod: .GET,
             requestable: request,
             completion: completion
         )
@@ -33,6 +34,7 @@ final class DetailService: ProxyService, DetailServiceProtocol {
     ) {
         authManager.fetchData(
             endpoint: EndPoints.Artist.albums(itemId).getEndpoint(),
+            httpMethod: .GET,
             requestable: request,
             completion: completion
         )

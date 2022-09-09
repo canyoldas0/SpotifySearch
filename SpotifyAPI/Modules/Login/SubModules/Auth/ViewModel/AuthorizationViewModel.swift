@@ -12,11 +12,11 @@ final class AuthorizationViewModel: AuthorizationViewModelProtocol {
     weak var coordinatorDelegate: HomeCoordinatorDelegate?
     weak var delegate: AuthorizationViewOutputProtocol?
     
-    private let authManager: AuthManager
+    private let authManager: AuthManagerProtocol
     
-    init(authManager: AuthManager) {
+    init(authManager: AuthManagerProtocol) {
         self.authManager = authManager
-        signInUrl = authManager.signInUrl
+        signInUrl = authManager.getSignInUrl()
     }
 
     var signInUrl: URL?

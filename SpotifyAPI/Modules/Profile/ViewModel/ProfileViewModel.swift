@@ -12,12 +12,12 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let profileService: ProfileServiceProtocol
     private let observationManager: ObservationManagerProtocol
-    private let authManager: AuthManager
+    private let authManager: AuthManagerProtocol
 
     
     init(
         observationManager: ObservationManagerProtocol,
-        authManager: AuthManager,
+        authManager: AuthManagerProtocol,
         profileService: ProfileServiceProtocol
     ) {
         self.observationManager = observationManager
@@ -26,7 +26,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func load() {
-        let signedIn = authManager.isSignedIn
+        let signedIn = authManager.isSignedIn()
         
         if signedIn {
             callProfileService()

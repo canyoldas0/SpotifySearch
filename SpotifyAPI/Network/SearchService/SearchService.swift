@@ -13,8 +13,11 @@ protocol SearchServiceProtocol {
 final class SearchService: ProxyService, SearchServiceProtocol {
     
     func search(request: Requestable, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
-        authManager.fetchData(endpoint: EndPoints.Search.execute,
-                requestable: request,
-                completion: completion)
+        authManager.fetchData(
+            endpoint: EndPoints.Search.execute,
+            httpMethod: .GET,
+            requestable: request,
+            completion: completion
+        )
     }
 }
