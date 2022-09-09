@@ -18,10 +18,10 @@ final class AuthManager {
         
     private(set) var observationManager: ObservationManagerProtocol
     private let authService: AuthServiceProtocol
-    
+        
     init(
         observationManager: ObservationManagerProtocol,
-         authService: AuthServiceProtocol
+        authService: AuthServiceProtocol
     ) {
         self.observationManager = observationManager
         self.authService = authService

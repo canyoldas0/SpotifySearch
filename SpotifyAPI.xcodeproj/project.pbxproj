@@ -83,6 +83,9 @@
 		1ECECA3D28CA0BCD005FA2D7 /* SpotifyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA3C28CA0BCD005FA2D7 /* SpotifyAPITests.swift */; };
 		1ECECA4A28CA84C3005FA2D7 /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */; };
 		1ECECA6628CB326A005FA2D7 /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6528CB326A005FA2D7 /* ProxyService.swift */; };
+		1ECECA6A28CB4216005FA2D7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6928CB4216005FA2D7 /* Session.swift */; };
+		1ECECA6C28CB427E005FA2D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */; };
+		1ECECA6E28CB429E005FA2D7 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +179,9 @@
 		1ECECA3C28CA0BCD005FA2D7 /* SpotifyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPITests.swift; sourceTree = "<group>"; };
 		1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
 		1ECECA6528CB326A005FA2D7 /* ProxyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyService.swift; sourceTree = "<group>"; };
+		1ECECA6928CB4216005FA2D7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -665,6 +671,8 @@
 		1E4033AE28C2A7610096B69F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				1ECECA6828CB4211005FA2D7 /* Session */,
+				1ECECA6728CB4208005FA2D7 /* KeychainService */,
 				1E19773B28C548270034F60D /* Observer */,
 				1E4033AF28C2A7690096B69F /* ImageCacheManager.swift */,
 			);
@@ -727,6 +735,23 @@
 				1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		1ECECA6728CB4208005FA2D7 /* KeychainService */ = {
+			isa = PBXGroup;
+			children = (
+				1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */,
+				1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */,
+			);
+			path = KeychainService;
+			sourceTree = "<group>";
+		};
+		1ECECA6828CB4211005FA2D7 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				1ECECA6928CB4216005FA2D7 /* Session.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		1ED2F0A628C39ACB00D2D1CD /* SubModules */ = {
@@ -861,6 +886,7 @@
 				1E19774928C556140034F60D /* SignInService.swift in Sources */,
 				1E4033AA28C2A4C20096B69F /* CustomImageViewContainer.swift in Sources */,
 				1E19777328C75BFD0034F60D /* DetailHeaderView.swift in Sources */,
+				1ECECA6C28CB427E005FA2D7 /* KeychainService.swift in Sources */,
 				1E19773D28C5482F0034F60D /* ObserverManager.swift in Sources */,
 				1E19777628C7612E0034F60D /* AlbumCollectionView.swift in Sources */,
 				1E40337428C26C5A0096B69F /* Typealiases.swift in Sources */,
@@ -889,6 +915,7 @@
 				1E4033AC28C2A7280096B69F /* NSObjectExtensions.swift in Sources */,
 				1E19776C28C7423D0034F60D /* DetailService.swift in Sources */,
 				1E19776428C69D060034F60D /* ImageInfo.swift in Sources */,
+				1ECECA6A28CB4216005FA2D7 /* Session.swift in Sources */,
 				1E19778828C7B8950034F60D /* ProfileView.swift in Sources */,
 				1E19776728C73AA20034F60D /* DetailViewModel.swift in Sources */,
 				1ECEC9F028C8F797005FA2D7 /* LoadingCell.swift in Sources */,
@@ -900,6 +927,7 @@
 				1E4033A628C2A4760096B69F /* CustomImageViewComponent.swift in Sources */,
 				1E40338328C26ED10096B69F /* HomeViewModel.swift in Sources */,
 				1E19776928C73B560034F60D /* DetailContracts.swift in Sources */,
+				1ECECA6E28CB429E005FA2D7 /* KeychainWrapper.swift in Sources */,
 				1E19777D28C768160034F60D /* AlbumRequest.swift in Sources */,
 				1E40339B28C2A0A60096B69F /* ListView.swift in Sources */,
 				1E40338A28C274660096B69F /* UIColorExtensions.swift in Sources */,
