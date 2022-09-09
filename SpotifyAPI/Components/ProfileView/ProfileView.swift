@@ -48,6 +48,11 @@ final class ProfileView: BaseView<ProfileViewData> {
         return temp
     }()
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageContainer.roundCorner(with: 16)
+    }
+    
     override func setupViews() {
         super.setupViews()
         
