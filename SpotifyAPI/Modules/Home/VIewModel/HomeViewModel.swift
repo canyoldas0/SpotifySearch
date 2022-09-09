@@ -186,7 +186,7 @@ extension HomeViewModel: ItemProviderProtocol {
             delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "Problem occurred during encoding the item id. Please try again.")))
             return
         }
-        coordinatorDelegate?.goToDetail(with: id)
+        coordinatorDelegate?.goToDetail(animated: true, with: id)
     }
     
     func askData(for index: Int) -> GenericDataProtocol? {

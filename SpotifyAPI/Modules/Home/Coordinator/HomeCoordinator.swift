@@ -36,12 +36,12 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         
         signInVC.title = "Sign In"
         
-        if let sheet = signInVC.sheetPresentationController {
-            /// Funny thing. Setting this property to true causes a memory leak.
-            //  sheet.prefersGrabberVisible = false
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
-        }
+//        if let sheet = signInVC.sheetPresentationController {
+//            /// Funny thing. Setting this property to true causes a memory leak.
+//            //  sheet.prefersGrabberVisible = false
+//            sheet.preferredCornerRadius = 10
+//            sheet.detents = [.large()]
+//        }
         
         rootViewController.present(signInVC, animated: true)
     }
@@ -49,27 +49,27 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     func goToProfile() {
         let profileVC = homeFactory.createProfileScreen(coordinatorDelegate: self)
         
-        if let sheet = profileVC.sheetPresentationController {
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
-        }
+//        if let sheet = profileVC.sheetPresentationController {
+//            sheet.preferredCornerRadius = 10
+//            sheet.detents = [.large()]
+//        }
         
         rootViewController.present(profileVC, animated: true)
     }
     
-    func goToDetail(with id: String) {
+    func goToDetail(animated: Bool, with id: String) {
         let detailVC = homeFactory.createDetailView(coordinatorDelegate: self, itemId: id)
-        rootViewController.show(detailVC, sender: nil)
+        rootViewController.pushViewController(detailVC, animated: animated)
     }
     
     func goToAuthScreen() {
         let authVC = homeFactory.createAuthView(coordinatorDelegate: self)
         
-        if let sheet = authVC.sheetPresentationController {
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
-        }
-        rootViewController.presentedViewController?.present(authVC, animated: true)
+//        if let sheet = authVC.sheetPresentationController {
+//            sheet.preferredCornerRadius = 10
+//            sheet.detents = [.large()]
+//        }
+        rootViewController.show(authVC, sender: nil)
     }
     
     func returnHome(completion: VoidHandler?) {

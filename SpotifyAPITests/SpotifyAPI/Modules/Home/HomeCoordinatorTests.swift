@@ -17,7 +17,7 @@ final class HomeCoordinatorTests: XCTestCase {
     private var authManager: MockAuthManager!
     
     override func setUp() {
-        window = UIWindow()
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         let observationManager = ObservationManager()
         authManager = MockAuthManager(observationManager: observationManager)
@@ -76,13 +76,26 @@ final class HomeCoordinatorTests: XCTestCase {
     
     func testGoToDetail() {
         // Given
-        window.rootViewController?.dismiss(animated: false)
         sut.start()
 
-        sut.goToDetail(with: "Test")
+        // When
+        sut.goToDetail(animated: false, with: "Test")
         
-        XCTAssertTrue(sut.rootViewController.visibleViewController is DetailViewController)
+        // Then
+        XCTAssertTrue(sut.rootViewController.topViewController is DetailViewController)
     }
+    
+//    func testGoToAuth() {
+//        // Given
+//        sut.start()
+//        window.rootViewController = sut.rootViewController
+//        window.makeKeyAndVisible()
+//
+//        sut.goToAuthScreen()
+//
+//        XCTAssertTrue(sut.rootViewController.presentedViewController is AuthorizationViewController)
+//
+//    }
     
 }
 
@@ -107,7 +120,8 @@ fileprivate class MockAuthManager: AuthManagerProtocol {
     }
     
     func isSignedIn() -> Bool {
-        true
+        print("also here")
+        return true
     }
     
     func getSignInUrl() -> URL? {
@@ -116,7 +130,7 @@ fileprivate class MockAuthManager: AuthManagerProtocol {
     
     func removeCacheIfNeeded() { }
     
-    func logout() {     }
+    func logout() { }
     
     func exchangeCodeForToken(code: String, completion: @escaping SpotifyAPI.GenericHandler<Bool>) {
         //

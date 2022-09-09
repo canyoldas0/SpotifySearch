@@ -86,6 +86,7 @@
 		1ECECA6A28CB4216005FA2D7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6928CB4216005FA2D7 /* Session.swift */; };
 		1ECECA6C28CB427E005FA2D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */; };
 		1ECECA6E28CB429E005FA2D7 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */; };
+		1ECECA7C28CB6B04005FA2D7 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA7B28CB6B04005FA2D7 /* HomeViewModelTests.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -182,6 +183,7 @@
 		1ECECA6928CB4216005FA2D7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		1ECECA7B28CB6B04005FA2D7 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -733,6 +735,7 @@
 			isa = PBXGroup;
 			children = (
 				1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */,
+				1ECECA7B28CB6B04005FA2D7 /* HomeViewModelTests.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ECECA3D28CA0BCD005FA2D7 /* SpotifyAPITests.swift in Sources */,
+				1ECECA7C28CB6B04005FA2D7 /* HomeViewModelTests.swift in Sources */,
 				1ECECA4A28CA84C3005FA2D7 /* HomeCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
