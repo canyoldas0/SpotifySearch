@@ -12,14 +12,14 @@ protocol DetailServiceProtocol {
 
 }
 
-final class DetailService: BaseAPI, DetailServiceProtocol {
+final class DetailService: ProxyService, DetailServiceProtocol {
   
     func fetchDetailData(
         itemId: String,
         request: Requestable,
         completion: @escaping (Result<DetailResponse, Error>) -> Void
     ) {
-        execute(
+        authManager.fetchData(
             endpoint: EndPoints.Artist.detail(itemId).getEndpoint(),
             requestable: request,
             completion: completion
@@ -31,7 +31,7 @@ final class DetailService: BaseAPI, DetailServiceProtocol {
         request: Requestable,
         completion: @escaping (Result<AlbumResponse, Error>) -> Void
     ) {
-        execute(
+        authManager.fetchData(
             endpoint: EndPoints.Artist.albums(itemId).getEndpoint(),
             requestable: request,
             completion: completion

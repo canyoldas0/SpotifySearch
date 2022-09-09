@@ -13,12 +13,12 @@ final class AuthorizationViewModel: AuthorizationViewModelProtocol {
     weak var delegate: AuthorizationViewOutputProtocol?
     
     
-    var signInUrl: URL? = AuthManager.shared.signInUrl
+    var signInUrl: URL?
     
     func signInCompleted(code: String) {
         
-        AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] _ in
-            self?.coordinatorDelegate?.returnHome(completion: nil)
-        }
+//        AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] _ in
+//            self?.coordinatorDelegate?.returnHome(completion: nil)
+//        }
     }
 }

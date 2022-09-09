@@ -10,10 +10,10 @@ protocol ProfileServiceProtocol {
     func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse,Error>) -> Void)
 }
 
-final class ProfileService: BaseAPI, ProfileServiceProtocol {
+final class ProfileService: ProxyService, ProfileServiceProtocol {
     
     func fetchProfileData(request: Requestable, completion: @escaping (Result<ProfileResponse, Error>) -> Void) {
-        execute(
+        authManager.fetchData(
             endpoint: EndPoints.Profile.currentProfile,
             requestable: request,
             completion: completion

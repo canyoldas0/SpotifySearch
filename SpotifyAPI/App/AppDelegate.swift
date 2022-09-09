@@ -25,15 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Auth Manager should have the the same instance of the observation to notify all view models.
         let observationManager = ObservationManager()
-        AuthManager.shared.observationManager = observationManager
+        let authManager = AuthManager(observationManager: observationManager,
+                                      authService: AuthService(configuration: .default))
         
         // When user opens the app, removes the tokens if they are expired.
-        AuthManager.shared.removeCacheIfNeeded()
+        authManager.removeCacheIfNeeded()
         
         dependencyContainer = DependencyContainer(
             window: window,
             apiConfiguration: apiConfiguration,
-            observationManager: observationManager
+            observationManager: observationManager,
+            authManager: authManager
         )
         
         appCoordinator = CoordinatorFactory.buildAppCoordinator(dependencies: dependencyContainer)

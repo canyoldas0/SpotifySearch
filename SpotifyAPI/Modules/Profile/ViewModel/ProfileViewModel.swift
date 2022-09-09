@@ -23,7 +23,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func load() {
-        let signedIn = AuthManager.shared.isSignedIn
+        let signedIn = true // TODO:
         
         if signedIn {
             callProfileService()
@@ -55,7 +55,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         
         let profileData = ProfileViewData(displayName: response.displayName,
                                           imageUrl: response.images.first?.url) { [weak self] in
-            AuthManager.shared.logout()
+//            AuthManager.shared.logout() // TODO: 
             self?.coordinatorDelegate?.returnHome(completion: nil)
         }
         delegate?.handleOutput(.updateView(signedIn: true, data: profileData))

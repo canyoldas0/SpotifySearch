@@ -82,6 +82,7 @@
 		1ECEC9F028C8F797005FA2D7 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECEC9EF28C8F797005FA2D7 /* LoadingCell.swift */; };
 		1ECECA3D28CA0BCD005FA2D7 /* SpotifyAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA3C28CA0BCD005FA2D7 /* SpotifyAPITests.swift */; };
 		1ECECA4A28CA84C3005FA2D7 /* HomeCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */; };
+		1ECECA6628CB326A005FA2D7 /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6528CB326A005FA2D7 /* ProxyService.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		1ECECA3A28CA0BCD005FA2D7 /* SpotifyAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECECA3C28CA0BCD005FA2D7 /* SpotifyAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAPITests.swift; sourceTree = "<group>"; };
 		1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorTests.swift; sourceTree = "<group>"; };
+		1ECECA6528CB326A005FA2D7 /* ProxyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyService.swift; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				1E19772A28C51D100034F60D /* BaseAPI.swift */,
+				1ECECA6528CB326A005FA2D7 /* ProxyService.swift */,
 			);
 			path = BaseAPI;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */,
 				1E4033A828C2A4920096B69F /* CustomImageViewComponentData.swift in Sources */,
 				1E19775F28C6924A0034F60D /* SearchResponse.swift in Sources */,
+				1ECECA6628CB326A005FA2D7 /* ProxyService.swift in Sources */,
 				1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */,
 				1E19774928C556140034F60D /* SignInService.swift in Sources */,
 				1E4033AA28C2A4C20096B69F /* CustomImageViewContainer.swift in Sources */,

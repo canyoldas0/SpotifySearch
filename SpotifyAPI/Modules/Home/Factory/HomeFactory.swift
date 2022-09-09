@@ -17,7 +17,7 @@ final class HomeFactory {
     
     // MARK: Home View
     func createHomeView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
-        let searchService = SearchService(configuration: dependencyContainer.apiConfiguration)
+        let searchService = SearchService(authManager: dependencyContainer.authManager)
         
         let homeViewModel = HomeViewModel(
             searchService: searchService,
@@ -44,7 +44,7 @@ final class HomeFactory {
     
     // MARK: Profile Screen
     func createProfileScreen(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
-        let profileService = ProfileService(configuration: dependencyContainer.apiConfiguration)
+        let profileService = ProfileService(authManager: dependencyContainer.authManager)
         
         let viewModel = ProfileViewModel(
             observationManager: dependencyContainer.observationManager,
@@ -70,7 +70,7 @@ final class HomeFactory {
     
     // MARK: Detail Screen
     func createDetailView(coordinatorDelegate: HomeCoordinatorDelegate, itemId: String) -> UIViewController {
-        let detailService = DetailService(configuration: dependencyContainer.apiConfiguration)
+        let detailService = DetailService(authManager: dependencyContainer.authManager)
         
         let viewModel = DetailViewModel(
             itemId: itemId,

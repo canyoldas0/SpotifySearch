@@ -47,7 +47,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func load() {
-        let signedIn = AuthManager.shared.isSignedIn
+        let signedIn = true // TODO: 
         handleSignIn(for: signedIn)
         
     }

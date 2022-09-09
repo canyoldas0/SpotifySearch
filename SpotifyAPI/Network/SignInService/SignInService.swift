@@ -15,6 +15,6 @@ protocol SignInServiceProtocol {
 final class SignInService: BaseAPI, SignInServiceProtocol {
     
     func signIn(with code: String, completion: @escaping GenericHandler<Bool>) {
-        AuthManager.shared.exchangeCodeForToken(code: code, completion: completion)
+//        AuthManager.shared.exchangeCodeForToken(code: code, completion: completion) TODO: 
     }
 }

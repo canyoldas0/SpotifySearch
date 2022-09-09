@@ -15,12 +15,17 @@ final class AuthManager {
         static let expirationDate: String = "expirationDate"
         static let extraTime: TimeInterval = 240
     }
+        
+    private let observationManager: ObservationManagerProtocol
+    private let authService: AuthServiceProtocol
     
-    static var shared = AuthManager()
-    
-    var observationManager: ObservationManagerProtocol?
-    
-    private let authService: AuthServiceProtocol = AuthService(configuration: .default)
+    init(
+        observationManager: ObservationManagerProtocol,
+         authService: AuthServiceProtocol
+    ) {
+        self.observationManager = observationManager
+        self.authService = authService
+    }
     
     var signInUrl: URL? {
         authService.signInUrl
@@ -57,6 +62,35 @@ final class AuthManager {
         
         return currentDate.addingTimeInterval(Constants.extraTime) >= expirationDate
     }
+    
+    func fetchData<T>(
+        endpoint: String,
+        httpMethod: HTTPMethod = .GET,
+        requestable: Requestable,
+        dispatchQueue: DispatchQueue = .main,
+        sessionType: SessionType = .defaultSession,
+        completion: @escaping ((Result<T, Error>) -> Void)
+    ) where T: Decodable {
+
+        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] result in
+//
+//            switch result {
+//            case .success(let urlRequest):
+//                switch sessionType {
+//                case .defaultSession:
+//                    self?.session.dataTask(with: urlRequest) { (data, urlResponse, error) in
+//                        self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
+//                    }.resume()
+//                default:
+//                    break /// can implement session configuration according to build settings.
+//                }
+//
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+        }
+    }
+    
     
     
     /// Authorization method. Exchanges the code with the accessTokens when authorization completed.
@@ -155,7 +189,7 @@ final class AuthManager {
     func logout() {
         removeCaches()
         
-        observationManager?.notifyObservers(for: .signedIn, data: false)
+        observationManager.notifyObservers(for: .signedIn, data: false)
     }
     
     /// This function gets called only when it is necessary to remove tokens on the initialization of the app.
@@ -177,6 +211,43 @@ final class AuthManager {
     /// - parameters:
     /// - status: New SignIn status. If user signed in it should be true.
     private func notifySignIn(_ status: Bool) {
-        observationManager?.notifyObservers(for: .signedIn, data: status)
+        observationManager.notifyObservers(for: .signedIn, data: status)
+    }
+    
+    /// Creates request with the valid accessToken and necessary queries.
+    /// - parameters:
+    ///     - endpoint: URL endpoint for the request.
+    ///     - type: HTTP type for the request.
+    ///     - requestable: Request model that can contain query parameters.
+    ///     - completion: Final URLRequest is given to completion block.
+    private func createRequest(
+        from endpoint: String,
+        for type: HTTPMethod,
+        with requestable: Requestable,
+        completion: @escaping ResponseHandler<URLRequest>
+    ) {
+        withValidToken { result in
+            guard let url = URL(string: endpoint) else {
+                return
+            }
+            
+            switch result {
+            case .success(let token):
+                if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+                    urlComponents.queryItems = requestable.queryItems
+                    
+                    var request = URLRequest(url: url)
+                    request.httpMethod = type.rawValue
+                    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                    
+                    request.url = urlComponents.url
+                    
+                    completion(.success(request))
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }

@@ -61,33 +61,33 @@ class BaseAPI {
     ///     - sessionType: Session type to be defined whether as mock or default. Mock version can be implemented for improve testing setup.
     ///     - dispatchQueue: DispatchQueue that request will be executed in. Default main.
     ///     - completion: Generic Result completion.
-    func execute<T>(
-        endpoint: String,
-        httpMethod: HTTPMethod = .GET,
-        requestable: Requestable,
-        dispatchQueue: DispatchQueue = .main,
-        sessionType: SessionType = .defaultSession,
-        completion: @escaping ((Result<T, Error>) -> Void)
-    ) where T: Decodable {
-        
-        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] result in
-            
-            switch result {
-            case .success(let urlRequest):
-                switch sessionType {
-                case .defaultSession:
-                    self?.session.dataTask(with: urlRequest) { (data, urlResponse, error) in
-                        self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
-                    }.resume()
-                default:
-                    break /// can implement session configuration according to build settings.
-                }
-                
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+//    func execute<T>(
+//        endpoint: String,
+//        httpMethod: HTTPMethod = .GET,
+//        requestable: Requestable,
+//        dispatchQueue: DispatchQueue = .main,
+//        sessionType: SessionType = .defaultSession,
+//        completion: @escaping ((Result<T, Error>) -> Void)
+//    ) where T: Decodable {
+//
+//        createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] result in
+//
+//            switch result {
+//            case .success(let urlRequest):
+//                switch sessionType {
+//                case .defaultSession:
+//                    self?.session.dataTask(with: urlRequest) { (data, urlResponse, error) in
+//                        self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
+//                    }.resume()
+//                default:
+//                    break /// can implement session configuration according to build settings.
+//                }
+//
+//            case .failure(let error):
+//                completion(.failure(error))
+//            }
+//        }
+//    }
     
     /// Response handler method.
     private func handleResponse<T: Decodable>(
@@ -112,41 +112,4 @@ class BaseAPI {
                 }
             }
         }
-    
-    /// Creates request with the valid accessToken and necessary queries.
-    /// - parameters:
-    ///     - endpoint: URL endpoint for the request.
-    ///     - type: HTTP type for the request.
-    ///     - requestable: Request model that can contain query parameters.
-    ///     - completion: Final URLRequest is given to completion block.
-    private func createRequest(
-        from endpoint: String,
-        for type: HTTPMethod,
-        with requestable: Requestable,
-        completion: @escaping ResponseHandler<URLRequest>
-    ) {
-        AuthManager.shared.withValidToken { result in
-            guard let url = URL(string: endpoint) else {
-                return
-            }
-            
-            switch result {
-            case .success(let token):
-                if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                    urlComponents.queryItems = requestable.queryItems
-                    
-                    var request = URLRequest(url: url)
-                    request.httpMethod = type.rawValue
-                    request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-                    
-                    request.url = urlComponents.url
-                    
-                    completion(.success(request))
-                }
-                
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
 }

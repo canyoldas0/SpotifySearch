@@ -10,10 +10,10 @@ protocol SearchServiceProtocol {
     func search(request: Requestable, completion: @escaping (Result<SearchResponse,Error>) -> Void)
 }
 
-final class SearchService: BaseAPI, SearchServiceProtocol {
+final class SearchService: ProxyService, SearchServiceProtocol {
     
     func search(request: Requestable, completion: @escaping (Result<SearchResponse, Error>) -> Void) {
-        execute(endpoint: EndPoints.Search.execute,
+        authManager.fetchData(endpoint: EndPoints.Search.execute,
                 requestable: request,
                 completion: completion)
     }
