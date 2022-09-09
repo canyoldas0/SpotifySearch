@@ -13,6 +13,7 @@ protocol AuthServiceProtocol {
     
     func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
     func refreshAccessToken(with token: String, completion: @escaping (Result<AuthResponse, Error>) -> Void)
+    func callExecute<T: Decodable>(request: URLRequest, completion: @escaping ((Result<T, Error>) -> Void))
 }
 
 final class AuthService: BaseAPI, AuthServiceProtocol {
@@ -32,6 +33,13 @@ final class AuthService: BaseAPI, AuthServiceProtocol {
         let base = "https://accounts.spotify.com/authorize"
         let str = "\(base)?response_type=code&client_id=\(Constants.clientID)&scope=\(scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         return URL(string: str)
+    }
+    
+    func callExecute<T: Decodable>(request: URLRequest, completion: @escaping ((Result<T, Error>) -> Void)) {
+        execute(
+            request: request,
+            completion: completion
+        )
     }
     
     func retrieveAccessToken(code: String, completion: @escaping (Result<AuthResponse, Error>) -> Void) {

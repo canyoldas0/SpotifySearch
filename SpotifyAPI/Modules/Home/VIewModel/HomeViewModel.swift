@@ -14,6 +14,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private let observationManager: ObservationManagerProtocol
     private let searchService: SearchServiceProtocol
+    private let authManager: AuthManager
+
     
     private var searchListData: [ListViewCellData] = []
     
@@ -32,9 +34,11 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init(
         searchService: SearchServiceProtocol,
+        authManager: AuthManager,
         observationManager: ObservationManagerProtocol
     ) {
         self.searchService = searchService
+        self.authManager = authManager
         self.observationManager = observationManager
         
         observationManager.subscribe(name: .signedIn, observer: self) { [weak self] data in
@@ -47,7 +51,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func load() {
-        let signedIn = true // TODO: 
+        let signedIn = authManager.isSignedIn
         handleSignIn(for: signedIn)
         
     }

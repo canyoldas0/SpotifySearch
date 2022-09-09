@@ -12,18 +12,21 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let profileService: ProfileServiceProtocol
     private let observationManager: ObservationManagerProtocol
+    private let authManager: AuthManager
 
     
     init(
         observationManager: ObservationManagerProtocol,
+        authManager: AuthManager,
         profileService: ProfileServiceProtocol
     ) {
         self.observationManager = observationManager
+        self.authManager = authManager
         self.profileService = profileService
     }
     
     func load() {
-        let signedIn = true // TODO:
+        let signedIn = authManager.isSignedIn
         
         if signedIn {
             callProfileService()
@@ -55,7 +58,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
         
         let profileData = ProfileViewData(displayName: response.displayName,
                                           imageUrl: response.images.first?.url) { [weak self] in
-//            AuthManager.shared.logout() // TODO: 
+            self?.authManager.logout()
             self?.coordinatorDelegate?.returnHome(completion: nil)
         }
         delegate?.handleOutput(.updateView(signedIn: true, data: profileData))

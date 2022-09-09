@@ -40,7 +40,7 @@ final class DetailViewModel: DetailViewModelProtocol {
             case .success(let response):
                 self?.handleHeaderResponse(with: response)
             case .failure(let error):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "error fetch")))
+                self?.handleError(for: error)
             }
         }
     }
@@ -54,9 +54,21 @@ final class DetailViewModel: DetailViewModelProtocol {
             case .success(let response):
                 self?.handleAlbumResponse(for: response)
             case .failure(let error):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: "error fetch")))
+                self?.handleError(for: error)
             }
         }
+    }
+    
+    private func handleError(for error: Error) {
+        
+        var message: String
+        if let error = error as? NetworkError {
+            message = error.rawValue
+        } else {
+            message = "Error occurred during fetch. Please try again."
+        }
+        
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message)))
     }
     
     private func handleHeaderResponse(with response: DetailResponse) {

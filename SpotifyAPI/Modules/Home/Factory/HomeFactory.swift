@@ -21,6 +21,7 @@ final class HomeFactory {
         
         let homeViewModel = HomeViewModel(
             searchService: searchService,
+            authManager: dependencyContainer.authManager,
             observationManager: dependencyContainer.observationManager
         )
         
@@ -48,6 +49,7 @@ final class HomeFactory {
         
         let viewModel = ProfileViewModel(
             observationManager: dependencyContainer.observationManager,
+            authManager: dependencyContainer.authManager,
             profileService: profileService
         )
         viewModel.coordinatorDelegate = coordinatorDelegate
@@ -60,7 +62,7 @@ final class HomeFactory {
     // MARK: Authorization Web Screen
     func createAuthView(coordinatorDelegate: HomeCoordinatorDelegate) -> UIViewController {
         
-        let viewModel = AuthorizationViewModel()
+        let viewModel = AuthorizationViewModel(authManager: dependencyContainer.authManager)
         viewModel.coordinatorDelegate = coordinatorDelegate
         let viewController = AuthorizationViewController(viewModel: viewModel)
         viewController.title = "Sign In"

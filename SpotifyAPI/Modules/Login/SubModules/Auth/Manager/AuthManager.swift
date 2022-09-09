@@ -63,6 +63,8 @@ final class AuthManager {
         return currentDate.addingTimeInterval(Constants.extraTime) >= expirationDate
     }
     
+    // MARK: Network Calls
+    
     func fetchData<T>(
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
@@ -73,21 +75,17 @@ final class AuthManager {
     ) where T: Decodable {
 
         createRequest(from: endpoint, for: httpMethod, with: requestable) { [weak self] result in
-//
-//            switch result {
-//            case .success(let urlRequest):
-//                switch sessionType {
-//                case .defaultSession:
-//                    self?.session.dataTask(with: urlRequest) { (data, urlResponse, error) in
-//                        self?.handleResponse(data, urlResponse, error, dispatchQueue: dispatchQueue, completion: completion)
-//                    }.resume()
-//                default:
-//                    break /// can implement session configuration according to build settings.
-//                }
-//
-//            case .failure(let error):
-//                completion(.failure(error))
-//            }
+            
+            switch result {
+            case .success(let urlRequest):
+                self?.authService.callExecute(
+                    request: urlRequest,
+                    completion: completion
+                )
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     
