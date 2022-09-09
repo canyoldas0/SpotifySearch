@@ -61,6 +61,23 @@ final class HomeViewModelTests: XCTestCase {
         // Then
         XCTAssertEqual([HomeViewOutput.showAlert(alert)], viewDelegate.outputs)
     }
+    
+    func testLoadOnLoggedOut() {
+        // When
+        sut.load()
+        
+        // Then
+        XCTAssertEqual(viewDelegate.outputs, [.updateTable, .updateProfileIcon(false)])
+        XCTAssertTrue(coordinatorDelegate.goToLoginCalled)
+    }
+    
+    func testProfileClicked() {
+        // When
+        sut.profileClicked()
+        
+        // Then
+        XCTAssertTrue(coordinatorDelegate.goToProfileClicked)
+    }
 }
 
 fileprivate final class MockViewController: HomeViewOutputProtocol {
@@ -74,11 +91,18 @@ fileprivate final class MockViewController: HomeViewOutputProtocol {
 
 fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
+    var goToLoginCalled = false
+    var goToProfileClicked = false
+    
     func goBack(completion: SpotifyAPI.VoidHandler?) { }
     
-    func goToLogin() { }
+    func goToLogin() {
+        goToLoginCalled = true
+    }
     
-    func goToProfile() { }
+    func goToProfile() {
+        goToProfileClicked = true
+    }
     
     func goToDetail(animated: Bool, with id: String) { }
     
@@ -108,8 +132,7 @@ fileprivate class MockAuthManager: AuthManagerProtocol {
     }
     
     func isSignedIn() -> Bool {
-        print("also here")
-        return true
+        false
     }
     
     func getSignInUrl() -> URL? {

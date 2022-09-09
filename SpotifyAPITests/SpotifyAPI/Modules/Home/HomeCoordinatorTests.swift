@@ -120,8 +120,7 @@ fileprivate class MockAuthManager: AuthManagerProtocol {
     }
     
     func isSignedIn() -> Bool {
-        print("also here")
-        return true
+        true
     }
     
     func getSignInUrl() -> URL? {

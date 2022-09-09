@@ -67,8 +67,7 @@ final class AuthManager: AuthManagerProtocol {
     }
     
     func isSignedIn() -> Bool {
-        print("here")
-        return accessToken != nil
+        accessToken != nil
     }
     
     func getSignInUrl() -> URL? {

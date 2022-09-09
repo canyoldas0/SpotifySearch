@@ -53,7 +53,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     func load() {
         let signedIn = authManager.isSignedIn()
         handleSignIn(for: signedIn)
-        
     }
     
     private func handleSignIn(for status: Bool) {
