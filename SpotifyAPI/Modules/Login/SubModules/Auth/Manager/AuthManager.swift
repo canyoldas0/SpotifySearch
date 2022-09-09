@@ -16,7 +16,7 @@ final class AuthManager {
         static let extraTime: TimeInterval = 240
     }
         
-    private let observationManager: ObservationManagerProtocol
+    private(set) var observationManager: ObservationManagerProtocol
     private let authService: AuthServiceProtocol
     
     init(
