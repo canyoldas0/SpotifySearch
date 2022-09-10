@@ -13,6 +13,10 @@ struct DetailResponse: Decodable {
     let followers: FollowerInfo
 }
 
+
+
 struct FollowerInfo: Decodable {
     let total: Int?
 }
+
+

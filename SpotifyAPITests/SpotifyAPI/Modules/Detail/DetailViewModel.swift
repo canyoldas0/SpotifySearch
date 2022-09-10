@@ -42,6 +42,18 @@ final class DetailViewModelTests: XCTestCase {
         viewDelegate = nil
         super.tearDown()
     }
+    
+    func testLoad() {
+        // When
+        sut.load()
+        
+        // Then
+        XCTAssertEqual(viewDelegate.outputs, [
+            .updateTitle("Test"),
+            .updateHeader(.stub()),
+            .updateAlbumData(.stub())
+        ])
+    }
 }
 
 fileprivate final class MockViewController: DetailViewOutputProtocol {
@@ -81,11 +93,11 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
 fileprivate final class MockDetailService:  DetailServiceProtocol {
     
     func fetchDetailData(itemId: String, request: SpotifyAPI.Requestable, completion: @escaping (Result<SpotifyAPI.DetailResponse, Error>) -> Void) {
-        // TODO:
+        completion(.success(.stub()))
     }
     
     func fetchArtistAlbumData(itemId: String, request: SpotifyAPI.Requestable, completion: @escaping (Result<SpotifyAPI.AlbumResponse, Error>) -> Void) {
-        // TODO:
+        completion(.success(.stub()))
     }
 }
 
