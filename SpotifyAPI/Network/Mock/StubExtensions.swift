@@ -55,6 +55,7 @@ extension AlbumCollectionCellData {
     }
 }
 
+// MARK: AlbumResponse
 extension AlbumResponse {
     
     static func stub() -> AlbumResponse {
@@ -62,6 +63,7 @@ extension AlbumResponse {
     }
 }
 
+// MARK: AlbumInfo
 extension AlbumInfo {
     
     static func stub() -> AlbumInfo {
@@ -73,6 +75,7 @@ extension AlbumInfo {
     }
 }
 
+// MARK: ImageInfo
 extension ImageInfo {
     
     static func stub() -> ImageInfo {
@@ -80,6 +83,30 @@ extension ImageInfo {
             height: 12,
             url: "testUrl",
             width: 12
+        )
+    }
+}
+
+// MARK: ProfileResponse
+extension ProfileResponse {
+    
+    static func stub() -> ProfileResponse {
+        ProfileResponse(
+            displayName: "testName",
+            images: [.stub()],
+            followers: .stub()
+        )
+    }
+}
+
+// MARK: ProfileResponse
+extension ProfileViewData {
+    
+    static func stub() -> ProfileViewData {
+        ProfileViewData(
+            displayName: "testName",
+            imageUrl: "testUrl",
+            logoutAction: nil
         )
     }
 }

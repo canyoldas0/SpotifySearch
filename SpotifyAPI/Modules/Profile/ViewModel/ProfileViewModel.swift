@@ -11,16 +11,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     weak var delegate: ProfileViewOutputProtocol?
     
     private let profileService: ProfileServiceProtocol
-    private let observationManager: ObservationManagerProtocol
     private let authManager: AuthManagerProtocol
 
     
     init(
-        observationManager: ObservationManagerProtocol,
         authManager: AuthManagerProtocol,
         profileService: ProfileServiceProtocol
     ) {
-        self.observationManager = observationManager
         self.authManager = authManager
         self.profileService = profileService
     }
@@ -49,9 +46,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
             case .success(let response):
                 self?.handleProfileResponse(for: response)
             case .failure(let error):
-                self?.delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
+                self?.handleError(with: error)
             }
         }
+    }
+    
+    private func handleError(with error: Error) {
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: (error as? NetworkError)?.rawValue)))
     }
     
     private func handleProfileResponse(for response: ProfileResponse) {

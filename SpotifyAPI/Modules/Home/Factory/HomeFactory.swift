@@ -48,7 +48,6 @@ final class HomeFactory {
         let profileService = ProfileService(authManager: dependencyContainer.authManager)
         
         let viewModel = ProfileViewModel(
-            observationManager: dependencyContainer.observationManager,
             authManager: dependencyContainer.authManager,
             profileService: profileService
         )

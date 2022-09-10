@@ -13,5 +13,4 @@ final class SignInViewModel: SignInViewModelProtocol {
     func signInClicked() {
         coordinatorDelegate?.goToAuthScreen()
     }
-    
 }
