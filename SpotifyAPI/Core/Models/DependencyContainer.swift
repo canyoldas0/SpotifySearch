@@ -13,16 +13,19 @@ final class DependencyContainer {
     let apiConfiguration: URLSessionConfiguration
     let observationManager: ObservationManagerProtocol
     let authManager: AuthManagerProtocol
+    let keychainService: KeychainService
     
     init(
         window: UIWindow,
         apiConfiguration: URLSessionConfiguration,
         observationManager: ObservationManagerProtocol,
-        authManager: AuthManagerProtocol
+        authManager: AuthManagerProtocol,
+        keychainService: KeychainService
     ) {
         self.window = window
         self.apiConfiguration = apiConfiguration
         self.observationManager = observationManager
         self.authManager = authManager
+        self.keychainService = keychainService
     }
 }

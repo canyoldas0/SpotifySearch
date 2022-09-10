@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window: window,
             apiConfiguration: apiConfiguration,
             observationManager: observationManager,
-            authManager: authManager
+            authManager: authManager,
+            keychainService: KeychainService(wrapper: KeychanWrapper.standard)
         )
         
         appCoordinator = CoordinatorFactory.buildAppCoordinator(dependencies: dependencyContainer)

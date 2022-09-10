@@ -44,4 +44,8 @@ struct KeychainService {
     func getExpirationDate() -> Date? {
         wrapper.getDate(for: Key.expirationDate.rawValue)
     }
+    
+    func clear() {
+        wrapper.clear()
+    }
 }

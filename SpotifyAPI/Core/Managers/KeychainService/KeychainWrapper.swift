@@ -38,8 +38,10 @@ final class KeychanWrapper {
     
     private init() { }
     
+    // MARK: Private Methods
+    
     @discardableResult
-    func set(_ key: String, value: String) -> Bool {
+    private func set(_ key: String, value: String) -> Bool {
         if let data = value.data(using: String.Encoding.utf8) {
             return setData(key, value: data)
         }
@@ -48,14 +50,14 @@ final class KeychanWrapper {
     }
     
     @discardableResult
-    func set(_ key: String, value: NSCoding) -> Bool {
+    private func set(_ key: String, value: NSCoding) -> Bool {
         let data = NSKeyedArchiver.archivedData(withRootObject: value)
         
         return setData(key, value: data)
     }
     
     @discardableResult
-    func setData(_ key: String, value: Data) -> Bool {
+    private func setData(_ key: String, value: Data) -> Bool {
         let query = [
             kSecClass as String: kSecClassGenericPassword as String,
             kSecAttrAccount as String: key,
@@ -69,7 +71,7 @@ final class KeychanWrapper {
         return status == noErr
     }
     
-    func get(_ key: String)  -> String? {
+    private func get(_ key: String)  -> String? {
         guard let data = getData(key) else {
             return nil
         }
@@ -78,7 +80,7 @@ final class KeychanWrapper {
     }
     
     @discardableResult
-    func delete(_ key: String) -> Bool {
+    private func delete(_ key: String) -> Bool {
         let query = [
             kSecClass as String: kSecClassGenericPassword as String,
             kSecAttrAccount as String: key,
@@ -89,7 +91,7 @@ final class KeychanWrapper {
         return status == noErr
     }
     
-    func getData(_ key: String) -> Data? {
+    private func getData(_ key: String) -> Data? {
         let query = [
             kSecClass as String: kSecClassGenericPassword as String,
             kSecAttrAccount as String: key,
@@ -107,7 +109,7 @@ final class KeychanWrapper {
     }
     
     @discardableResult
-    func clearAll() -> Bool {
+    private func clearAll() -> Bool {
         let query = [
             kSecClass as String: kSecClassGenericPassword as String
         ]
@@ -125,6 +127,8 @@ final class KeychanWrapper {
         return NSKeyedUnarchiver.unarchiveObject(with: data) as? NSCoding
     }
 }
+
+// MARK: KeychainWrapperProtocol Methods
 
 extension KeychanWrapper: KeychainWrapperProtocol {
   

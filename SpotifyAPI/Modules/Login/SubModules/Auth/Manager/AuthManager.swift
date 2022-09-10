@@ -55,15 +55,15 @@ final class AuthManager: AuthManagerProtocol {
     // MARK: Session Properties -
     
     private var accessToken: String? {
-        UserDefaults.standard.string(forKey: Constants.accessToken)
+        Session.current.getAccessToken()
     }
-    
+
     private var refreshToken: String? {
-        UserDefaults.standard.string(forKey: Constants.refreshToken)
+        Session.current.getRefreshToken()
     }
-    
+
     private var expirationDate: Date? {
-        UserDefaults.standard.object(forKey: Constants.expirationDate) as? Date
+        Session.current.getExpirationDate()
     }
     
     func isSignedIn() -> Bool {
@@ -193,12 +193,13 @@ final class AuthManager: AuthManagerProtocol {
     
     /// Storing exchanged tokens for the current session.
     private func cacheToken(response: AuthResponse) {
-        UserDefaults.standard.setValue(response.accessToken, forKey: Constants.accessToken)
-        UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(response.expiresIn)), forKey: Constants.expirationDate)
+        Session.current.keychainService?.saveAccessToken(response.accessToken)
         
         if let refreshToken = response.refreshToken {
-            UserDefaults.standard.setValue(refreshToken, forKey: Constants.refreshToken)
+            Session.current.keychainService?.saveRefreshToken(refreshToken)
         }
+        
+        Session.current.keychainService?.saveExpirationDate(Date().addingTimeInterval(TimeInterval(response.expiresIn)))
     }
     
     /// Cleans the stored tokens and ends the active session.
@@ -219,9 +220,7 @@ final class AuthManager: AuthManagerProtocol {
     
     /// Removes cached data.
     private func removeCaches() {
-        UserDefaults.standard.removeObject(forKey: Constants.accessToken)
-        UserDefaults.standard.removeObject(forKey: Constants.refreshToken)
-        UserDefaults.standard.removeObject(forKey: Constants.expirationDate)
+        Session.current.keychainService?.clear()
     }
     
     /// Common method to notify observers for signIn status.
