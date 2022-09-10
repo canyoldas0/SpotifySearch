@@ -15,10 +15,19 @@ final class Session {
     
     private(set) var keychainService: KeychainService?
     
-    
     func setKeychainService(_ keychain: KeychainService) {
         self.keychainService = keychain
     }
     
+    func getAccessToken() -> String? {
+        keychainService?.getAccessToken()
+    }
     
+    func getRefreshToken() -> String? {
+        keychainService?.getRefreshToken()
+    }
+    
+    func getExpirationDate() -> Date? {
+        keychainService?.getExpirationDate()
+    }
 }
