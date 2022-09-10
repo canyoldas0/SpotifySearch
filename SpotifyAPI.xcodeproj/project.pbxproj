@@ -87,6 +87,7 @@
 		1ECECA6C28CB427E005FA2D7 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */; };
 		1ECECA6E28CB429E005FA2D7 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */; };
 		1ECECA7C28CB6B04005FA2D7 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA7B28CB6B04005FA2D7 /* HomeViewModelTests.swift */; };
+		1ECECA7F28CB8755005FA2D7 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA7E28CB8755005FA2D7 /* DetailViewModel.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -184,6 +185,7 @@
 		1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		1ECECA7B28CB6B04005FA2D7 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		1ECECA7E28CB8755005FA2D7 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -726,6 +728,7 @@
 		1ECECA4728CA84B7005FA2D7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1ECECA7D28CB8482005FA2D7 /* Detail */,
 				1ECECA4828CA84BC005FA2D7 /* Home */,
 			);
 			path = Modules;
@@ -755,6 +758,14 @@
 				1ECECA6928CB4216005FA2D7 /* Session.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		1ECECA7D28CB8482005FA2D7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				1ECECA7E28CB8755005FA2D7 /* DetailViewModel.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		1ED2F0A628C39ACB00D2D1CD /* SubModules */ = {
@@ -961,6 +972,7 @@
 				1ECECA3D28CA0BCD005FA2D7 /* SpotifyAPITests.swift in Sources */,
 				1ECECA7C28CB6B04005FA2D7 /* HomeViewModelTests.swift in Sources */,
 				1ECECA4A28CA84C3005FA2D7 /* HomeCoordinatorTests.swift in Sources */,
+				1ECECA7F28CB8755005FA2D7 /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
