@@ -53,6 +53,7 @@ I wanted to keep my network flow as linear as it's possible to make it suitable 
 - UIs can be more abstracted, more customizable for reusability.
 - Spotify SDK could be used, if somehow this project required some playback from Spotify, I would have gone for it for sure.
 - Mock Service Requests could be added and some kind of a local resource manager could be added to make testing more reliable. Instead, I chose to go with dummies (stub).
+- All the strings or constants can be stored in structs to make it smoother. Since I don't have localization in the app, I didn't want to spend my limited resources on it.
 
 ### Summary
 
