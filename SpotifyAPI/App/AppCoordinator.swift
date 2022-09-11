@@ -20,8 +20,6 @@ final class AppCoordinator: CoordinatorProtocol {
     ) {
         self.dependencyContainer = dependencyContainer
         self.homeCoordinator = homeCoordinator
-        
-        setupEnvironment()
     }
     
     func start() {
@@ -30,9 +28,5 @@ final class AppCoordinator: CoordinatorProtocol {
         children.append(homeCoordinator)
         
         rootViewController = homeCoordinator.rootViewController
-    }
-    
-    private func setupEnvironment() {
-        Session.current.setKeychainService(dependencyContainer.keychainService)
     }
 }

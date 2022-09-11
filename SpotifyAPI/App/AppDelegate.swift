@@ -30,9 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             authService: AuthService(configuration: apiConfiguration)
         )
         
-        // When user opens the app, removes the tokens if they are expired.
-        authManager.removeCacheIfNeeded()
-        
         dependencyContainer = DependencyContainer(
             window: window,
             apiConfiguration: apiConfiguration,
@@ -40,6 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             authManager: authManager,
             keychainService: KeychainService(wrapper: KeychanWrapper.standard)
         )
+        
+        Session.current.setKeychainService(dependencyContainer.keychainService)
+        
+        // When user opens the app, removes the tokens if they are expired.
+        authManager.removeCacheIfNeeded()
         
         appCoordinator = CoordinatorFactory.buildAppCoordinator(dependencies: dependencyContainer)
         appCoordinator?.start()

@@ -227,6 +227,7 @@ final class AuthManager: AuthManagerProtocol {
     /// Removes cached data.
     private func removeCaches() {
         Session.current.keychainService?.clear()
+        notifySignIn(false)
     }
     
     /// Common method to notify observers for signIn status.
