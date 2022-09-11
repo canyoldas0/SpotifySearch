@@ -18,7 +18,6 @@
 		1E19773D28C5482F0034F60D /* ObserverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19773C28C5482F0034F60D /* ObserverManager.swift */; };
 		1E19774128C5519D0034F60D /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */; };
 		1E19774328C551C30034F60D /* AuthorizationContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774228C551C30034F60D /* AuthorizationContracts.swift */; };
-		1E19774928C556140034F60D /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19774828C556140034F60D /* SignInService.swift */; };
 		1E19775328C684150034F60D /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775228C684150034F60D /* URLParameterEncoder.swift */; };
 		1E19775628C684740034F60D /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775528C684740034F60D /* Encodable+Extensions.swift */; };
 		1E19775828C684DA0034F60D /* APIRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19775728C684DA0034F60D /* APIRequests.swift */; };
@@ -116,7 +115,6 @@
 		1E19773C28C5482F0034F60D /* ObserverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverManager.swift; sourceTree = "<group>"; };
 		1E19774028C5519D0034F60D /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		1E19774228C551C30034F60D /* AuthorizationContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationContracts.swift; sourceTree = "<group>"; };
-		1E19774828C556140034F60D /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		1E19775228C684150034F60D /* URLParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
 		1E19775528C684740034F60D /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		1E19775728C684DA0034F60D /* APIRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequests.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 				1E19772F28C53D840034F60D /* Base */,
 				1E19776228C69CFC0034F60D /* CommonModels */,
 				1E19775B28C691FA0034F60D /* SearchService */,
-				1E19774728C556070034F60D /* SignInService */,
 				1E19773028C53D8B0034F60D /* ProfileService */,
 				1E19772328C51C660034F60D /* AuthService */,
 				1E19773928C541700034F60D /* EndPoints.swift */,
@@ -309,14 +306,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		1E19774728C556070034F60D /* SignInService */ = {
-			isa = PBXGroup;
-			children = (
-				1E19774828C556140034F60D /* SignInService.swift */,
-			);
-			path = SignInService;
-			sourceTree = "<group>";
-		};
 		1E19774F28C683B90034F60D /* Encoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,10 +354,9 @@
 		1E19776A28C742350034F60D /* DetailService */ = {
 			isa = PBXGroup;
 			children = (
+				1ECECA8828CDE345005FA2D7 /* Detail */,
 				1E19777928C767180034F60D /* Albums */,
 				1E19776B28C7423D0034F60D /* DetailService.swift */,
-				1E19776D28C755DA0034F60D /* DetailRequest.swift */,
-				1E19776F28C755EB0034F60D /* DetailResponse.swift */,
 			);
 			path = DetailService;
 			sourceTree = "<group>";
@@ -793,6 +781,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		1ECECA8828CDE345005FA2D7 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				1E19776F28C755EB0034F60D /* DetailResponse.swift */,
+				1E19776D28C755DA0034F60D /* DetailRequest.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		1ED2F0A628C39ACB00D2D1CD /* SubModules */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,7 +919,6 @@
 				1E19775F28C6924A0034F60D /* SearchResponse.swift in Sources */,
 				1ECECA6628CB326A005FA2D7 /* ProxyService.swift in Sources */,
 				1E40339028C27E4E0096B69F /* UIControlExtensions.swift in Sources */,
-				1E19774928C556140034F60D /* SignInService.swift in Sources */,
 				1E4033AA28C2A4C20096B69F /* CustomImageViewContainer.swift in Sources */,
 				1E19777328C75BFD0034F60D /* DetailHeaderView.swift in Sources */,
 				1ECECA6C28CB427E005FA2D7 /* KeychainService.swift in Sources */,

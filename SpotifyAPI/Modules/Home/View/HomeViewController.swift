@@ -9,12 +9,17 @@ import UIKit
 
 final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
+    private enum Constants {
+        static let searchPlaceholder: String = "Search for the artists"
+        static let moreButtonImage: String = "ellipsis"
+        static let profileButtonImage: String = "person.circle.fill"
+    }
     
     var viewModel: HomeViewModelProtocol!
     
     private lazy var searchController: UISearchController = {
         let temp = UISearchController()
-        temp.searchBar.placeholder = "Search for the artists"
+        temp.searchBar.placeholder = Constants.searchPlaceholder
         temp.searchBar.delegate = self
         return temp
     }()
@@ -30,7 +35,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     private lazy var moreMenuButton: UIBarButtonItem = {
         let temp = UIBarButtonItem()
         temp.target = self
-        temp.image = UIImage(systemName: "ellipsis")
+        temp.image = UIImage(systemName: Constants.moreButtonImage)
         temp.action = #selector(moreMenuClicked)
         return temp
     }()
@@ -96,7 +101,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func updateProfileIcon(for state: Bool) {
         DispatchQueue.main.async {
-            self.profileButton.image = state ? UIImage(systemName: "person.circle.fill"): nil
+            self.profileButton.image = state ? UIImage(systemName: Constants.profileButtonImage): nil
         }
     }
     

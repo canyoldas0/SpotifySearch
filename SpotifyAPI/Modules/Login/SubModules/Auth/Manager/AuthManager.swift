@@ -86,6 +86,13 @@ final class AuthManager: AuthManagerProtocol {
     
     // MARK: Network Calls
     
+    /// This method is used to make a service call with authorized token.
+    /// Every Sub services needs to pass through this to get valid token to make successful request.
+    /// - parameters:
+    ///     - endpoint: Endpoint of the URL without the query parameters.
+    ///     - httpMethod: HTTP method type of the request.
+    ///     - requestable: Model that contains query items.
+    ///     - completion: Returns result type. Generic type.
     func fetchData<T>(
         endpoint: String,
         httpMethod: HTTPMethod = .GET,
@@ -107,7 +114,6 @@ final class AuthManager: AuthManagerProtocol {
             }
         }
     }
-    
     
     
     /// Authorization method. Exchanges the code with the accessTokens when authorization completed.

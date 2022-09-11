@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Base class for data related services such as: Detail, Search, Profile...
 class ProxyService {
     
     var authManager: AuthManagerProtocol

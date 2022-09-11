@@ -29,7 +29,7 @@ class BaseAPI {
         self.session = URLSession(configuration: configuration)
     }
     
-    /// This version of the execute only gets called from AuthService. It doesn't require Requestable object.
+    /// This execute only gets called from AuthService. It doesn't require Requestable object.
     /// Directly executes with the URLRequest.
     /// - parameters:
     ///     - request: URLRequest to be executed.
