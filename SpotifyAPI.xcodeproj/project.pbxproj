@@ -190,6 +190,7 @@
 		1ECECA8128CCA01B005FA2D7 /* StubExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubExtensions.swift; sourceTree = "<group>"; };
 		1ECECA8428CCA36C005FA2D7 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKeychainWrapper.swift; sourceTree = "<group>"; };
+		1ECECA8928CDED01005FA2D7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -425,6 +426,7 @@
 		1E40334328C268DE0096B69F = {
 			isa = PBXGroup;
 			children = (
+				1ECECA8928CDED01005FA2D7 /* README.md */,
 				1E40334E28C268DE0096B69F /* SpotifyAPI */,
 				1ECECA3B28CA0BCD005FA2D7 /* SpotifyAPITests */,
 				1E40334D28C268DE0096B69F /* Products */,
