@@ -70,6 +70,7 @@ final class ProfileViewModelTests: XCTestCase {
     }
 }
 
+// MARK: Mock ViewController
 fileprivate final class MockViewController: ProfileViewOutputProtocol {
     
     var outputs: [ProfileViewOutput] = []
@@ -79,6 +80,7 @@ fileprivate final class MockViewController: ProfileViewOutputProtocol {
     }
 }
 
+// MARK: Mock Coordinator
 fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     var goToLoginCalled = false
@@ -86,7 +88,7 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goBack(completion: SpotifyAPI.VoidHandler?) { }
     
-    func goToLogin() {
+    func goToOnboardingLogin() {
         goToLoginCalled = true
     }
     
@@ -96,14 +98,12 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goToDetail(animated: Bool, with id: String) { }
     
-    func goToAuthScreen() { }
+    func goToAuthScreen(animated: Bool) { }
     
     func returnHome(completion: SpotifyAPI.VoidHandler?) { }
-    
-    func goToRoot(completion: SpotifyAPI.VoidHandler?) { }
-
 }
 
+// MARK: Mock Profile Service
 fileprivate final class MockProfileService: ProfileServiceProtocol {
     
     var isFetchSuccess = true
@@ -116,10 +116,9 @@ fileprivate final class MockProfileService: ProfileServiceProtocol {
             completion(.failure(NetworkError.decodingFailed))
         }
     }
-    
-    
 }
 
+// MARK: Mock Auth Service
 fileprivate class MockAuthManager: AuthManagerProtocol {
     
     var observationManager: SpotifyAPI.ObservationManagerProtocol

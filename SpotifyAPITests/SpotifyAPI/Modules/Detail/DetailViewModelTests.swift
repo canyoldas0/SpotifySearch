@@ -72,7 +72,7 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goBack(completion: SpotifyAPI.VoidHandler?) { }
     
-    func goToLogin() {
+    func goToOnboardingLogin() {
         goToLoginCalled = true
     }
     
@@ -82,12 +82,9 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goToDetail(animated: Bool, with id: String) { }
     
-    func goToAuthScreen() { }
+    func goToAuthScreen(animated: Bool) { }
     
     func returnHome(completion: SpotifyAPI.VoidHandler?) { }
-    
-    func goToRoot(completion: SpotifyAPI.VoidHandler?) { }
-
 }
 
 fileprivate final class MockDetailService:  DetailServiceProtocol {

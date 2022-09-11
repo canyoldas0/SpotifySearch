@@ -26,7 +26,8 @@ final class HomeCoordinatorTests: XCTestCase {
             window: window,
             apiConfiguration: URLSessionConfiguration.default,
             observationManager: observationManager,
-            authManager: authManager
+            authManager: authManager,
+            keychainService: KeychainService(wrapper: TestKeychainWrapper())
         )
         parentCoordinator = MockParentCoordinator()
         sut = HomeCoordinator(dependencies: dependencies)
@@ -68,7 +69,7 @@ final class HomeCoordinatorTests: XCTestCase {
         window.makeKeyAndVisible()
         
         // When
-        sut.goToLogin()
+        sut.goToOnboardingLogin()
         
         // Then
         XCTAssertTrue(sut.rootViewController.presentedViewController is SignInViewController)
@@ -85,19 +86,21 @@ final class HomeCoordinatorTests: XCTestCase {
         XCTAssertTrue(sut.rootViewController.topViewController is DetailViewController)
     }
     
-//    func testGoToAuth() {
-//        // Given
-//        sut.start()
-//        window.rootViewController = sut.rootViewController
-//        window.makeKeyAndVisible()
-//
-//        sut.goToAuthScreen()
-//
-//        XCTAssertTrue(sut.rootViewController.presentedViewController is AuthorizationViewController)
-//
-//    }
-    
+    func testGoToAuth() {
+        // Given
+        sut.start()
+        authManager.signedIn = true
+        window.rootViewController = sut.rootViewController
+        window.makeKeyAndVisible()
+                
+        sut.goToAuthScreen(animated: false)
+
+        XCTAssertTrue(sut.rootViewController.presentedViewController is AuthorizationViewController)
+        
+    }
 }
+
+fileprivate class MockViewController: UIViewController { }
 
 fileprivate class MockParentCoordinator: ParentCoordinatorDelegate {
     
@@ -119,8 +122,10 @@ fileprivate class MockAuthManager: AuthManagerProtocol {
         self.observationManager = observationManager
     }
     
+    var signedIn = true
+    
     func isSignedIn() -> Bool {
-        true
+        signedIn
     }
     
     func getSignInUrl() -> URL? {

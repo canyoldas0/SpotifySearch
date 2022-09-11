@@ -50,7 +50,7 @@
 		1E40335928C268DF0096B69F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335828C268DF0096B69F /* Assets.xcassets */; };
 		1E40335C28C268DF0096B69F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40335A28C268DF0096B69F /* LaunchScreen.storyboard */; };
 		1E40336528C26B900096B69F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336428C26B900096B69F /* AppCoordinator.swift */; };
-		1E40336928C26BAE0096B69F /* CoordinatorContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */; };
+		1E40336928C26BAE0096B69F /* CoordinatorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336828C26BAE0096B69F /* CoordinatorProtocols.swift */; };
 		1E40336B28C26BC20096B69F /* GenericDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336A28C26BC20096B69F /* GenericDataProtocol.swift */; };
 		1E40336D28C26BEF0096B69F /* ErrorHandlingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */; };
 		1E40337028C26C3B0096B69F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E40336F28C26C3B0096B69F /* Alert.swift */; };
@@ -90,6 +90,7 @@
 		1ECECA7F28CB8755005FA2D7 /* DetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA7E28CB8755005FA2D7 /* DetailViewModelTests.swift */; };
 		1ECECA8228CCA01B005FA2D7 /* StubExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA8128CCA01B005FA2D7 /* StubExtensions.swift */; };
 		1ECECA8528CCA36C005FA2D7 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA8428CCA36C005FA2D7 /* ProfileViewModelTests.swift */; };
+		1ECECA8728CDDB77005FA2D7 /* TestKeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -149,7 +150,7 @@
 		1E40335B28C268DF0096B69F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1E40335D28C268DF0096B69F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E40336428C26B900096B69F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorContracts.swift; sourceTree = "<group>"; };
+		1E40336828C26BAE0096B69F /* CoordinatorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocols.swift; sourceTree = "<group>"; };
 		1E40336A28C26BC20096B69F /* GenericDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericDataProtocol.swift; sourceTree = "<group>"; };
 		1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlingProtocol.swift; sourceTree = "<group>"; };
 		1E40336F28C26C3B0096B69F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 		1ECECA7E28CB8755005FA2D7 /* DetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTests.swift; sourceTree = "<group>"; };
 		1ECECA8128CCA01B005FA2D7 /* StubExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubExtensions.swift; sourceTree = "<group>"; };
 		1ECECA8428CCA36C005FA2D7 /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKeychainWrapper.swift; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -492,7 +494,7 @@
 		1E40336728C26BA20096B69F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				1E40336828C26BAE0096B69F /* CoordinatorContracts.swift */,
+				1E40336828C26BAE0096B69F /* CoordinatorProtocols.swift */,
 				1E40336A28C26BC20096B69F /* GenericDataProtocol.swift */,
 				1E40336C28C26BEF0096B69F /* ErrorHandlingProtocol.swift */,
 			);
@@ -754,6 +756,7 @@
 			children = (
 				1ECECA6B28CB427E005FA2D7 /* KeychainService.swift */,
 				1ECECA6D28CB429E005FA2D7 /* KeychainWrapper.swift */,
+				1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */,
 			);
 			path = KeychainService;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				1E19777628C7612E0034F60D /* AlbumCollectionView.swift in Sources */,
 				1E40337428C26C5A0096B69F /* Typealiases.swift in Sources */,
 				1E4033BB28C2AF0E0096B69F /* DetailViewController.swift in Sources */,
+				1ECECA8728CDDB77005FA2D7 /* TestKeychainWrapper.swift in Sources */,
 				1E40336B28C26BC20096B69F /* GenericDataProtocol.swift in Sources */,
 				1E19778028C79C6A0034F60D /* StringExtensions.swift in Sources */,
 				1E4033B028C2A7690096B69F /* ImageCacheManager.swift in Sources */,
@@ -981,7 +985,7 @@
 				1E40337628C26C940096B69F /* DependencyContainer.swift in Sources */,
 				1E40339E28C2A2670096B69F /* BaseView.swift in Sources */,
 				1E4033B728C2AAD70096B69F /* HomeFactory.swift in Sources */,
-				1E40336928C26BAE0096B69F /* CoordinatorContracts.swift in Sources */,
+				1E40336928C26BAE0096B69F /* CoordinatorProtocols.swift in Sources */,
 				1E19776128C6925D0034F60D /* SearchRequest.swift in Sources */,
 				1E40338028C26EAC0096B69F /* HomeCoordinatorContracts.swift in Sources */,
 				1E19773228C53D980034F60D /* ProfileService.swift in Sources */,

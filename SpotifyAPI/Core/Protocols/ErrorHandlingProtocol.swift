@@ -16,7 +16,7 @@ protocol ErrorHandlingProtocol where Self: UIViewController {
 extension ErrorHandlingProtocol {
     
     func showAlert(with alert: Alert) {
-        let alertController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: .alert)
+        let alertController = UIAlertController(title: alert.title, message: alert.message, preferredStyle: alert.style)
         
         alert.actions.forEach { action in
             let alertAction = UIAlertAction(title: action.title, style: action.style) { _ in

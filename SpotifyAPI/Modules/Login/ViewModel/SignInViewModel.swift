@@ -11,6 +11,6 @@ final class SignInViewModel: SignInViewModelProtocol {
     weak var coordinatorDelegate: HomeCoordinatorDelegate?
     
     func signInClicked() {
-        coordinatorDelegate?.goToAuthScreen()
+        coordinatorDelegate?.goToAuthScreen(animated: true)
     }
 }

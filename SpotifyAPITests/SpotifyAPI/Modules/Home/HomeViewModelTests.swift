@@ -78,8 +78,18 @@ final class HomeViewModelTests: XCTestCase {
         // Then
         XCTAssertTrue(coordinatorDelegate.goToProfileClicked)
     }
+    
+    func testMoreMenuClicked() {
+        // When
+        sut.moreMenuClicked()
+        let alert = Alert.buildMoreMenu(actions: [.init(title: "Remove Image Cache", style: .default)])
+        
+        // Then
+        XCTAssertEqual(viewDelegate.outputs, [.showAlert(alert)])
+    }
 }
 
+// MARK: Mock View Controller
 fileprivate final class MockViewController: HomeViewOutputProtocol {
     
     var outputs: [HomeViewOutput] = []
@@ -89,6 +99,8 @@ fileprivate final class MockViewController: HomeViewOutputProtocol {
     }
 }
 
+// MARK: Mock Coordinator
+
 fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     var goToLoginCalled = false
@@ -96,7 +108,7 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goBack(completion: SpotifyAPI.VoidHandler?) { }
     
-    func goToLogin() {
+    func goToOnboardingLogin() {
         goToLoginCalled = true
     }
     
@@ -106,14 +118,13 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
     
     func goToDetail(animated: Bool, with id: String) { }
     
-    func goToAuthScreen() { }
+    func goToAuthScreen(animated: Bool) { }
     
     func returnHome(completion: SpotifyAPI.VoidHandler?) { }
     
-    func goToRoot(completion: SpotifyAPI.VoidHandler?) { }
-
 }
 
+// MARK: Mock Search Service
 fileprivate final class MockSearchService:  SearchServiceProtocol {
     
     var searchCalled = false
@@ -123,6 +134,7 @@ fileprivate final class MockSearchService:  SearchServiceProtocol {
     }
 }
 
+// MARK: Mock Auth Manager
 fileprivate class MockAuthManager: AuthManagerProtocol {
     
     var observationManager: SpotifyAPI.ObservationManagerProtocol

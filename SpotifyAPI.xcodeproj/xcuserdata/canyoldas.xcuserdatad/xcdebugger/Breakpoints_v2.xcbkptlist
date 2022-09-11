@@ -3,4 +3,99 @@
    uuid = "467BE717-6371-4D7A-A4C3-D209412868C2"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "testGoToAuth()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628 - fcc87d40dbc2436a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotifyAPITests.HomeCoordinatorTests.testGoToAuth() -&gt; ()"
+                  moduleName = "SpotifyAPITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canyoldas/Documents/Codebase/Swift/SpotifyAPI/SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "1976">
+               </Location>
+               <Location
+                  uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628 - fcc87d40dbc2436a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotifyAPITests.HomeCoordinatorTests.testGoToAuth() -&gt; ()"
+                  moduleName = "SpotifyAPITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canyoldas/Documents/Codebase/Swift/SpotifyAPI/SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "2284">
+               </Location>
+               <Location
+                  uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628 - fcc87d40dbc2436a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotifyAPITests.HomeCoordinatorTests.testGoToAuth() -&gt; ()"
+                  moduleName = "SpotifyAPITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canyoldas/Documents/Codebase/Swift/SpotifyAPI/SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "106"
+                  endingLineNumber = "106"
+                  offsetFromSymbolStart = "2292">
+               </Location>
+               <Location
+                  uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628 - fcc87d40dbc242c1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotifyAPITests.HomeCoordinatorTests.testGoToAuth() -&gt; ()"
+                  moduleName = "SpotifyAPITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canyoldas/Documents/Codebase/Swift/SpotifyAPI/SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "101"
+                  endingLineNumber = "101"
+                  offsetFromSymbolStart = "2028">
+               </Location>
+               <Location
+                  uuid = "0A0F042B-F7BF-418C-811F-D98C0B705628 - fcc87d40dbc24262"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SpotifyAPITests.HomeCoordinatorTests.testGoToAuth() -&gt; ()"
+                  moduleName = "SpotifyAPITests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/canyoldas/Documents/Codebase/Swift/SpotifyAPI/SpotifyAPITests/SpotifyAPI/Modules/HomeCoordinatorTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "1940">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

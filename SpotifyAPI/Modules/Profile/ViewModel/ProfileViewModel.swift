@@ -33,7 +33,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func signInClicked() {
-        coordinatorDelegate?.goToAuthScreen()
+        coordinatorDelegate?.goToAuthScreen(animated: true)
     }
     
     private func callProfileService() {

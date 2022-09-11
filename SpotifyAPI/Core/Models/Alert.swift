@@ -11,6 +11,7 @@ struct Alert: Equatable {
     let title: String
     let message: String
     let actions: [AlertAction]
+    let style: UIAlertController.Style
 }
 
 struct AlertAction: Equatable {
@@ -54,7 +55,28 @@ extension Alert {
         return Alert(
             title: "Error",
             message: message ?? "Something went wrong.",
-            actions: actions
+            actions: actions,
+            style: .alert
         )
+    }
+    
+    static func buildMoreMenu(
+        title: String = "About",
+        message: String = "Made by Can Yoldas",
+        actions: [AlertAction] = []
+    ) -> Alert {
+        
+        let cancelAction = AlertAction(title: "Cancel", style: .cancel)
+        
+        var menuActions = [AlertAction]()
+        menuActions.append(contentsOf: actions)
+        menuActions.append(cancelAction)
+        
+        return Alert(
+            title: title,
+            message: message,
+            actions: menuActions,
+            style: .actionSheet)
+        
     }
 }

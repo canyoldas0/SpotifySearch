@@ -86,7 +86,12 @@ final class DetailViewModel: DetailViewModelProtocol {
     private func handleAlbumResponse(for response: AlbumResponse) {
         
         let imageUrls = response.items.compactMap { album in
-            AlbumCollectionCellData(imageUrl: album.images?.first?.url)
+            if let count = album.images?.count,
+                count > 2 {
+                return AlbumCollectionCellData(imageUrl: album.images?[1].url)
+            } else {
+                return AlbumCollectionCellData(imageUrl: album.images?.last?.url)
+            }
         }
         
         let collectionData = AlbumCollectionData(title: "Albums & Singles", albumUrls: imageUrls)

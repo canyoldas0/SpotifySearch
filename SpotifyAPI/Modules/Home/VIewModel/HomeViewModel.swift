@@ -15,7 +15,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let observationManager: ObservationManagerProtocol
     private let searchService: SearchServiceProtocol
     private let authManager: AuthManagerProtocol
-
     
     private var searchListData: [ListViewCellData] = []
     
@@ -55,11 +54,24 @@ final class HomeViewModel: HomeViewModelProtocol {
         handleSignIn(for: signedIn)
     }
     
+    func moreMenuClicked() {
+        
+        let removeCacheButton = AlertAction(
+            title: "Remove Image Cache",
+            style: .default,
+            action: ImageCacheManager.removeImageCache()
+        )
+        
+        let alert = Alert.buildMoreMenu(actions: [removeCacheButton])
+        
+        delegate?.handleOutput(.showAlert(alert))
+    }
+    
     private func handleSignIn(for status: Bool) {
         if status {
             callListService(with: latestSearchText)
         } else {
-            coordinatorDelegate?.goToLogin()
+            coordinatorDelegate?.goToOnboardingLogin()
             searchListData.removeAll()
             delegate?.handleOutput(.updateTable)
         }
@@ -156,7 +168,7 @@ extension HomeViewModel {
         searchListData.append(contentsOf: list.compactMap({ item in
             ListViewCellData(
                 id: item.id,
-                imageUrl: item.images?.first?.url,
+                imageUrl: item.images?.last?.url,
                 title: item.name
             )
         }))
@@ -166,7 +178,6 @@ extension HomeViewModel {
         self.total = response.artists.total
         self.offset = response.artists.offset
         self.limit = response.artists.limit
-        
     }
 }
 

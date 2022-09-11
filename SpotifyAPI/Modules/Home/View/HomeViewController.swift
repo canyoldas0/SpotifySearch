@@ -20,10 +20,18 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }()
     
     private lazy var profileButton: UIBarButtonItem = {
-       let temp = UIBarButtonItem()
+        let temp = UIBarButtonItem()
         temp.target = self
         temp.title = "Login"
         temp.action = #selector(profileClicked)
+        return temp
+    }()
+    
+    private lazy var moreMenuButton: UIBarButtonItem = {
+        let temp = UIBarButtonItem()
+        temp.target = self
+        temp.image = UIImage(systemName: "ellipsis")
+        temp.action = #selector(moreMenuClicked)
         return temp
     }()
     
@@ -34,11 +42,13 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         self.viewModel = viewModel
         self.viewModel.delegate = self
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
         viewModel.load()
+        
+        self.navigationItem.rightBarButtonItem = self.moreMenuButton
     }
     
     private func prepareUI() {
@@ -62,7 +72,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         view.addSubview(listView)
         
         NSLayoutConstraint.activate([
-        
+            
             listView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             listView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             listView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -72,12 +82,16 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     
     private func setProfileButton() {
         DispatchQueue.main.async {
-            self.navigationItem.rightBarButtonItem = self.profileButton
+            self.navigationItem.leftBarButtonItem = self.profileButton
         }
     }
     
     @objc private func profileClicked() {
         viewModel.profileClicked()
+    }
+    
+    @objc private func moreMenuClicked() {
+        viewModel.moreMenuClicked()
     }
     
     private func updateProfileIcon(for state: Bool) {

@@ -13,6 +13,7 @@ protocol HomeViewModelProtocol {
     func load()
     func profileClicked()
     func searchTracks(with text: String)
+    func moreMenuClicked()
 }
 
 protocol HomeViewOutputProtocol: AnyObject {

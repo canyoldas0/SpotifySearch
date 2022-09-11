@@ -8,10 +8,9 @@
 protocol HomeCoordinatorDelegate: AnyObject {
 
     func goBack(completion: VoidHandler?)
-    func goToLogin()
+    func goToOnboardingLogin()
     func goToProfile()
     func goToDetail(animated: Bool, with id: String)
-    func goToAuthScreen()
+    func goToAuthScreen(animated: Bool)
     func returnHome(completion: VoidHandler?)
-    func goToRoot(completion: VoidHandler?)
 }

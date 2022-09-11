@@ -31,28 +31,23 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         completion?()
     }
     
-    func goToLogin() {
+    func goToOnboardingLogin() {
         let signInVC = homeFactory.createSignInScreen(coordinatorDelegate: self)
         
         signInVC.title = "Sign In"
         
-        if let sheet = signInVC.sheetPresentationController {
-            /// Funny thing. Setting this property to true causes a memory leak.
-            //  sheet.prefersGrabberVisible = false
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
-        }
-        
+//        if let sheet = signInVC.sheetPresentationController {
+//            /// Funny thing. Setting this property to true causes a memory leak.
+////              sheet.prefersGrabberVisible = false
+//            sheet.preferredCornerRadius = 10
+//            sheet.detents = [.large()]
+//        }
+//
         rootViewController.present(signInVC, animated: true)
     }
     
     func goToProfile() {
         let profileVC = homeFactory.createProfileScreen(coordinatorDelegate: self)
-        
-        if let sheet = profileVC.sheetPresentationController {
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
-        }
         
         rootViewController.present(profileVC, animated: true)
     }
@@ -62,22 +57,19 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         rootViewController.pushViewController(detailVC, animated: animated)
     }
     
-    func goToAuthScreen() {
+    func goToAuthScreen(animated: Bool) {
         let authVC = homeFactory.createAuthView(coordinatorDelegate: self)
         
-        if let sheet = authVC.sheetPresentationController {
-            sheet.preferredCornerRadius = 10
-            sheet.detents = [.large()]
+        guard let presentedVC =  rootViewController.presentedViewController else {
+            rootViewController.present(authVC, animated: animated)
+            return
         }
-        rootViewController.presentedViewController?.present(authVC, animated: true)
+        
+        presentedVC.present(authVC, animated: animated)
     }
     
     func returnHome(completion: VoidHandler?) {
         rootViewController.dismiss(animated: true)
         completion?()
-    }
-    
-    func goToRoot(completion: VoidHandler?) {
-        rootViewController.popToRootViewController(animated: true)
     }
 }

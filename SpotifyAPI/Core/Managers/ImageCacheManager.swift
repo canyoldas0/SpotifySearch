@@ -19,4 +19,7 @@ class ImageCacheManager {
         return imageCache.object(forKey: NSString(string: key))
     }
     
+    class func removeImageCache() {
+        imageCache.removeAllObjects()
+    }
 }
