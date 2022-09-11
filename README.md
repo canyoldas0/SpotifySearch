@@ -63,3 +63,16 @@ This kind of an authorization layer wasn't something I have done before. I belie
 I believe that SwiftUI and Combine would be a best practice stack for this project, zipping service requests and making the UI responsive to updates would be much easier.
 
 I need to mention that after completing the project, I set myself a new goal, learning the SwiftUI and Combine.
+
+### Fun fact
+
+The UISheetPresentationController that comes in iOS 15 causes a memory leak.
+
+```
+let viewController = ViewController()
+
+if let sheetVC = viewController.sheetPresentationController {
+    // If you shet this true view controller doesn't deinitialize.
+    sheet.prefersGrabberVisible = true
+}
+```
