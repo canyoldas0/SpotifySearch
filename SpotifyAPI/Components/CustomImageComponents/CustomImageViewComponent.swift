@@ -20,7 +20,6 @@ class CustomImageViewComponent: UIImageView {
                 self?.loadImageFromDiskWith(componentData: componentData)
             }
         }
-        
     }
     
     private func fireImageDownloadingRequest(_ url: URL, _ componentData: CustomImageViewComponentData) {

@@ -55,7 +55,6 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func moreMenuClicked() {
-        
         let removeCacheButton = AlertAction(
             title: "Remove Image Cache",
             style: .default,
@@ -93,7 +92,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func profileClicked() {
-        coordinatorDelegate?.goToProfile()
+        coordinatorDelegate?.goToProfile(animated: true)
     }
     
     // MARK: Search List Service

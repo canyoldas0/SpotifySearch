@@ -725,8 +725,8 @@
 		1ECECA4728CA84B7005FA2D7 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1ECECA8328CCA365005FA2D7 /* Profile */,
 				1ECECA4928CA84C3005FA2D7 /* HomeCoordinatorTests.swift */,
+				1ECECA8328CCA365005FA2D7 /* Profile */,
 				1ECECA7D28CB8482005FA2D7 /* Detail */,
 				1ECECA4828CA84BC005FA2D7 /* Home */,
 			);

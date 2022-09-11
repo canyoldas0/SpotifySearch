@@ -32,9 +32,6 @@ final class HomeCoordinatorTests: XCTestCase {
         parentCoordinator = MockParentCoordinator()
         sut = HomeCoordinator(dependencies: dependencies)
         sut.parentCoordinator = parentCoordinator
-        
-        window.rootViewController = sut.rootViewController
-        window.makeKeyAndVisible()
     }
     
     override func tearDown() {
@@ -93,10 +90,25 @@ final class HomeCoordinatorTests: XCTestCase {
         window.rootViewController = sut.rootViewController
         window.makeKeyAndVisible()
                 
+        // When
         sut.goToAuthScreen(animated: false)
 
+        // Then
         XCTAssertTrue(sut.rootViewController.presentedViewController is AuthorizationViewController)
+    }
+    
+    func testGoToProfile() {
+        // Given
+        authManager.signedIn = true
+        sut.start()
+        window.rootViewController = sut.rootViewController
+        window.makeKeyAndVisible()
         
+        // When
+        sut.goToProfile(animated: false)
+        
+        // Then
+        XCTAssertTrue(sut.rootViewController.presentedViewController is ProfileViewController)
     }
 }
 

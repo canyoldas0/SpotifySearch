@@ -76,7 +76,7 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
         goToLoginCalled = true
     }
     
-    func goToProfile() {
+    func goToProfile(animated: Bool) {
         goToProfileClicked = true
     }
     

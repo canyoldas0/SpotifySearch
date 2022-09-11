@@ -46,10 +46,10 @@ final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
         rootViewController.present(signInVC, animated: true)
     }
     
-    func goToProfile() {
+    func goToProfile(animated: Bool) {
         let profileVC = homeFactory.createProfileScreen(coordinatorDelegate: self)
         
-        rootViewController.present(profileVC, animated: true)
+        rootViewController.present(profileVC, animated: animated)
     }
     
     func goToDetail(animated: Bool, with id: String) {
