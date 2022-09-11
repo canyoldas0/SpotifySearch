@@ -3,6 +3,7 @@
 This project is developed by Can Yoldas.
 
 - Note: Xcode 14 Beta is used during the development.
+- It is tested in real device iOS 15.6.1
 
 ## Get Started
 
@@ -51,6 +52,7 @@ I wanted to keep my network flow as linear as it's possible to make it suitable 
 - Coordinator pattern is a great way to handle navigations and flows, when the app is scaling, it helps you a lot. However, for this scale of project, it wasn't necessary to do it, The reason why I chose is that case studies are never scalable kind of projects, but I wanted it to approach this project as it is a real life project.
 - UIs can be more abstracted, more customizable for reusability.
 - Spotify SDK could be used, if somehow this project required some playback from Spotify, I would have gone for it for sure.
+- Mock Service Requests could be added and some kind of a local resource manager could be added to make testing more reliable. Instead, I chose to go with dummies (stub).
 
 ### Summary
 
