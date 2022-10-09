@@ -73,7 +73,7 @@ The UISheetPresentationController that comes in iOS 15 causes a memory leak.
 let viewController = ViewController()
 
 if let sheetVC = viewController.sheetPresentationController {
-    // If you shet this true view controller doesn't deinitialize.
+    // If you set this true view controller doesn't deinitialize.
     sheet.prefersGrabberVisible = true
 }
 ```
