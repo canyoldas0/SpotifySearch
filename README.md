@@ -3,7 +3,7 @@
 This project is developed by Can Yoldas.
 
 - Note: Xcode 14 Beta is used during the development.
-- It is tested in real device iOS 15.6.1
+- It is tested on real device iOS 15.6.1
 
 ## Get Started
 
