@@ -9,7 +9,6 @@ This project is developed by Can Yoldas.
 
 The purpose of the project is to use Spotify APIs for login and search for some further data. Spotify iOS SDK isn't used for this project. UIKit for the UIs and URLSession for networking are preferred.
 
-I know that TicketSwap uses Combine and SwiftUI in tech stack, I also wanted to use those technologies, I believe those would make my life easier, however one week wouldn't be enough to make this project as comprehensive as it is.
 
 ### API References
 
@@ -61,7 +60,7 @@ Overall, it was a great experience for me. There isn't a complex UI in this case
 
 This kind of an authorization layer wasn't something I have done before. I believe that combining it with the observation layer and dependency injections was great income of this project.
 
-I believe that SwiftUI and Combine would be a best practice stack for this project, zipping service requests and making the UI responsive to updates would be much easier.
+I believe that SwiftUI and Combine would be a better tech stack for this project, zipping service requests and making the UI responsive to updates would be much easier.
 
 I need to mention that after completing the project, I set myself a new goal, learning the SwiftUI and Combine.
 
