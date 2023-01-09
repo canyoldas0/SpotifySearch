@@ -19,7 +19,7 @@ The purpose of the project is to use Spotify APIs for login and search for some 
 
 ### Authorization
 
-For authorization in Spotify API, I choose manuel authentication method which might not be the practical way, but I didn't want to use the SDK, because I have experience using the old method.
+For authorization in Spotify API, I choose manual authentication method which might not be the practical way, but I didn't want to use the SDK, because I have experience using the old method.
 
 Authentication returns access token, refresh token and expiration time.
 There is a control mechanism in Auth Manager which controls if the access token is valid, if token is about to expire, it refreshes to token and continues to calls.
