@@ -151,7 +151,7 @@ extension HomeViewModel {
 extension HomeViewModel {
     
     private func handleError(with error: Error) {
-        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: (error as? NetworkError)?.rawValue)))
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
     }
     
     

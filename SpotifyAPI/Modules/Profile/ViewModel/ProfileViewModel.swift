@@ -52,7 +52,7 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     private func handleError(with error: Error) {
-        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: (error as? NetworkError)?.rawValue)))
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: error.localizedDescription)))
     }
     
     private func handleProfileResponse(for response: ProfileResponse) {

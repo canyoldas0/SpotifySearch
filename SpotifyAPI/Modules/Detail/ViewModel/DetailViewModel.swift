@@ -60,13 +60,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     }
     
     private func handleError(for error: Error) {
-        
-        var message: String
-        if let error = error as? NetworkError {
-            message = error.rawValue
-        } else {
-            message = "Error occurred during fetch. Please try again."
-        }
+        let message: String = error.localizedDescription
         
         delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message)))
     }
