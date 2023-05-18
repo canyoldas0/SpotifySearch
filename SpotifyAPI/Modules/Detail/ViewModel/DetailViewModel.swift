@@ -25,7 +25,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     }
     
     func load() {
-        
+        // TODO: Zip these requests with DispatchGroup
         callDetailService()
         callAlbumService()
     }
@@ -61,8 +61,7 @@ final class DetailViewModel: DetailViewModelProtocol {
     
     private func handleError(for error: Error) {
         let message: String = error.localizedDescription
-        
-        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message)))
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message, action: self.coordinatorDelegate?.goBack(completion: nil))))
     }
     
     private func handleHeaderResponse(with response: DetailResponse) {

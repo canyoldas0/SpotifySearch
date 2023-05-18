@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let apiConfiguration = URLSessionConfiguration.default
         apiConfiguration.waitsForConnectivity = true
+        apiConfiguration.timeoutIntervalForResource = 10 // can be less
         apiConfiguration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         
         // Auth Manager should have the the same instance of the observation to notify all view models.
