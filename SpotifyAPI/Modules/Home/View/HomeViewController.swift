@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController, ErrorHandlingProtocol {
+final class HomeViewController: BaseViewController, ErrorHandlingProtocol {
     
     private enum Constants {
         static let searchPlaceholder: String = "Search for the artists"
@@ -48,12 +48,17 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
         self.viewModel.delegate = self
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
+        
         prepareUI()
         viewModel.load()
-        
         self.navigationItem.rightBarButtonItem = self.moreMenuButton
+    }
+    
+    override func updateLoader(_ isLoading: Bool) {
+        listView.isHidden = isLoading
+        super.updateLoader(isLoading)
     }
     
     private func prepareUI() {
@@ -106,7 +111,7 @@ final class HomeViewController: UIViewController, ErrorHandlingProtocol {
     }
     
     @objc private func reload(_ searchBar: UISearchBar) {
-        guard let text = searchBar.text else {return}
+        guard let text = searchBar.text else { return }
         viewModel.searchTracks(with: text)
         listView.scrollToTop()
     }
@@ -116,6 +121,8 @@ extension HomeViewController: HomeViewOutputProtocol {
     
     func handleOutput(_ output: HomeViewOutput) {
         switch output {
+        case .setLoading(let isLoading):
+            updateLoader(isLoading)
         case .showAlert(let alert):
             showAlert(with: alert)
         case .updateTable:
@@ -130,9 +137,8 @@ extension HomeViewController: HomeViewOutputProtocol {
 extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector:
                                                 #selector(self.reload(_:)), object: searchController.searchBar)
-        perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 1.25)
-    }
+        perform(#selector(self.reload(_:)), with: searchController.searchBar, afterDelay: 0.75)
+    }   
 }

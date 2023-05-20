@@ -16,6 +16,10 @@ final class DetailViewModel: DetailViewModelProtocol {
     
     private let detailService: DetailServiceProtocol
     
+    // MARK: Internal data
+    private var headerData: DetailHeaderData? = nil
+    private var albumData: AlbumCollectionData? = nil
+    
     init(
         itemId: String,
         detailService: DetailServiceProtocol
@@ -25,59 +29,74 @@ final class DetailViewModel: DetailViewModelProtocol {
     }
     
     func load() {
-        
-        callDetailService()
-        callAlbumService()
+        fetchData()
     }
     
-    private func callDetailService() {
+    private func fetchData() {
+        let dispatchGroup = DispatchGroup()
         
-        let request = APIRequests.createRequest(from: DetailRequest())
+        delegate?.handleOutput(.setLoading(true))
         
-        detailService.fetchDetailData(itemId: itemId, request: request) { [weak self] result in
+        let detailRequest = APIRequests.createRequest(from: DetailRequest())
+        dispatchGroup.enter()
+        detailService.fetchDetailData(itemId: itemId, request: detailRequest) { [weak self] result in
             
             switch result {
             case .success(let response):
-                self?.handleHeaderResponse(with: response)
+                self?.headerData = self?.handleHeaderResponse(with: response)
             case .failure(let error):
                 self?.handleError(for: error)
+                return
             }
+            dispatchGroup.leave()
+        }
+        
+        
+        let albumRequest = APIRequests.createRequest(from: AlbumRequest())
+        dispatchGroup.enter()
+        detailService.fetchArtistAlbumData(itemId: itemId, request: albumRequest) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.albumData = self?.handleAlbumResponse(for: response)
+            case .failure(let error):
+                self?.handleError(for: error)
+                return
+            }
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let self else { return }
+            
+            if let headerData {
+                self.delegate?.handleOutput(.updateHeader(headerData))
+            }
+            
+            if let albumData {
+                delegate?.handleOutput(.updateAlbumData(albumData))
+            }
+            
+            delegate?.handleOutput(.setLoading(false))
         }
     }
     
-    private func callAlbumService() {
-        
-        let request = APIRequests.createRequest(from: AlbumRequest())
-        
-        detailService.fetchArtistAlbumData(itemId: itemId, request: request) { [weak self] result in
-            switch result {
-            case .success(let response):
-                self?.handleAlbumResponse(for: response)
-            case .failure(let error):
-                self?.handleError(for: error)
-            }
-        }
-    }
     
     private func handleError(for error: Error) {
         let message: String = error.localizedDescription
-        
-        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message)))
+        delegate?.handleOutput(.showAlert(Alert.buildDefaultAlert(message: message, action: self.coordinatorDelegate?.goBack(completion: nil))))
     }
     
-    private func handleHeaderResponse(with response: DetailResponse) {
-        if let name = response.name {
-            delegate?.handleOutput(.updateTitle(name))
-        }
+    private func handleHeaderResponse(with response: DetailResponse)  -> DetailHeaderData? {
+        guard let name = response.name,
+              let imageItem = response.images?.first,
+              let url = imageItem.url,
+              let genres = response.genres?.joined(separator: ", ") else { return nil }
         
-        if let imageItem = response.images?.first,
-           let url = imageItem.url,
-           let genres = response.genres?.joined(separator: ", ")   {
-            delegate?.handleOutput(.updateHeader(DetailHeaderData(imageUrl: url, genreTexts: genres)))
-        }
+        
+        return DetailHeaderData(title: name, imageUrl: url, genreTexts: genres)
     }
     
-    private func handleAlbumResponse(for response: AlbumResponse) {
+    private func handleAlbumResponse(for response: AlbumResponse) -> AlbumCollectionData {
         
         let imageUrls = response.items.compactMap { album in
             if let count = album.images?.count,
@@ -88,7 +107,6 @@ final class DetailViewModel: DetailViewModelProtocol {
             }
         }
         
-        let collectionData = AlbumCollectionData(title: "Albums & Singles", albumUrls: imageUrls)
-        delegate?.handleOutput(.updateAlbumData(collectionData))
+        return AlbumCollectionData(title: "Albums & Singles", albumUrls: imageUrls)
     }
 }

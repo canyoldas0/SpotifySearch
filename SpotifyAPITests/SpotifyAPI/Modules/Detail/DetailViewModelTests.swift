@@ -43,16 +43,22 @@ final class DetailViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLoad() {
+    func testLoad()  {
         // When
         sut.load()
+        let expectation = expectation(description: "all finished.")
         
-        // Then
-        XCTAssertEqual(viewDelegate.outputs, [
-            .updateTitle("Test"),
-            .updateHeader(.stub()),
-            .updateAlbumData(.stub())
-        ])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            XCTAssertEqual(self.viewDelegate.outputs, [
+                .setLoading(true),
+                .updateHeader(.stub()),
+                .updateAlbumData(.stub()),
+                .setLoading(false)
+            ])
+            
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 10)
     }
 }
 
@@ -89,12 +95,26 @@ fileprivate final class MockCoordinator: HomeCoordinatorDelegate {
 
 fileprivate final class MockDetailService:  DetailServiceProtocol {
     
+    var isSuccess: Bool = true
+    
+    enum MockError: String, LocalizedError {
+        case mockError = "Mock Error"
+    }
+    
     func fetchDetailData(itemId: String, request: SpotifyAPI.Requestable, completion: @escaping (Result<SpotifyAPI.DetailResponse, Error>) -> Void) {
-        completion(.success(.stub()))
+        if isSuccess {
+            completion(.success(.stub()))
+        } else {
+            completion(.failure(MockError.mockError))
+        }
     }
     
     func fetchArtistAlbumData(itemId: String, request: SpotifyAPI.Requestable, completion: @escaping (Result<SpotifyAPI.AlbumResponse, Error>) -> Void) {
-        completion(.success(.stub()))
+        if isSuccess {
+            completion(.success(.stub()))
+        } else {
+            completion(.failure(MockError.mockError))
+        }
     }
 }
 

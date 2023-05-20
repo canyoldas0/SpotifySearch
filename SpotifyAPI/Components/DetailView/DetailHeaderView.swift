@@ -8,8 +8,7 @@
 import UIKit
 
 struct DetailHeaderData: GenericDataProtocol, Equatable {
-    
-    
+    let title: String?
     let imageUrl: String?
     let genreTexts: String?
 }

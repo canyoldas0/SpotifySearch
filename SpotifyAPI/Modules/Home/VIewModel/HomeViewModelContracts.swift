@@ -12,7 +12,7 @@ protocol HomeViewModelProtocol {
     
     func load()
     func profileClicked()
-    func searchTracks(with text: String)
+    func searchTracks(with text: String?)
     func moreMenuClicked()
 }
 
@@ -21,6 +21,7 @@ protocol HomeViewOutputProtocol: AnyObject {
 }
 
 enum HomeViewOutput: Equatable {
+    case setLoading(Bool)
     case updateTable
     case showAlert(Alert)
     case updateProfileIcon(Bool)

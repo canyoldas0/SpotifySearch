@@ -68,7 +68,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     private func handleSignIn(for status: Bool) {
         if status {
-            callListService(with: latestSearchText)
+            searchTracks(with: latestSearchText)
         } else {
             coordinatorDelegate?.goToOnboardingLogin()
             searchListData.removeAll()
@@ -78,8 +78,9 @@ final class HomeViewModel: HomeViewModelProtocol {
         delegate?.handleOutput(.updateProfileIcon(status))
     }
     
-    func searchTracks(with text: String) {
-        guard !text.isEmpty else {
+    func searchTracks(with text: String?) {
+        guard let text,
+              !text.isEmpty else {
             return
         }
         
@@ -97,12 +98,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     // MARK: Search List Service
     
-    private func callListService(with text: String?, pagination: Bool = false) {
-        guard let text,
-              !text.isEmpty else {
-            return
-        }
-        
+    private func callListService(with text: String, pagination: Bool = false) {
         // Request Model
         let request = APIRequests.createRequest(from: SearchRequest(
             searchText: text,
@@ -111,19 +107,23 @@ final class HomeViewModel: HomeViewModelProtocol {
             offset: offset
         ))
         
+        delegate?.handleOutput(.setLoading(true))
         searchService.search(request: request) { [weak self] result in
+            guard let self else { return }
             
             // If request is called for pagination, it keeps the current list.
             // If it's not for pagination, then it means it's a new search and previously fetched data gets removed the list.
             if !pagination {
-                self?.searchListData.removeAll()
+                searchListData.removeAll()
             }
+            
+            delegate?.handleOutput(.setLoading(false))
             
             switch result {
             case .success(let response):
-                self?.handleSearchListResponse(response: response)
+                handleSearchListResponse(response: response)
             case .failure(let error):
-                self?.handleError(with: error)
+                handleError(with: error)
             }
         }
     }
@@ -208,7 +208,9 @@ extension HomeViewModel: ItemProviderProtocol {
             return
         }
         nextOffset()
-        callListService(with: latestSearchText, pagination: true)
+        if let latestSearchText {
+            callListService(with: latestSearchText, pagination: true)
+        }
     }
     
     func isLoadingCell(for index: Int) -> Bool {

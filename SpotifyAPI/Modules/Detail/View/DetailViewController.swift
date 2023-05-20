@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, ErrorHandlingProtocol {
+final class DetailViewController: BaseViewController, ErrorHandlingProtocol {
     
     private var viewModel: DetailViewModelProtocol!
     
@@ -19,17 +19,24 @@ class DetailViewController: UIViewController, ErrorHandlingProtocol {
         return temp
     }()
     
+    
     convenience init(viewModel: DetailViewModelProtocol) {
         self.init()
         self.viewModel = viewModel
         self.viewModel.delegate = self
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func setup() {
+        super.setup()
         view.backgroundColor = .backgroundColor
         prepareUI()
         viewModel.load()
+    }
+    
+    override func updateLoader(_ isLoading: Bool) {
+        headerView.isHidden = isLoading
+        albumCollection.isHidden = isLoading
+        super.updateLoader(isLoading)
     }
     
     private func prepareUI() {
@@ -58,13 +65,14 @@ extension DetailViewController: DetailViewOutputProtocol {
     
     func handleOutput(_ output: DetailViewOutput) {
         switch output {
+        case .setLoading(let isLoading):
+            updateLoader(isLoading)
         case .showAlert(let alert):
             showAlert(with: alert)
         case .updateAlbumData(let albumCollectionData):
             albumCollection.setData(data: albumCollectionData)
-        case .updateTitle(let title):
-            self.title = title
         case .updateHeader(let data):
+            self.title = data.title
             headerView.setData(data: data)
         }
     }
