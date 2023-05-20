@@ -91,6 +91,7 @@
 		1ECECA8528CCA36C005FA2D7 /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA8428CCA36C005FA2D7 /* ProfileViewModelTests.swift */; };
 		1ECECA8728CDDB77005FA2D7 /* TestKeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */; };
 		1ED2F0A928C39ADE00D2D1CD /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */; };
+		1EF1268F2A1964BB00FC5B37 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF1268E2A1964BB00FC5B37 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +193,7 @@
 		1ECECA8628CDDB77005FA2D7 /* TestKeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestKeychainWrapper.swift; sourceTree = "<group>"; };
 		1ECECA8928CDED01005FA2D7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1ED2F0A828C39ADE00D2D1CD /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		1EF1268E2A1964BB00FC5B37 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -644,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				1E40339D28C2A2670096B69F /* BaseView.swift */,
+				1EF1268E2A1964BB00FC5B37 /* BaseViewController.swift */,
 			);
 			path = BaseClasses;
 			sourceTree = "<group>";
@@ -979,6 +982,7 @@
 				1E19772828C51C810034F60D /* AuthResponse.swift in Sources */,
 				1E25A8AD28C4B52B004966DB /* SignInViewModel.swift in Sources */,
 				1E40338E28C275DA0096B69F /* SignInViewController.swift in Sources */,
+				1EF1268F2A1964BB00FC5B37 /* BaseViewController.swift in Sources */,
 				1E25A8B228C4BDF0004966DB /* ProfileViewModel.swift in Sources */,
 				1E40337628C26C940096B69F /* DependencyContainer.swift in Sources */,
 				1E40339E28C2A2670096B69F /* BaseView.swift in Sources */,

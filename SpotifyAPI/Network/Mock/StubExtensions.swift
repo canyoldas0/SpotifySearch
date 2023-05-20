@@ -14,7 +14,7 @@ extension DetailResponse {
     
     static func stub() -> DetailResponse {
         DetailResponse(id: "123",
-                       name: "Test",
+                       name: "Test Page",
                        genres: ["testGenre"],
                        images: [.stub()],
                        followers: .stub())
@@ -33,8 +33,10 @@ extension FollowerInfo {
 extension DetailHeaderData {
     
     static func stub() -> DetailHeaderData {
-        DetailHeaderData(imageUrl: "testUrl",
-                         genreTexts: "testGenre")
+        DetailHeaderData(
+            title: "Test Page",
+            imageUrl: "testUrl",
+            genreTexts: "testGenre")
     }
 }
 

@@ -20,8 +20,8 @@ protocol DetailViewOutputProtocol: AnyObject {
 }
 
 enum DetailViewOutput: Equatable {
+    case setLoading(Bool)
     case showAlert(Alert)
     case updateAlbumData(AlbumCollectionData)
-    case updateTitle(String)
     case updateHeader(DetailHeaderData)
 }
