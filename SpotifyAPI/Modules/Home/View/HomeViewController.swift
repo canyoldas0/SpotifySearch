@@ -15,7 +15,7 @@ final class HomeViewController: BaseViewController, ErrorHandlingProtocol {
         static let profileButtonImage: String = "person.circle.fill"
     }
     
-    var viewModel: HomeViewModelProtocol!
+    private var viewModel: HomeViewModelProtocol!
     
     private lazy var searchController: UISearchController = {
         let temp = UISearchController()
@@ -91,9 +91,7 @@ final class HomeViewController: BaseViewController, ErrorHandlingProtocol {
     }
     
     private func setProfileButton() {
-        DispatchQueue.main.async {
-            self.navigationItem.leftBarButtonItem = self.profileButton
-        }
+        self.navigationItem.leftBarButtonItem = self.profileButton
     }
     
     @objc private func profileClicked() {

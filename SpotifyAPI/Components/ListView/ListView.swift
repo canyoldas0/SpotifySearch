@@ -100,14 +100,13 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setData(with: data)
+            cell.selectedBackgroundView = .none
+            cell.selectionStyle = .none
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
-        cell?.selectedBackgroundView = .none
-        cell?.selectionStyle = .none
         delegate?.itemSelected(at: indexPath.row)
     }
     

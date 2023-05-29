@@ -61,7 +61,6 @@ class CustomImageViewComponent: UIImageView {
         }
         
         setImageToCache(key: imageUrl, object: image)
-        
     }
     
     private func handleTaskResponse(data: Data?, componentData: CustomImageViewComponentData) {
@@ -79,7 +78,6 @@ class CustomImageViewComponent: UIImageView {
         case .disk:
             saveImage(imageName: componentData.imageId!, image: image)
         }
-        
     }
     
     private func returnImageFromCache(imageUrl: String) -> UIImage? {
@@ -114,7 +112,6 @@ class CustomImageViewComponent: UIImageView {
         } catch let error {
             print("error saving file with error", error)
         }
-        
     }
     
     private func loadImageFromDiskWith(componentData: CustomImageViewComponentData) {

@@ -8,9 +8,7 @@
 import UIKit
 
 protocol ErrorHandlingProtocol where Self: UIViewController {
-    
     func showAlert(with alert: Alert)
-    
 }
 
 extension ErrorHandlingProtocol {

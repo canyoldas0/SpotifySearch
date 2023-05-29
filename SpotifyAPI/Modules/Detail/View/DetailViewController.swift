@@ -19,7 +19,6 @@ final class DetailViewController: BaseViewController, ErrorHandlingProtocol {
         return temp
     }()
     
-    
     convenience init(viewModel: DetailViewModelProtocol) {
         self.init()
         self.viewModel = viewModel

@@ -17,19 +17,4 @@ class CustomImageViewComponentData: GenericDataProtocol {
     init(imageUrl: String) {
         self.imageUrl = imageUrl
     }
-    
-    func setContentMode(by value: UIView.ContentMode) -> Self {
-        self.contentMode = value
-        return self
-    }
-    
-    func setLoadingType(by value: CustomImageLoadingType) -> Self {
-        self.loadingType = value
-        return self
-    }
-    
-    func setImageId(by value: String) -> Self {
-        self.imageId = value
-        return self
-    }
 }

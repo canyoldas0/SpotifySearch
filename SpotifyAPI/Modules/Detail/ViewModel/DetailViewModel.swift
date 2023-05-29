@@ -51,7 +51,6 @@ final class DetailViewModel: DetailViewModelProtocol {
             dispatchGroup.leave()
         }
         
-        
         let albumRequest = APIRequests.createRequest(from: AlbumRequest())
         dispatchGroup.enter()
         detailService.fetchArtistAlbumData(itemId: itemId, request: albumRequest) { [weak self] result in
@@ -79,7 +78,6 @@ final class DetailViewModel: DetailViewModelProtocol {
             delegate?.handleOutput(.setLoading(false))
         }
     }
-    
     
     private func handleError(for error: Error) {
         let message: String = error.localizedDescription

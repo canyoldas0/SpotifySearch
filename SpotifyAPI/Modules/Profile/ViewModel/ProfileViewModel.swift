@@ -12,7 +12,6 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     
     private let profileService: ProfileServiceProtocol
     private let authManager: AuthManagerProtocol
-
     
     init(
         authManager: AuthManagerProtocol,

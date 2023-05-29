@@ -12,14 +12,6 @@ enum SessionType {
     case mock
 }
 
-//class ErrorResponse: Error {
-//    let customErrorMesage: String?
-//
-//    init(errorMessage: String? = nil) {
-//        self.customErrorMesage = errorMessage
-//    }
-//}
-
 class BaseAPI {
     
     private let session: URLSession

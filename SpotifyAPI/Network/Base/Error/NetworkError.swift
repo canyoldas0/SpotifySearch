@@ -13,7 +13,6 @@ public enum NetworkError: String, LocalizedError {
     case missingURL = "URL is nil."
     case tokenExpired = "Your session is expired. Please sign in again."
 
-    
     public var errorDescription: String? {
         self.rawValue
     }

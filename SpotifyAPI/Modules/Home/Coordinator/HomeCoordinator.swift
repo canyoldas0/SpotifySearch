@@ -9,7 +9,7 @@ import UIKit
 
 final class HomeCoordinator: CoordinatorProtocol, HomeCoordinatorDelegate {
     
-    var parentCoordinator: ParentCoordinatorDelegate?
+    weak var parentCoordinator: ParentCoordinatorDelegate?
     var children: [CoordinatorProtocol] = []
     private(set) var rootViewController: UINavigationController!
     private let dependencyContainer: DependencyContainer

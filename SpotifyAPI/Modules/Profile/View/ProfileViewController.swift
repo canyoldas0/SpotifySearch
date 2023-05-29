@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController, ErrorHandlingProtocol {
+final class ProfileViewController: BaseViewController, ErrorHandlingProtocol {
     
     private var viewModel: ProfileViewModelProtocol!
     

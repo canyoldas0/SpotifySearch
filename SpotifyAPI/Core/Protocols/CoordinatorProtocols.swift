@@ -15,7 +15,7 @@ protocol CoordinatorProtocol: ParentCoordinatorDelegate {
 
 protocol ParentCoordinatorDelegate: AnyObject {
     
-    var children: [CoordinatorProtocol] {get set}
+    var children: [CoordinatorProtocol] { get set }
     func childDidFinish(child: CoordinatorProtocol)
 }
 

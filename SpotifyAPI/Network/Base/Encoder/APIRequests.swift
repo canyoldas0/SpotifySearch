@@ -16,10 +16,10 @@ class APIRequests {
 
 /// Minimum required type for make a request.
 protocol Requestable {
-    var queryItems: [URLQueryItem]? { get }
+    var queryItems: [URLQueryItem] { get }
 }
 
 /// Holds request parameters through the process.
 struct APIRequest: Requestable {
-    let queryItems: [URLQueryItem]?
+    let queryItems: [URLQueryItem]
 }

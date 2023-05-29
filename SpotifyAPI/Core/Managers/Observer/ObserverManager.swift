@@ -11,7 +11,6 @@ enum ObservationName: String {
     case signedIn
 }
 
-
 protocol ObservationManagerProtocol {
     
     func subscribe<Observer: AnyObject>(name: ObservationName,
